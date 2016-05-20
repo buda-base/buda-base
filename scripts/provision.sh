@@ -20,8 +20,8 @@ fi
 echo ">>>> installing couchdb and dependencies"
 sudo add-apt-repository ppa:couchdb/stable -y
 sudo apt-get update -y
-# remove any existing couchdb binaries
-sudo apt-get remove couchdb couchdb-bin couchdb-common -yf
+# remove any existing couchdb binaries - should not be needed
+# sudo apt-get remove couchdb couchdb-bin couchdb-common -yf
 sudo apt-get install -V couchdb -y
 # manage via upstart for Ubuntu 14.04 LTS
 sudo stop couchdb
