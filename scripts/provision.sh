@@ -74,7 +74,7 @@ echo ">>>> tomcat001 listening on 8080"
 
 
 # install RabbitMQ
-echo ">>>> installing RabbitMQ adn cients"
+echo ">>>> installing RabbitMQ and cients"
 sudo apt-get install rabbitmq-server -y
 sudo apt-get install amqp-tools -y
 sudo npm install rabbit.js
