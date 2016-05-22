@@ -1,33 +1,74 @@
 #!/usr/bin/env bash
 
-# install tomcat
-# add tomcat user
-echo ">>>> adding tomcat user"
-sudo groupadd tomcat
-sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+#general vars
+export DOWNLOADS=/home/vagrant/downloads
+export TC_USER=fuseki
+export TC_GROUP=fuseki
+# set erb vars
+export SVC=fuseki
+export SVC_DESC="Jena-Fuseki Tomcat container"
+export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
+export THE_HOME=/usr/local/$SVC
+export CAT_HOME=$THE_HOME/tomcat
+export SHUTDOWN_PORT=13105
+export MAIN_PORT=13180
+export REDIR_PORT=13143
+export AJP_PORT=13109
+# install tomcat container
+# add USER
+echo ">>>> adding user: ${TC_USER}"
+groupadd $TC_GROUP
+useradd -s /bin/false -g $TC_GROUP -d $THE_HOME $TC_USER
 # place to download non apt-get items
-mkdir -p /home/vagrant/downloads
+mkdir -p $DOWNLOADS
 # download tomcat
 echo ">>>> downloading tomcat 8"
-pushd /home/vagrant/downloads;
-wget http://mirror.sdunix.com/apache/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz
+pushd $DOWNLOADS;
+wget http://download.nextag.com/apache/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz
 popd
-# allow for several tomcat instances tomcat001, tomcat002, ...
-sudo mkdir -p /usr/local/tomcat001
+mkdir -p $CAT_HOME
 # unpack tomcat
 echo ">>>> unpacking tomcat 8"
-sudo tar xvf /home/vagrant/downloads/apache-tomcat-8*tar.gz -C /usr/local/tomcat001 --strip-components=1
-# fix permissions
-echo ">>>> fixing tomcat001 permissions"
-pushd /usr/local/tomcat001
-sudo chgrp -R tomcat conf webapps
-sudo chmod g+rwx conf webapps
-sudo chmod g+r conf/*
-sudo chown -R tomcat work/ temp/ logs/ webapps/
+tar xf $DOWNLOADS/apache-tomcat-8*tar.gz -C $CAT_HOME --strip-components=1
+# configure server
+echo ">>>> configuring server.xml tomcat 8"
+erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
+# enable tomcat admin and manager apps
+cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
+# download fuseki
+echo ">>>> downloading jena-fuseki 2.4.0"
+pushd $DOWNLOADS;
+wget http://supergsego.com/apache/jena/binaries/apache-jena-fuseki-2.4.0.tar.gz
+tar xf apache-jena-fuseki-2.4.0.tar.gz
+wget http://mirror.nexcess.net/apache/logging/log4j/1.2.17/log4j-1.2.17.tar.gz
+tar xf log4j-1.2.17.tar.gz
+echo ">>>> copying fuseki war to tomcat container"
+cp apache-jena-fuseki-2.4.0/fuseki.war $CAT_HOME/webapps
 popd
-# setup tomcat001 as service - initially on port 8080
-echo ">>>> setting up tomcat001 as service and starting"
-sudo cp /vagrant/scripts/tomcat001.conf /etc/init/tomcat001.conf
-sudo initctl reload-configuration
-sudo initctl start tomcat001
-echo ">>>> tomcat001 listening on 8080"
+echo ">>>> configuring FUSEKI_BASE"
+mkdir -p $THE_HOME/base
+ln -s $THE_HOME/base /etc/fuseki
+# fix permissions
+echo ">>>> fixing permissions"
+chown -R vagrant:vagrant $DOWNLOADS
+chown -R $TC_USER:$TC_GROUP $THE_HOME
+pushd $CAT_HOME
+# chgrp -R $TC_USER conf webapps
+chmod g+rwx conf webapps
+chmod g+r conf/*
+# chown -R $TC_USER work/ temp/ logs/ webapps/
+popd
+# setup as service listening on $MAIN_PORT
+echo ">>>> setting up ${SVC_DESC} as service"
+erb /vagrant/conf/tomcat/service.erb > /etc/init/$SVC.conf
+echo ">>>> starting ${SVC} service"
+initctl reload-configuration
+initctl start $SVC
+# the fuseki.war is missing log4j-1.2.17.jar so wait for initial deploy of war
+# the following is  royal kludge.
+sleep 2
+# then stop the container; cp the missing war file; and restart
+initctl stop $SVC
+cp $DOWNLOADS/apache-log4j-1.2.17/log4j-1.2.17.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib
+initctl start $SVC
+echo ">>>> ${SVC} service listening on ${MAIN_PORT}"

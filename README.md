@@ -23,19 +23,27 @@ This will grind awhile installing the following:
 * Oracle JDK 8
 * couchdb and its dependencies
 * node.js
-* tomcat
-* RabbitMQ.
+* RabbitMQ
+* jena-fuseki.
+
 
 Once the initial install has completed the command:
 
     vagrant ssh
-will connect to the instance where development, customization of the environment and so on can be performed as for any headless server. The command:
+will connect to the instance where development, customization of the environment and so on can be performed as for any headless server.
+
+The couchdb is listening on port 5984 from the host system:
+
+    curl "http://localhost:5984"
+Similarly, the jena-fuseki server will be listening on 13180.
+
+The command:
 
     vagrant halt
-will shut the instance down, and
-
-    vagrant destroy
-will completely remove the instance. After halting (or suspending the instance) a further:
+will shut the instance downAfter halting (or suspending the instance) a further:
 
     vagrant up
-will simply boot the instance without further downloads.
+will simply boot the instance without further downloads, and
+
+    vagrant destroy
+will completely remove the instance. 
