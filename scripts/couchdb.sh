@@ -11,6 +11,6 @@ sudo apt-get install -V couchdb -y
 sudo stop couchdb
 # update /etc/couchdb/local.ini with 'bind_address=0.0.0.0' as needed
 sudo cp /etc/couchdb/local.ini /etc/couchdb/local.ini.bk
-sudo sed -i "/[httpd]/abind_address=0.0.0.0\n" /etc/couchdb/local.ini
+sudo sed -i "/\[httpd\]/abind_address=0.0.0.0" /etc/couchdb/local.ini
 sudo start couchdb
 echo ">>>> couchdb listening on 5984"
