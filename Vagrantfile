@@ -79,5 +79,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, path: "scripts/couchdb.sh"
   config.vm.provision :shell, path: "scripts/node-js.sh"
   config.vm.provision :shell, path: "scripts/rabbitmq.sh"
-  config.vm.provision :shell, path: "scripts/jena-fuseki.sh"
+  config.vm.provision :shell, path: "scripts/fuseki.sh"
 end
