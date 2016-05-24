@@ -34,13 +34,15 @@ will connect to the instance where development, customization of the environment
 
 The couchdb is listening on port 5984 from the host system:
 
-    curl "http://localhost:5984"
-Similarly, the jena-fuseki server will be listening on 13180.
+    http://localhost:5984/_utils/
+Similarly, the jena-fuseki server will be listening on:
+
+    http://localhost:13180/fuseki
 
 The command:
 
     vagrant halt
-will shut the instance downAfter halting (or suspending the instance) a further:
+will shut the instance down. After halting (or suspending the instance) a further:
 
     vagrant up
 will simply boot the instance without further downloads, and
