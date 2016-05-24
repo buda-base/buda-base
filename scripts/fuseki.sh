@@ -40,10 +40,10 @@ echo ">>>> downloading jena-fuseki 2.4.0"
 pushd $DOWNLOADS;
 wget http://supergsego.com/apache/jena/binaries/apache-jena-fuseki-2.4.0.tar.gz
 tar xf apache-jena-fuseki-2.4.0.tar.gz
-wget http://mirror.nexcess.net/apache/logging/log4j/1.2.17/log4j-1.2.17.tar.gz
-tar xf log4j-1.2.17.tar.gz
 echo ">>>> copying fuseki war to tomcat container"
-cp apache-jena-fuseki-2.4.0/fuseki.war $CAT_HOME/webapps
+# until new war is released copy locally updated war with log4j - JENA-1185
+# cp apache-jena-fuseki-2.4.0/fuseki.war $CAT_HOME/webapps
+cp /vagrant/lib/jena-fuseki-war-2.4.0.war $CAT_HOME/webapps/fuseki.war
 popd
 echo ">>>> configuring FUSEKI_BASE"
 mkdir -p $THE_HOME/base
@@ -63,12 +63,5 @@ echo ">>>> setting up ${SVC_DESC} as service"
 erb /vagrant/conf/tomcat/service.erb > /etc/init/$SVC.conf
 echo ">>>> starting ${SVC} service"
 initctl reload-configuration
-initctl start $SVC
-# the fuseki.war is missing log4j-1.2.17.jar so wait for initial deploy of war
-# the following is  royal kludge.
-sleep 2
-# then stop the container; cp the missing war file; and restart
-initctl stop $SVC
-cp $DOWNLOADS/apache-log4j-1.2.17/log4j-1.2.17.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib
 initctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
