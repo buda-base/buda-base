@@ -1,0 +1,1 @@
+The fuseki.war is a patched version of the released jena-fuseki-2.4.0 that adds log4j-1.2.17.jar and slf4j-log4j12-1.7.20.jar. These were left out of the dependencies in the jena-fuseki-war/pom.xml and have since been added per JENA-1185.
