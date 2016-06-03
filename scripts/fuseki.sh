@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 #general vars
-export DOWNLOADS=/home/vagrant/downloads
+echo ">>>> home: ${HOME}"
+export DOWNLOADS=$HOME/downloads
 export TC_USER=fuseki
 export TC_GROUP=fuseki
 # set erb vars
@@ -50,7 +51,7 @@ mkdir -p $THE_HOME/base
 ln -s $THE_HOME/base /etc/fuseki
 # fix permissions
 echo ">>>> fixing permissions"
-chown -R vagrant:vagrant $DOWNLOADS
+chown -R $USER:$USER $DOWNLOADS
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 pushd $CAT_HOME
 # chgrp -R $TC_USER conf webapps
