@@ -4,13 +4,17 @@
 # this Vagrantfile can be used to provision an AWS ubuntu/trusty instance which can then
 # be used to create an instance for further dev use
 
+# on first use install the aws provider plugin for vagrant:
+# vagrant plugin install vagrant-aws
+# then add the "dummy" box which is reference below:
+# vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+
 # in ~/.profile or equiv add so credentials are available below. This assumes awscli setup.
 # export AWS_ACCESS_KEY_ID=`grep "aws_access_key_id" ~/.aws/credentials | awk -F " = " '{print $2}'`
 # export AWS_SECRET_ACCESS_KEY=`grep "aws_secret_access_key" ~/.aws/credentials | awk -F " = " '{print $2}'`
 
-# also it is necessary to
-# vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
-
+# now use
+# vagrant up --provider=aws
 
 Vagrant.configure(2) do |config|
   
