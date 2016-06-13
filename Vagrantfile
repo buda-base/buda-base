@@ -14,6 +14,7 @@ Vagrant.configure(2) do |config|
       vb.memory = "2048"
   end
   
+  config.vm.provision :shell, path: "scripts/tools.sh"
   config.vm.provision :shell, path: "scripts/oracle-jdk.sh"
   config.vm.provision :shell, path: "scripts/couchdb.sh"
   config.vm.provision :shell, path: "scripts/couchapp.sh"
