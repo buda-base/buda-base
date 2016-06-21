@@ -65,4 +65,5 @@ erb /vagrant/conf/tomcat/service.erb > /etc/init/$SVC.conf
 echo ">>>> starting ${SVC} service"
 initctl reload-configuration
 initctl start $SVC
+cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
