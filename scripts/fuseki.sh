@@ -66,4 +66,6 @@ echo ">>>> starting ${SVC} service"
 initctl reload-configuration
 initctl start $SVC
 cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
+initctl stop $SVC
+initctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
