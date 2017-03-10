@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
-# install Oracle jdk
-echo ">>>> installing Oracle JDK 8"
-apt-get install -y python-software-properties debconf-utils
-add-apt-repository -y ppa:webupd8team/java
-apt-get update
-echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
-apt-get install -y oracle-java8-installer
+if which java >/dev/null; then
+   	echo "skip java 8 installation"
+else
+	echo "java 8 installation"
+	echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee /etc/apt/sources.list.d/webupd8team-java.list
+	echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
+	apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+	apt-get update
+	echo debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+	echo debconf shared/accepted-oracle-license-v1-1 seen true | /usr/bin/debconf-set-selections
+	apt-get install --yes oracle-java8-installer oracle-java8-set-default
+	yes "" | apt-get -f install
+fi

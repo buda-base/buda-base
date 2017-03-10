@@ -1,11 +1,15 @@
 #!/usr/bin/env bash
 
+echo ">>>> upgrade packages"
+apt update -y
+apt upgrade -y
+
 #install common tools and utilities
 echo ">>>> installing common tools and utilities"
 echo ">>>> installing python setup tools"
 apt-get install python-dev libxml2-dev libxslt-dev -y
 apt-get install python-setuptools
-easy_install -U setuptools
-echo ">>>> installing directory tree util"
-apt-get install tree -y
+echo ">>>> installing various common tools"
+# ruby needed for erb
+apt-get install tree git bash-completion sudo vim curl wget ruby -y
 echo ">>>> common tools and utilities installed"
