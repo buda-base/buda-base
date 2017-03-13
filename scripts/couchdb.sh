@@ -27,6 +27,8 @@ else
 	make release
 	mv /usr/src/couchdb/rel/couchdb /opt/
 
+	chown -R couchdb:couchdb /opt/couchdb
+
 	 # Cleanup build detritus
 	rm -rf /usr/src/couchdb
 fi
