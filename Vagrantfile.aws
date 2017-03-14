@@ -29,8 +29,9 @@ Vagrant.configure(2) do |config|
     
     aws.keypair_name = "BDRC_Dev_001"
     aws.security_groups = [ 'BDRC_Dev_SG_001' ]
-    # ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-20160114.5 - ami-fce3c696
-    aws.ami = "ami-fce3c696"
+    # Debian Jessie 8.7 - ami-fce3c696
+    # https://wiki.debian.org/Cloud/AmazonEC2Image/Jessie
+    aws.ami = "ami-b14ba7a7"
     aws.instance_type = "m4.large"
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/sda1', 
                                   'Ebs.VolumeSize' => 32, 
