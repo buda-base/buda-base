@@ -43,4 +43,7 @@ systemctl daemon-reload
 systemctl enable couchdb
 systemctl start couchdb
 
+curl -X PUT http://localhost:13598/test
+curl -X PUT http://localhost:13598/test/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+
 echo ">>>> couchdb listening"
