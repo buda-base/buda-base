@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# from https://gist.github.com/mrded/280433eef0986a112f0393ccfc97b7c8
+# partly from https://gist.github.com/mrded/280433eef0986a112f0393ccfc97b7c8
 
 if [ -a /opt/couchdb/bin/couchdb ]; then
    	echo "skip couchdb installation"
 else
 	# Add CouchDB user account
-	groupadd -r couchdb && useradd -d /opt/couchdb -g couchdb couchdb
+	groupadd -r couchdb && useradd -d /opt/couchdb -g couchdb -r -s /bin/false couchdb
 
 	apt-get update -y
 	apt-get install -y --no-install-recommends ca-certificates curl haproxy erlang-nox erlang-reltool libicu52 libmozjs185-1.0 openssl
@@ -27,18 +27,20 @@ else
 	make release
 	mv /usr/src/couchdb/rel/couchdb /opt/
 
+	mv /opt/couchdb/etc/local.ini /opt/couchdb/etc/local.ini.bk
 	chown -R couchdb:couchdb /opt/couchdb
 
 	 # Cleanup build detritus
 	rm -rf /usr/src/couchdb
 fi
 
-mv /opt/couchdb/etc/local.ini /opt/couchdb/etc/local.ini.bk
+
 cp /vagrant/conf/couchdb/local.ini /opt/couchdb/etc/
+chown -R couchdb:couchdb /opt/couchdb/etc/local.ini
 
 cp /vagrant/conf/couchdb/couchdb.service /lib/systemd/system/
 systemctl daemon-reload
 systemctl enable couchdb
 systemctl start couchdb
 
-echo ">>>> couchdb listening on 5984"
+echo ">>>> couchdb listening"

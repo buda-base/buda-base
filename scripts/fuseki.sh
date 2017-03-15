@@ -25,7 +25,7 @@ mkdir -p $DOWNLOADS
 # download tomcat
 echo ">>>> downloading tomcat 8"
 pushd $DOWNLOADS;
-wget http://download.nextag.com/apache/tomcat/tomcat-8/v8.0.41/bin/apache-tomcat-8.0.41.tar.gz
+wget -q -c http://download.nextag.com/apache/tomcat/tomcat-8/v8.0.41/bin/apache-tomcat-8.0.41.tar.gz
 popd
 mkdir -p $CAT_HOME
 # unpack tomcat
