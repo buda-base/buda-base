@@ -7,7 +7,7 @@ The base platform is built using Vagrant and VirtualBox.
 1. [Download](https://github.com/BuddhistDigitalResourceCenter/buda-base/archive/master.zip) or `git clone` this repository.
 1. cd into the project
 1. install the vbguest plugin: `vagrant plugin install vagrant-vbguest`
-1. and run the command: `vagrant up` or `vagrant up prefix=aws`
+1. and run the command: `vagrant up` or rename `Vagrantfile.aws` to `Vagrantfile` and run `vagrant up prefix=aws`
 
 This will grind awhile installing the following:
 
@@ -28,3 +28,6 @@ Similarly, the jena-fuseki server will be listening on:
     http://localhost:13180/fuseki
 
 The command: `vagrant halt` will shut the instance down. After halting (or suspending the instance) a further: `vagrant up` will simply boot the instance without further downloads, and `vagrant destroy` will completely remove the instance. 
+
+If running an AWS instance, after provisioning access the instance via `ssh -p 15345` and delete
+`Port 22` from `/etc/ssh/sshd_config` and `sudo systemctl restart sshd`. This will further secure the instance from attacks on port 22.
