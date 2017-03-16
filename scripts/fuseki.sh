@@ -76,7 +76,7 @@ systemctl daemon-reload
 systemctl enable $SVC
 systemctl start $SVC
 cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
-cp /vagrant/conf/fuseki/bdrc.ttl $THE_HOME/base/configuration/
 systemctl stop $SVC
 systemctl start $SVC
+cp /vagrant/conf/fuseki/bdrc.ttl $THE_HOME/base/configuration/
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
