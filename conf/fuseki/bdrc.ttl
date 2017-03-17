@@ -87,7 +87,7 @@
 
 :pm1 rdf:type ja:SinglePrefixMapping; 
 	ja:prefix 'crp'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/coroporation#' ;
+	ja:namespace 'http://purl.bdrc.io/ontology/corporation#' ;
 	.
 
 :pm2 rdf:type ja:SinglePrefixMapping; 
@@ -122,7 +122,7 @@
 
 :pm8 rdf:type ja:SinglePrefixMapping; 
 	ja:prefix 'wor'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/work/' ;
+	ja:namespace 'http://purl.bdrc.io/ontology/work#' ;
 	.
 
 :pm9 rdf:type ja:SinglePrefixMapping; 
