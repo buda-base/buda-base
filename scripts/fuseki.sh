@@ -75,9 +75,13 @@ echo ">>>> starting ${SVC} service"
 systemctl daemon-reload
 systemctl enable $SVC
 systemctl start $SVC
+# wait for couchdb to finish initializing $THE_HOME/base/
+sleep 5
+systemctl stop $SVC
+echo ">>>> updating ${SVC} configuration"
+# update configuration and restart
 cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
 mkdir -p $THE_HOME/base/configuration/
 cp /vagrant/conf/fuseki/bdrc.ttl $THE_HOME/base/configuration/
-systemctl stop $SVC
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
