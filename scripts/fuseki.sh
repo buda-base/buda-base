@@ -81,7 +81,6 @@ systemctl stop $SVC
 echo ">>>> updating ${SVC} configuration"
 # update configuration and restart
 cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
-mkdir -p $THE_HOME/base/configuration/
 cp /vagrant/conf/fuseki/bdrc.ttl $THE_HOME/base/configuration/
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
