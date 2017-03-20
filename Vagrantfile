@@ -14,10 +14,10 @@ Vagrant.configure(2) do |config|
       vb.memory = "2048"
   end
   
-  config.vm.provision :shell, path: "scripts/tools.sh"
-  config.vm.provision :shell, path: "scripts/oracle-jdk.sh"
-  config.vm.provision :shell, path: "scripts/node-js.sh"
-  config.vm.provision :shell, path: "scripts/couchdb.sh"
-  config.vm.provision :shell, path: "scripts/couchapp.sh"
-  config.vm.provision :shell, path: "scripts/fuseki.sh"
+  config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
+  config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
+  config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
+  config.vm.provision "couchdb", type: "shell", path: "scripts/couchdb.sh"
+  config.vm.provision "couchapp", type: "shell", path: "scripts/couchapp.sh"
+  config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
 end
