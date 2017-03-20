@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #general vars
-echo ">>>> home: ${HOME}"
+echo ">>>> Installing Fuseki"
 export DOWNLOADS=/usr/local/downloads
 export TC_USER=fuseki
 export TC_GROUP=fuseki
