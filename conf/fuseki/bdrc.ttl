@@ -40,19 +40,20 @@
     .
 
 :dataset_bdrc rdf:type       ja:RDFDataset ;
-    ja:defaultGraph          :model_inf ;
+#    ja:defaultGraph          :model_inf ;
+    ja:defaultGraph          :tdbGraph ;
     .
 
-:model_inf a ja:OntModel ;
-	 rdfs:label "BDRC Inf model (OWLFBRuleReasoner)" ;
-     ja:baseModel :tdbGraph ;
-     ja:prefixMapping :pm ;
-     # not sure about the following line, seems to work without it
-     ja:ontModelSpec ja:OWL_DL_MEM_RULE_INF ;
-     ja:reasoner [
-     	# This url looks outdated, but it works...
-        ja:reasonerURL <http://jena.hpl.hp.com/2003/OWLFBRuleReasoner>
-     ] .
+#:model_inf a ja:OntModel ;
+#	 rdfs:label "BDRC Inf model (OWLFBRuleReasoner)" ;
+#     ja:baseModel :tdbGraph ;
+#     ja:prefixMapping :pm ;
+#     # not sure about the following line, seems to work without it
+#     ja:ontModelSpec ja:OWL_DL_MEM_RULE_INF ;
+#     ja:reasoner [
+#     	# This url looks outdated, but it works...
+#        ja:reasonerURL <http://jena.hpl.hp.com/2003/OWLFBRuleReasoner>
+#     ] .
 
 :tdbGraph rdf:type tdb:GraphTDB ;
     tdb:dataset :tdbDataset .
@@ -65,77 +66,77 @@
 
 # These prefix mappings don't seem to do anything...
 
-:pm rdf:type ja:PrefixMapping ;
-	ja:includes :pm0 ;
-    ja:includes :pm1 ;
-    ja:includes :pm2 ;
-    ja:includes :pm3 ;
-    ja:includes :pm4 ;
-    ja:includes :pm5 ;
-    ja:includes :pm6 ;
-    ja:includes :pm7 ;
-    ja:includes :pm8 ;
-    ja:includes :pm9 ;
-    ja:includes :pm10 ;
-    ja:includes :pm11 ;
-	.
-
-:pm0 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix ''; 
-	ja:namespace 'http://purl.bdrc.io/ontology/root/' ;
-	.
-
-:pm1 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'crp'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/corporation#' ;
-	.
-
-:pm2 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'prd'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/product#' ;
-	.
-
-:pm3 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'out'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/outline#' ;
-	.
-
-:pm4 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'plc'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/place#' ;
-	.
-
-:pm5 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'ofc'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/office#' ;
-	.
-
-:pm6 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'lin'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/lineage#' ;
-	.
-
-:pm7 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'top'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/topic#' ;
-	.
-
-:pm8 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'wor'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/work#' ;
-	.
-
-:pm9 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'vol'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/volumes#' ;
-	.
-
-:pm10 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'desc'; 
-	ja:namespace 'http://onto.bdrc.io/ontology/description#' ;
-	.
-
-:pm11 rdf:type ja:SinglePrefixMapping; 
-	ja:prefix 'per'; 
-	ja:namespace 'http://purl.bdrc.io/ontology/person#' ;
-	.
+#:pm rdf:type ja:PrefixMapping ;
+#	ja:includes :pm0 ;
+#    ja:includes :pm1 ;
+#    ja:includes :pm2 ;
+#    ja:includes :pm3 ;
+#    ja:includes :pm4 ;
+#    ja:includes :pm5 ;
+#    ja:includes :pm6 ;
+#    ja:includes :pm7 ;
+#    ja:includes :pm8 ;
+#    ja:includes :pm9 ;
+#    ja:includes :pm10 ;
+#    ja:includes :pm11 ;
+#	.
+#
+#:pm0 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix ''; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/root/' ;
+#	.
+#
+#:pm1 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'crp'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/corporation#' ;
+#	.
+#
+#:pm2 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'prd'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/product#' ;
+#	.
+#
+#:pm3 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'out'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/outline#' ;
+#	.
+#
+#:pm4 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'plc'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/place#' ;
+#	.
+#
+#:pm5 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'ofc'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/office#' ;
+#	.
+#
+#:pm6 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'lin'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/lineage#' ;
+#	.
+#
+#:pm7 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'top'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/topic#' ;
+#	.
+#
+#:pm8 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'wor'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/work#' ;
+#	.
+#
+#:pm9 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'vol'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/volumes#' ;
+#	.
+#
+#:pm10 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'desc'; 
+#	ja:namespace 'http://onto.bdrc.io/ontology/description#' ;
+#	.
+#
+#:pm11 rdf:type ja:SinglePrefixMapping; 
+#	ja:prefix 'per'; 
+#	ja:namespace 'http://purl.bdrc.io/ontology/person#' ;
+#	.

@@ -13,7 +13,7 @@ description "<%= ENV['SVC_DESC'] %>"
 
   # Modify these options as needed
   env JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom"
-  env CATALINA_OPTS="-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+  env CATALINA_OPTS="-Xms512M <%= ENV['MAX_MEM'] %> -server -XX:+UseParallelGC"
 
   exec $CATALINA_HOME/bin/catalina.sh run
 
