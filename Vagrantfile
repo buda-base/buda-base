@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13180, host: 13180 # jena-fuseki
 
   config.vm.provider "virtualbox" do |vb|
-      vb.memory = "8192"
+      vb.memory = "4096"
   end
   
   config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
