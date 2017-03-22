@@ -81,5 +81,6 @@ echo ">>>> updating ${SVC} configuration"
 # update configuration and restart
 cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
 cp /vagrant/conf/fuseki/bdrc.ttl $THE_HOME/base/configuration/
+cp /vagrant/conf/fuseki/qconsole-config.js $THE_HOME/tomcat/webapps/fuseki/js/app/
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
