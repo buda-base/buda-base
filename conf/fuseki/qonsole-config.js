@@ -7,14 +7,18 @@ define( [], function() {
       "rdfs":     "http://www.w3.org/2000/01/rdf-schema#",
       "owl":      "http://www.w3.org/2002/07/owl#",
       "xsd":      "http://www.w3.org/2001/XMLSchema#",
-      "corp":     "http://purl.bdrc.io/ontology/corporation#",
+      "crp":      "http://purl.bdrc.io/ontology/corporation#",
+      "desc":     "http://purl.bdrc.io/ontology/product#",
+      "lin":      "http://purl.bdrc.io/ontology/lineage#",
       "ofc":      "http://purl.bdrc.io/ontology/office#",
       "out":      "http://purl.bdrc.io/ontology/outline#",
       "per":      "http://purl.bdrc.io/ontology/person#",
       "plc":      "http://purl.bdrc.io/ontology/place#",
-      "topic":    "http://purl.bdrc.io/ontology/topic#",
-      "vols":     "http://purl.bdrc.io/ontology/volumes#",
-      "wrk":      "http://purl.bdrc.io/ontology/work#"
+      "prd":      "http://purl.bdrc.io/ontology/product#",
+      "root":     "http://purl.bdrc.io/ontology/root/",
+      "top":      "http://purl.bdrc.io/ontology/topic#",
+      "vol":      "http://purl.bdrc.io/ontology/volumes#",
+      "wor":      "http://purl.bdrc.io/ontology/work#"
     },
     queries: [
       { "name": "Selection of triples",
