@@ -49,5 +49,7 @@ sleep 2
 
 echo ">>>> so relaxed now, let's create the database and upload the design document"
 
+curl -s -X PUT http://localhost:13598/bdrc
+curl -s -X PUT http://localhost:13598/bdrc/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
 curl -s -X PUT http://localhost:13598/test
 curl -s -X PUT http://localhost:13598/test/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json

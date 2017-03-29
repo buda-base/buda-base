@@ -80,7 +80,10 @@ systemctl stop $SVC
 echo ">>>> updating ${SVC} configuration"
 # update configuration and restart
 cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
-cp /vagrant/conf/fuseki/bdrc.ttl $THE_HOME/base/configuration/
+export EP_NAME=bdrc
+erb /vagrant/conf/fuseki/ttl.erb > $THE_HOME/base/configuration/bdrc.ttl
+export EP_NAME=test
+erb /vagrant/conf/fuseki/ttl.erb > $THE_HOME/base/configuration/test.ttl
 cp /vagrant/conf/fuseki/qonsole-config.js $THE_HOME/tomcat/webapps/fuseki/js/app/
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"

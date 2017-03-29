@@ -21,28 +21,26 @@
 
 [] rdf:type fuseki:Server ;
    fuseki:services (
-     :bdrcrw
-     :bdrcro
+     :<%= ENV['EP_NAME'] %>rw
+     :<%= ENV['EP_NAME'] %>ro
    ) .
 
-:bdrcrw rdf:type fuseki:Service ;
-	rdfs:label						  "BDRC Read Write" ;
-    fuseki:name                       "bdrcrw" ;     # name of the dataset in the url
+:<%= ENV['EP_NAME'] %>rw rdf:type fuseki:Service ;
+    fuseki:name                       "<%= ENV['EP_NAME'] %>rw" ;     # name of the dataset in the url
     fuseki:serviceQuery               "query" ;    # SPARQL query service
-    fuseki:serviceQuery               "sparql" ;   # SPARQL query service
     fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
     fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
-    fuseki:dataset                    :dataset_bdrc ;
+    fuseki:dataset                    :dataset_<%= ENV['EP_NAME'] %> ;
     .
 
-:bdrcro rdf:type fuseki:Service ;
-    fuseki:name                     "bdrc" ;
+:<%= ENV['EP_NAME'] %>ro rdf:type fuseki:Service ;
+    fuseki:name                     "<%= ENV['EP_NAME'] %>" ;
     fuseki:serviceQuery             "query" ;
     fuseki:serviceReadGraphStore    "data" ;
-    fuseki:dataset           		:dataset_bdrc ;
+    fuseki:dataset           		:dataset_<%= ENV['EP_NAME'] %> ;
     .
 
-:dataset_bdrc rdf:type      tdb:DatasetTDB ;
-     tdb:location "/etc/fuseki/databases/bdrc" ;
+:dataset_<%= ENV['EP_NAME'] %> rdf:type      tdb:DatasetTDB ;
+     tdb:location "/etc/fuseki/databases/<%= ENV['EP_NAME'] %>" ;
      tdb:unionDefaultGraph true ;
     .
