@@ -1,0 +1,46 @@
+# Fuseki configuration for BDRC, configures two endpoints:
+#   - /bdrc is read-only
+#   - /bdrcrw is read-write
+#
+# This was painful to come up with but the web interface basically allows no option
+# and there is no subclass inference by default so such a configuration file is necessary.
+#
+# The main doc sources are:
+#  - https://jena.apache.org/documentation/fuseki2/fuseki-configuration.html
+#  - https://jena.apache.org/documentation/assembler/assembler-howto.html
+#  - https://jena.apache.org/documentation/assembler/assembler.ttl
+#
+# See https://jena.apache.org/documentation/fuseki2/fuseki-layout.html for the destination of this file.
+
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tdb:     <http://jena.hpl.hp.com/2008/tdb#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix :        <http://base/#> .
+
+[] rdf:type fuseki:Server ;
+   fuseki:services (
+     :<%= ENV['EP_NAME'] %>rw
+     :<%= ENV['EP_NAME'] %>ro
+   ) .
+
+:<%= ENV['EP_NAME'] %>rw rdf:type fuseki:Service ;
+    fuseki:name                       "<%= ENV['EP_NAME'] %>rw" ;     # name of the dataset in the url
+    fuseki:serviceQuery               "query" ;    # SPARQL query service
+    fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
+    fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
+    fuseki:dataset                    :dataset_<%= ENV['EP_NAME'] %> ;
+    .
+
+:<%= ENV['EP_NAME'] %>ro rdf:type fuseki:Service ;
+    fuseki:name                     "<%= ENV['EP_NAME'] %>" ;
+    fuseki:serviceQuery             "query" ;
+    fuseki:serviceReadGraphStore    "data" ;
+    fuseki:dataset           		:dataset_<%= ENV['EP_NAME'] %> ;
+    .
+
+:dataset_<%= ENV['EP_NAME'] %> rdf:type      tdb:DatasetTDB ;
+     tdb:location "/etc/fuseki/databases/<%= ENV['EP_NAME'] %>" ;
+     tdb:unionDefaultGraph true ;
+    .
