@@ -22,61 +22,49 @@
 
 [] rdf:type fuseki:Server ;
    fuseki:services (
-     :<%= ENV['EP_NAME'] %>rw
-     :<%= ENV['EP_NAME'] %>ro
+     :bdrcrw
+     :bdrcro
    ) .
 
-:<%= ENV['EP_NAME'] %>rw rdf:type fuseki:Service ;
-    fuseki:name                       "<%= ENV['EP_NAME'] %>rw" ;     # name of the dataset in the url
+:bdrcrw rdf:type fuseki:Service ;
+    fuseki:name                       "bdrcrw" ;     # name of the dataset in the url
     fuseki:serviceQuery               "query" ;    # SPARQL query service
     fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
     fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
-    fuseki:dataset                    :<%= ENV['EP_NAME'] %>_text_dataset ;
+    fuseki:dataset                    :bdrc_text_dataset ;
     .
 
-:<%= ENV['EP_NAME'] %>ro rdf:type fuseki:Service ;
-    fuseki:name                     "<%= ENV['EP_NAME'] %>" ;
+:bdrcro rdf:type fuseki:Service ;
+    fuseki:name                     "bdrc" ;
     fuseki:serviceQuery             "query" ;
     fuseki:serviceReadGraphStore    "data" ;
-    fuseki:dataset           		:<%= ENV['EP_NAME'] %>_text_dataset ;
+    fuseki:dataset           		:bdrc_text_dataset ;
     .
 
-:dataset_<%= ENV['EP_NAME'] %> rdf:type      tdb:DatasetTDB ;
-     tdb:location "/etc/fuseki/databases/<%= ENV['EP_NAME'] %>" ;
-     tdb:unionDefaultGraph true ;
+:dataset_bdrc rdf:type      tdb:DatasetTDB ;
+    tdb:location "/etc/fuseki/databases/bdrc" ;
+    tdb:unionDefaultGraph true ;
     .
 
-:<%= ENV['EP_NAME'] %>_text_dataset rdf:type     text:TextDataset ;
+:bdrc_text_dataset rdf:type     text:TextDataset ;
     text:dataset   :dataset_bdrc ;
-    text:index     :<%= ENV['EP_NAME'] %>_lucene_index ;
+    text:index     :bdrc_lucene_index ;
     .
 
 # Text index description
-:<%= ENV['EP_NAME'] %>_lucene_index a text:TextIndexLucene ;
+:bdrc_lucene_index a text:TextIndexLucene ;
     text:directory <file:/etc/fuseki/lucene> ;
     text:storeValues true ;
-    text:entityMap :<%= ENV['EP_NAME'] %>_entmap ;
+    text:entityMap :bdrc_entmap ;
     .
 
 # Mapping in the index
 # URI stored in field "uri"
 # rdfs:label is mapped to field "text"
-:<%= ENV['EP_NAME'] %>_entmap a text:EntityMap ;
+:bdrc_entmap a text:EntityMap ;
     text:entityField      "uri" ;
-    text:uidField         "uid" ;
-    text:defaultField     "label" ;
-    text:langField        "lang" ;
-#    text:graphField       "graph" ; ## enable graph-specific indexing
+    text:defaultField     "text" ;
     text:map (
-         [ text:field "label" ; 
-           text:predicate rdfs:label ;
-           text:analyzer [
-               a text:StandardAnalyzer ;
-               text:stopWords ("a" "an" "and" "but") ] ; ]
-         [ text:field "perName" ; 
-           text:predicate per:name ; ]
-         [ text:field "perPrimaryName" ;
-           text:predicate per:primaryName ; ]
+         [ text:field "text" ; text:predicate rdfs:label ]
          ) ;
     .
-    
