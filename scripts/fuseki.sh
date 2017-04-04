@@ -15,7 +15,7 @@ export SHUTDOWN_PORT=13105
 export MAIN_PORT=13180
 export REDIR_PORT=13143
 export AJP_PORT=13109
-export MAX_MEM="-Xmx1024M"
+export MAX_MEM="-Xmx4096M"
 
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"
