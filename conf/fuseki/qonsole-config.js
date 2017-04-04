@@ -15,7 +15,8 @@ define( [], function() {
       "per":      "http://purl.bdrc.io/ontology/person#",
       "plc":      "http://purl.bdrc.io/ontology/place#",
       "prd":      "http://purl.bdrc.io/ontology/product#",
-      "root":     "http://purl.bdrc.io/ontology/root/",
+      "root":     "http://purl.bdrc.io/ontology/root#",
+      "":         "http://purl.bdrc.io/ontology/root#",
       "top":      "http://purl.bdrc.io/ontology/topic#",
       "vol":      "http://purl.bdrc.io/ontology/volumes#",
       "wor":      "http://purl.bdrc.io/ontology/work#"
