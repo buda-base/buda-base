@@ -20,6 +20,8 @@
 @prefix :        <http://base/#> .
 @prefix text:    <http://jena.apache.org/text#> .
 @prefix per:     <http://purl.bdrc.io/ontology/person#> .
+@prefix root:    <http://purl.bdrc.io/ontology/root#> .
+@prefix out:     <http://purl.bdrc.io/ontology/outline#> .
 
 [] rdf:type fuseki:Server ;
    fuseki:services (
@@ -74,10 +76,16 @@
            text:analyzer [
                a text:StandardAnalyzer ;
                text:stopWords ("a" "an" "and" "but") ] ; ]
-         [ text:field "perName" ; 
-           text:predicate per:name ; ]
+         [ text:field "name" ; 
+           text:predicate root:name ; ]
          [ text:field "perPrimaryName" ;
            text:predicate per:primaryName ; ]
+         [ text:field "perCommonName" ;
+           text:predicate per:commonName ; ]
+         [ text:field "perPersonalName" ;
+           text:predicate per:personalName ; ]
+         [ text:field "colophon" ; 
+           text:predicate out:colophon ; ]
          ) ;
     .
     
