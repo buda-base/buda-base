@@ -10,6 +10,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13598, host: 13598 # couchdb
   config.vm.network :forwarded_port, guest: 13180, host: 13180 # jena-fuseki
 
+# need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
       vb.memory = "8192"
   end
