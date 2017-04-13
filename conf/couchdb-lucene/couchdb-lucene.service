@@ -1,0 +1,14 @@
+[Unit]
+Description=Couchdb service
+After=network.target
+After=syslog.target
+
+[Service]
+Type=simple
+User=couchdb
+Group=couchdb
+ExecStart=/usr/local/couchdb-lucene/bin/run
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

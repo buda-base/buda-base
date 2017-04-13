@@ -47,9 +47,17 @@ echo ">>>> couchdb listening, sleeping on the couch a little bit..."
 
 sleep 2
 
-echo ">>>> so relaxed now, let's create the database and upload the design document"
+echo ">>>> create system databases."
+
+curl -s -X PUT http://localhost:13598/_users
+curl -s -X PUT http://localhost:13598/_replicator
+curl -s -X PUT http://localhost:13598/_global_changes
+
+echo ">>>> so relaxed now, let's create the databases and upload design documents."
 
 curl -s -X PUT http://localhost:13598/bdrc
 curl -s -X PUT http://localhost:13598/bdrc/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
 curl -s -X PUT http://localhost:13598/test
 curl -s -X PUT http://localhost:13598/test/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+
+echo ">>>> initial databases created with design documents."
