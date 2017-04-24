@@ -10,7 +10,7 @@ export SVC=fuseki
 export SVC_DESC="Jena-Fuseki Tomcat container"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export FUSEKI_REL="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/vfuseki_2.6.0/apache-jena-fuseki-2.6.0-SNAPSHOT.tar.gz"
-export FUSEKI_TAR="apache-jena-fuseki-2.6.0-SNAPSHOT.tar.gz"
+export FUSEKI_DIR="apache-jena-fuseki-2.6.0-SNAPSHOT"
 export THE_HOME=/usr/local/$SVC
 export CAT_HOME=$THE_HOME/tomcat
 export SHUTDOWN_PORT=13105
@@ -47,11 +47,11 @@ popd
 echo ">>>> downloading jena-fuseki 2.5.0"
 pushd $DOWNLOADS;
 wget -q -c $FUSEKI_REL
-tar xf $FUSEKI_TAR
+tar xf $FUSEKI_DIR.tar.gz
 echo ">>>> copying fuseki war to tomcat container"
 # until new war is released copy locally updated war with log4j - JENA-1185
 # cp /vagrant/lib/jena-fuseki-war-2.4.0.war $CAT_HOME/webapps/fuseki.war
-cp apache-jena-fuseki-2.5.0/fuseki.war $CAT_HOME/webapps
+cp $FUSEKI_DIR/fuseki.war $CAT_HOME/webapps
 popd
 
 echo ">>>> configuring FUSEKI_BASE"
