@@ -55,8 +55,24 @@ curl -s -X PUT http://localhost:13598/_global_changes
 
 echo ">>>> so relaxed now, let's create the databases and upload design documents."
 
-curl -s -X PUT http://localhost:13598/bdrc
-curl -s -X PUT http://localhost:13598/bdrc/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_corporations
+curl -s -X PUT http://localhost:13598/bdrc_corporations/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_lineages
+curl -s -X PUT http://localhost:13598/bdrc_lineages/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_offices
+curl -s -X PUT http://localhost:13598/bdrc_offices/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_outlines
+curl -s -X PUT http://localhost:13598/bdrc_outlines/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_persons
+curl -s -X PUT http://localhost:13598/bdrc_persons/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_places
+curl -s -X PUT http://localhost:13598/bdrc_places/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_topics
+curl -s -X PUT http://localhost:13598/bdrc_topics/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_volumes
+curl -s -X PUT http://localhost:13598/bdrc_volumes/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_works
+curl -s -X PUT http://localhost:13598/bdrc_works/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
 curl -s -X PUT http://localhost:13598/test
 curl -s -X PUT http://localhost:13598/test/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
 
