@@ -9,6 +9,8 @@ export TC_GROUP=fuseki
 export SVC=fuseki
 export SVC_DESC="Jena-Fuseki Tomcat container"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
+export FUSEKI_REL="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/vfuseki_2.6.0/apache-jena-fuseki-2.6.0-SNAPSHOT.tar.gz"
+export FUSEKI_TAR="apache-jena-fuseki-2.6.0-SNAPSHOT.tar.gz"
 export THE_HOME=/usr/local/$SVC
 export CAT_HOME=$THE_HOME/tomcat
 export SHUTDOWN_PORT=13105
@@ -44,8 +46,8 @@ popd
 # download fuseki
 echo ">>>> downloading jena-fuseki 2.5.0"
 pushd $DOWNLOADS;
-wget -q -c http://apache.mindstudios.com/jena/binaries/apache-jena-fuseki-2.5.0.tar.gz
-tar xf apache-jena-fuseki-2.5.0.tar.gz
+wget -q -c $FUSEKI_REL
+tar xf $FUSEKI_TAR
 echo ">>>> copying fuseki war to tomcat container"
 # until new war is released copy locally updated war with log4j - JENA-1185
 # cp /vagrant/lib/jena-fuseki-war-2.4.0.war $CAT_HOME/webapps/fuseki.war
@@ -79,6 +81,7 @@ sleep 5
 systemctl stop $SVC
 echo ">>>> updating ${SVC} configuration"
 # update configuration and restart
+mkdir -p $THE_HOME/base/configuration
 cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
 export EP_NAME=bdrc
 erb /vagrant/conf/fuseki/ttl.erb > $THE_HOME/base/configuration/bdrc.ttl
