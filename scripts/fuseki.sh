@@ -2,7 +2,6 @@
 
 #general vars
 echo ">>>> Installing Fuseki"
-export DOWNLOADS=/usr/local/downloads
 export TC_USER=fuseki
 export TC_GROUP=fuseki
 # set erb vars
@@ -11,7 +10,14 @@ export SVC_DESC="Jena-Fuseki Tomcat container"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export FUSEKI_REL="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/vfuseki_2.6.0/apache-jena-fuseki-2.6.0-SNAPSHOT.tar.gz"
 export FUSEKI_DIR="apache-jena-fuseki-2.6.0-SNAPSHOT"
-export THE_HOME=/usr/local/$SVC
+if [ -d /mnt/data ] ; then 
+  export DATA_DIR=/mnt/data ; 
+else
+  export DATA_DIR=/usr/local ;
+fi
+echo ">>>> DATA_DIR: " $DATA_DIR
+export DOWNLOADS=$DATA_DIR/downloads
+export THE_HOME=$DATA_DIR/$SVC
 export CAT_HOME=$THE_HOME/tomcat
 export SHUTDOWN_PORT=13105
 export MAIN_PORT=13180

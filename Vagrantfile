@@ -7,6 +7,11 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "debian/jessie64"
   
+  disk = './dataDisk.vdi'
+  config.vm.synced_folder ".", "/vagrant", type: "rsync",
+    rsync__exclude: [ "dataDisk.vdi", ".git", ".gitignore", ".DS_Store", ".project" ],
+    rsync__verbose: true
+  
   config.vm.network :forwarded_port, guest: 13598, host: 13598 # couchdb
   config.vm.network :forwarded_port, guest: 13599, host: 13599 # couchdb-lucene
   config.vm.network :forwarded_port, guest: 13180, host: 13180 # jena-fuseki
@@ -14,8 +19,13 @@ Vagrant.configure(2) do |config|
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
       vb.memory = "8192"
+      unless File.exist?(disk)
+        vb.customize ['createhd', '--filename', disk, '--variant', 'Fixed', '--size', 16 * 1024]
+      end
+      vb.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
   end
   
+  config.vm.provision "first-local", type: "shell", path: "scripts/first-local.sh"
   config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
   config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
   config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
