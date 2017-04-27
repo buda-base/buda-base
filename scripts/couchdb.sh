@@ -1,12 +1,18 @@
 #!/bin/bash
 
 # partly from https://gist.github.com/mrded/280433eef0986a112f0393ccfc97b7c8
+if [ -d /mnt/data ] ; then 
+  export DATA_DIR=/mnt/data ; 
+else
+  export DATA_DIR=/opt ;
+fi
+echo ">>>> DATA_DIR: " $DATA_DIR
 
-if [ -a /opt/couchdb/bin/couchdb ]; then
+if [ -a $DATA_DIR/couchdb/bin/couchdb ]; then
    	echo "skip couchdb installation"
 else
 	# Add CouchDB user account
-	groupadd -r couchdb && useradd -d /opt/couchdb -g couchdb -r -s /bin/false couchdb
+	groupadd -r couchdb && useradd -d $DATA_DIR/couchdb -g couchdb -r -s /bin/false couchdb
 
 	apt-get update -y
 	apt-get install -y --no-install-recommends ca-certificates curl haproxy erlang-nox erlang-reltool libicu52 libmozjs185-1.0 openssl
@@ -22,23 +28,23 @@ else
 	tar -xzf couchdb.tar.gz -C couchdb --strip-components=1
 	cd couchdb
 
-	# Build the release and install into /opt
+	# Build the release and install into $DATA_DIR
 	./configure --disable-docs
 	make release
-	mv /usr/src/couchdb/rel/couchdb /opt/
+	mv /usr/src/couchdb/rel/couchdb $DATA_DIR/
 
-	mv /opt/couchdb/etc/local.ini /opt/couchdb/etc/local.ini.bk
-	chown -R couchdb:couchdb /opt/couchdb
+	mv $DATA_DIR/couchdb/etc/local.ini $DATA_DIR/couchdb/etc/local.ini.bk
+	chown -R couchdb:couchdb $DATA_DIR/couchdb
 
 	 # Cleanup build detritus
 	rm -rf /usr/src/couchdb
 fi
 
 
-cp /vagrant/conf/couchdb/local.ini /opt/couchdb/etc/
-chown -R couchdb:couchdb /opt/couchdb/etc/local.ini
+erb /vagrant/conf/couchdb/local.ini.erb > $DATA_DIR/couchdb/etc/local.ini
+chown -R couchdb:couchdb $DATA_DIR/couchdb/etc/local.ini
 
-cp /vagrant/conf/couchdb/couchdb.service /lib/systemd/system/
+erb /vagrant/conf/couchdb/couchdb.service.erb > /lib/systemd/system/couchdb.service
 systemctl daemon-reload
 systemctl enable couchdb
 systemctl start couchdb

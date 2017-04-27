@@ -20,11 +20,12 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
       vb.memory = "8192"
       unless File.exist?(disk)
-        vb.customize ['createhd', '--filename', disk, '--variant', 'Fixed', '--size', 16 * 1024]
+        vb.customize ['createhd', '--filename', disk, '--size', 16 * 1024]
       end
       vb.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
   end
   
+# setup a second data drive for the services since the root drive is fixed at 10GB
   config.vm.provision "first-local", type: "shell", path: "scripts/first-local.sh"
   config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
   config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"

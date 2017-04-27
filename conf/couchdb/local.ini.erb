@@ -10,7 +10,7 @@ bind_address = any
 port = 13598
 
 [log]
-file = /opt/couchdb/var/log/couch.log
+file = <%= ENV['DATA_DIR'] %>/couchdb/var/log/couch.log
 level = info
 writer = file
 

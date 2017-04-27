@@ -7,7 +7,7 @@ After=syslog.target
 Type=simple
 User=couchdb
 Group=couchdb
-ExecStart=/usr/local/couchdb-lucene/bin/run
+ExecStart=<%= ENV['DATA_DIR'] %>/couchdb/bin/couchdb -o /dev/stdout -e /dev/stderr
 Restart=always
 
 [Install]
