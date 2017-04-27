@@ -3,7 +3,7 @@
 # update and install parted
 echo ">>>> update and install parted"
 apt-get update
-apt-get install parted
+apt-get install parted -y
 
 # format, partition, mount second disk
 echo ">>>> format, partition, mount second disk"

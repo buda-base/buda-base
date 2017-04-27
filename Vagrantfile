@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "debian/jessie64"
   
-  disk = './dataDisk.vdi'
+  disk = 'dataDisk.vdi'
   config.vm.synced_folder ".", "/vagrant", type: "rsync",
     rsync__exclude: [ "dataDisk.vdi", ".git", ".gitignore", ".DS_Store", ".project" ],
     rsync__verbose: true
