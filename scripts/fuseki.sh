@@ -94,5 +94,9 @@ erb /vagrant/conf/fuseki/ttl.erb > $THE_HOME/base/configuration/bdrc.ttl
 export EP_NAME=test
 erb /vagrant/conf/fuseki/ttl.erb > $THE_HOME/base/configuration/test.ttl
 cp /vagrant/conf/fuseki/qonsole-config.js $THE_HOME/tomcat/webapps/fuseki/js/app/
+
+echo ">>>> fixing permissions after updating ${SVC} configuration"
+chown -R $TC_USER:$TC_GROUP $THE_HOME
+
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
