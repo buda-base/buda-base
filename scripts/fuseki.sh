@@ -8,8 +8,8 @@ export TC_GROUP=fuseki
 export SVC=fuseki
 export SVC_DESC="Jena-Fuseki Tomcat container"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
-export FUSEKI_REL="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/vfuseki_2.6.0/apache-jena-fuseki-2.6.0-SNAPSHOT.tar.gz"
-export FUSEKI_DIR="apache-jena-fuseki-2.6.0-SNAPSHOT"
+export FUSEKI_REL="http://apache.claz.org/jena/binaries/apache-jena-fuseki-3.4.0.tar.gz"
+export FUSEKI_DIR="apache-jena-fuseki-3.4.0"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
 else
@@ -50,13 +50,12 @@ cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 popd
 
 # download fuseki
-echo ">>>> downloading jena-fuseki 2.5.0"
+echo ">>>> downloading jena-fuseki 3.4.0"
 pushd $DOWNLOADS;
 wget -q -c $FUSEKI_REL
 tar xf $FUSEKI_DIR.tar.gz
 echo ">>>> copying fuseki war to tomcat container"
 # until new war is released copy locally updated war with log4j - JENA-1185
-# cp /vagrant/lib/jena-fuseki-war-2.4.0.war $CAT_HOME/webapps/fuseki.war
 cp $FUSEKI_DIR/fuseki.war $CAT_HOME/webapps
 popd
 

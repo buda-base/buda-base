@@ -19,9 +19,9 @@ This will grind awhile installing the following:
 
 Once the initial install has completed the command: `vagrant ssh` will connect to the instance where development, customization of the environment and so on can be performed as for any headless server.
 
-The couchdb is listening on port 5984 from the host system:
+The couchdb is listening on port 13598 from the host system:
 
-    http://localhost:5984/_utils/
+    http://localhost:13598/_utils/
 
 Similarly, the jena-fuseki server will be listening on:
 
