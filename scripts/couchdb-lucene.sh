@@ -2,7 +2,7 @@
 
 echo ">>>> installing couchdb-lucene."
 
-export REL="https://github.com/BuddhistDigitalResourceCenter/couchdb-lucene/releases/download/v2.1.0_bdrc/couchdb-lucene-2.1.0_bdrc-dist.tar.gz"
+export REL="https://github.com/BuddhistDigitalResourceCenter/couchdb-lucene/releases/download/2.1.0/couchdb-lucene-2.1.0-dist.tar.gz"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
 else
@@ -24,7 +24,7 @@ fi
 # configure
 
 cd $DATA_DIR/couchdb-lucene
-cp /vagrant/conf/couchdb-lucene/couchdb-lucene.ini ./conf/
+cp /vagrant/conf/couchdb-lucene/couchdb-lucene.ini conf/
 chown -R couchdb:couchdb $DATA_DIR/couchdb-lucene
 
 erb /vagrant/conf/couchdb-lucene/couchdb-lucene.service.erb > /etc/systemd/system/couchdb-lucene.service
