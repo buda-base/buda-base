@@ -24,7 +24,7 @@ else
 	# Acquire CouchDB source code
 	cd /usr/src
 	mkdir couchdb
-	curl -fSLs https://dist.apache.org/repos/dist/release/couchdb/source/2.0.0/apache-couchdb-2.0.0.tar.gz -o couchdb.tar.gz
+	curl -fSLs https://dist.apache.org/repos/dist/release/couchdb/source/2.1.0/apache-couchdb-2.1.0.tar.gz -o couchdb.tar.gz
 	tar -xzf couchdb.tar.gz -C couchdb --strip-components=1
 	cd couchdb
 
