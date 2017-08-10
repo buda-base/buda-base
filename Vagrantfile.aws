@@ -29,9 +29,9 @@ Vagrant.configure(2) do |config|
     
     aws.keypair_name = "BDRC_Dev_001"
     aws.security_groups = [ 'BDRC_Dev_SG_001' ]
-    # Debian Jessie 8.7 - ami-b14ba7a7
-    # https://wiki.debian.org/Cloud/AmazonEC2Image/Jessie
-    aws.ami = "ami-b14ba7a7"
+    # Debian 9.1 - ami-5e203d48
+    # https://wiki.debian.org/Cloud/AmazonEC2Image/Stretch
+    aws.ami = "ami-5e203d48"
     aws.instance_type = "m4.xlarge"
     aws.block_device_mapping = [{ 'DeviceName' => '/dev/xvda', 
                                   'Ebs.VolumeSize' => 256, 

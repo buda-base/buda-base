@@ -5,7 +5,7 @@ Vagrant.configure(2) do |config|
   
   config.vm.hostname = "buda1"
 
-  config.vm.box = "debian/jessie64"
+  config.vm.box = "debian/stretch64"
   
   disk = 'dataDisk.vdi'
   config.vm.synced_folder ".", "/vagrant", type: "rsync",
