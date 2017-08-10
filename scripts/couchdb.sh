@@ -15,7 +15,7 @@ else
 	groupadd -r couchdb && useradd -d $DATA_DIR/couchdb -g couchdb -r -s /bin/false couchdb
 
 	apt-get update -y
-	apt-get install -y --no-install-recommends ca-certificates curl haproxy erlang-nox erlang-reltool libicu52 libmozjs185-1.0 openssl
+	apt-get install -y --no-install-recommends ca-certificates curl haproxy erlang-nox erlang-reltool libicu57 libmozjs185-1.0 openssl
 
 	# Download dev dependencies
 	apt-get update -y -qq && apt-get install -y --no-install-recommends apt-transport-https build-essential erlang-dev libcurl4-openssl-dev libicu-dev libmozjs185-dev

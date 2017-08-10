@@ -34,7 +34,7 @@ echo ">>>> couchdb listening on 5984"
 
 # install Node.js; npm; and n
 echo ">>>> installing node.js; npm; and n"
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g n
 # install node.js i/f to couchdb - 
