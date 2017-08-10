@@ -3,23 +3,18 @@
 define( [], function() {
   return {
     prefixes: {
-      "rdf":      "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "rdfs":     "http://www.w3.org/2000/01/rdf-schema#",
-      "owl":      "http://www.w3.org/2002/07/owl#",
-      "xsd":      "http://www.w3.org/2001/XMLSchema#",
-      "crp":      "http://purl.bdrc.io/ontology/corporation#",
-      "desc":     "http://purl.bdrc.io/ontology/product#",
-      "lin":      "http://purl.bdrc.io/ontology/lineage#",
-      "ofc":      "http://purl.bdrc.io/ontology/office#",
-      "out":      "http://purl.bdrc.io/ontology/outline#",
-      "per":      "http://purl.bdrc.io/ontology/person#",
-      "plc":      "http://purl.bdrc.io/ontology/place#",
-      "prd":      "http://purl.bdrc.io/ontology/product#",
-      "root":     "http://purl.bdrc.io/ontology/root#",
-      "":         "http://purl.bdrc.io/ontology/root#",
-      "top":      "http://purl.bdrc.io/ontology/topic#",
-      "vol":      "http://purl.bdrc.io/ontology/volumes#",
-      "wor":      "http://purl.bdrc.io/ontology/work#"
+      "" : "http://purl.bdrc.io/ontology/core/",
+      "adm" : "http://purl.bdrc.io/ontology/admin/",
+      "bdd" : "http://purl.bdrc.io/data/",
+      "bdo" : "http://purl.bdrc.io/ontology/core/",
+      "bdr" : "http://purl.bdrc.io/resource/",
+      "owl" : "http://www.w3.org/2002/07/owl#",
+      "rdf" : "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
+      "skos" : "http://www.w3.org/2004/02/skos/core#",
+      "tbr" : "http://purl.bdrc.io/ontology/toberemoved/",
+      "vcard" : "http://www.w3.org/2006/vcard/ns#",
+      "xsd" : "http://www.w3.org/2001/XMLSchema#"
     },
     queries: [
       { "name": "Selection of triples",

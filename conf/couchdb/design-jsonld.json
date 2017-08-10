@@ -1,7 +1,7 @@
 {
   "_id": "_design/jsonld",
   "shows": {
-    "jsonld": "function(doc, req) {\n  return toJSON({\n    \"@graph\": doc[\"@graph\"],\n    \"@context\": {\n      \"crp\": \"http://purl.bdrc.io/ontology/corporation#\",\n      \"@vocab\":     \"http://purl.bdrc.io/ontology/root#\",\n      \"\":     \"http://purl.bdrc.io/ontology/root#\",\n      \"prd\":  \"http://purl.bdrc.io/ontology/product#\",\n      \"owl\":  \"http://www.w3.org/2002/07/owl#\",\n      \"plc\":  \"http://purl.bdrc.io/ontology/place#\",\n      \"xsd\":  \"http://www.w3.org/2001/XMLSchema#\",\n      \"rdfs\": \"http://www.w3.org/2000/01/rdf-schema#\",\n      \"ofc\":  \"http://purl.bdrc.io/ontology/office#\",\n      \"out\":  \"http://purl.bdrc.io/ontology/outline#\",\n      \"lin\":  \"http://purl.bdrc.io/ontology/lineage#\",\n      \"vol\":  \"http://purl.bdrc.io/ontology/volumes#\",\n      \"top\":  \"http://purl.bdrc.io/ontology/topic#\",\n      \"rdf\":  \"http://www.w3.org/1999/02/22-rdf-syntax-ns#\",\n      \"wor\":  \"http://purl.bdrc.io/ontology/work#\",\n      \"per\":  \"http://purl.bdrc.io/ontology/person#\",\n      \"desc\": \"http://onto.bdrc.io/ontology/description#\"\n    }\n  });\n}"
+    "jsonld": "function(doc, req) {\n  return toJSON({\n    \"@graph\": doc[\"@graph\"],\n    \"@context\": doc[\"@context\"]});\n}"
   },
   "language": "javascript"
 }
