@@ -75,8 +75,8 @@ curl -s -X PUT http://localhost:13598/bdrc_place
 curl -s -X PUT http://localhost:13598/bdrc_place/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
 curl -s -X PUT http://localhost:13598/bdrc_topic
 curl -s -X PUT http://localhost:13598/bdrc_topic/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
-curl -s -X PUT http://localhost:13598/bdrc_items
-curl -s -X PUT http://localhost:13598/bdrc_items/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
+curl -s -X PUT http://localhost:13598/bdrc_item
+curl -s -X PUT http://localhost:13598/bdrc_item/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
 curl -s -X PUT http://localhost:13598/bdrc_work
 curl -s -X PUT http://localhost:13598/bdrc_work/_design/jsonld -d @/vagrant/conf/couchdb/design-jsonld.json
 curl -s -X PUT http://localhost:13598/test
