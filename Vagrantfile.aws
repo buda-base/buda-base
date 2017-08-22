@@ -9,6 +9,11 @@
 # then add the "dummy" box which is reference below:
 # vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
 
+# the block device mapping may need to be adjusted when upgrading the Debian image
+# use the following to see what the name of the root dev is in the new image:\
+#
+#    aws ec2 describe-images --image-ids ami-b14ba7a7 --query 'Images[].RootDeviceName'
+
 # in ~/.profile or equiv add so credentials are available below. This assumes awscli setup.
 # export AWS_ACCESS_KEY_ID=`grep "aws_access_key_id" ~/.aws/credentials | awk -F " = " '{print $2}'`
 # export AWS_SECRET_ACCESS_KEY=`grep "aws_secret_access_key" ~/.aws/credentials | awk -F " = " '{print $2}'`
