@@ -7,7 +7,7 @@ The base platform is built using Vagrant and VirtualBox.
 1. [Download](https://github.com/BuddhistDigitalResourceCenter/buda-base/archive/master.zip) or `git clone` this repository.
 1. cd into the project
 1. install the vbguest plugin: `vagrant plugin install vagrant-vbguest`
-1. and run the command: `vagrant up` or rename `Vagrantfile.aws` to `Vagrantfile` and run `vagrant up prefix=aws`
+1. and run the command: `vagrant up` or rename `Vagrantfile.aws` to `Vagrantfile` and run `vagrant up --provider=aws`
 
 This will grind awhile installing the following:
 
