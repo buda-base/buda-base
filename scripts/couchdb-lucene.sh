@@ -16,7 +16,10 @@ else
    	echo ">>>> downloading couchdb-lucene."
 	cd $DATA_DIR
 	mkdir couchdb-lucene
-	curl -fSLs $REL -o couchdb-lucene.tar.gz
+#	curl -fSLs $REL -o couchdb-lucene.tar.gz
+# until Newson decides to put up a release or some other agreeable location is found
+# the couchdb-lucene is sequestered here for use.
+	cp /vagrant/conf/couchdb-lucene/couchdb-lucene-2.2.0-SNAPSHOT-dist.tar.gz couchdb-lucene.tar.gz
 	tar -xzf couchdb-lucene.tar.gz -C couchdb-lucene --strip-components=1
 	rm couchdb-lucene.tar.gz
 fi
