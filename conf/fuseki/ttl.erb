@@ -37,6 +37,7 @@ tdb2:GraphTDB2    rdfs:subClassOf  ja:Model .
 :<%= ENV['EP_NAME'] %>rw rdf:type fuseki:Service ;
     fuseki:name                       "<%= ENV['EP_NAME'] %>rw" ;     # name of the dataset in the url
     fuseki:serviceQuery               "query" ;    # SPARQL query service
+    fuseki:serviceUpdate              "update" ;   # SPARQL update service
     fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
     fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
     fuseki:dataset                    :<%= ENV['EP_NAME'] %>_text_dataset ;
