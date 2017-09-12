@@ -49,19 +49,19 @@ erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
 cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 popd
 
-# # download fuseki
-# echo ">>>> downloading jena-fuseki 3.4.0"
-# pushd $DOWNLOADS;
-# wget -q -c $FUSEKI_REL
-# tar xf $FUSEKI_DIR.tar.gz
-# echo ">>>> copying fuseki war to tomcat container"
-# # until new war is released copy locally updated war with log4j - JENA-1185
-# cp $FUSEKI_DIR/fuseki.war $CAT_HOME/webapps
-# popd
+# download fuseki
+echo ">>>> downloading jena-fuseki 3.4.0"
+pushd $DOWNLOADS;
+wget -q -c $FUSEKI_REL
+tar xf $FUSEKI_DIR.tar.gz
+echo ">>>> copying fuseki war to tomcat container"
+# until new war is released copy locally updated war with log4j - JENA-1185
+cp $FUSEKI_DIR/fuseki.war $CAT_HOME/webapps
+popd
 
-# use local copy of fuseki war with TDB2 in it.
-echo ">>>> copying fuseki war with TDB2 to tomcat container"
-cp /vagrant/conf/fuseki/jena-fuseki-war-3.5.0-SNAPSHOT.war $CAT_HOME/webapps/fuseki.war
+# # use local copy of fuseki war with TDB2 in it.
+# echo ">>>> copying fuseki war with TDB2 to tomcat container"
+# cp /vagrant/conf/fuseki/jena-fuseki-war-3.5.0-SNAPSHOT.war $CAT_HOME/webapps/fuseki.war
 
 echo ">>>> configuring FUSEKI_BASE"
 mkdir -p $THE_HOME/base
@@ -94,8 +94,8 @@ mkdir -p $THE_HOME/base/configuration
 cp /vagrant/conf/fuseki/shiro.ini $THE_HOME/base/
 export EP_NAME=bdrc
 erb /vagrant/conf/fuseki/ttl.erb > $THE_HOME/base/configuration/bdrc.ttl
-export EP_NAME=test
-erb /vagrant/conf/fuseki/ttl.erb > $THE_HOME/base/configuration/test.ttl
+# export EP_NAME=test
+# erb /vagrant/conf/fuseki/ttl.erb > $THE_HOME/base/configuration/test.ttl
 cp /vagrant/conf/fuseki/qonsole-config.js $THE_HOME/tomcat/webapps/fuseki/js/app/
 
 echo ">>>> fixing permissions after updating ${SVC} configuration"
