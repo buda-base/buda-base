@@ -43,7 +43,7 @@ echo ">>>> adding user: ${TC_USER}"
 groupadd $TC_GROUP
 # useradd -s /bin/false -g $TC_GROUP -d $THE_HOME $TC_USER
 # during development let the user login
-useradd -g $TC_GROUP -d $THE_HOME $TC_USER
+useradd -s /bin/bash -g $TC_GROUP -d $THE_HOME $TC_USER
 
 # place to download non apt-get items
 mkdir -p $DOWNLOADS
@@ -62,12 +62,6 @@ echo ">>>> configuring server.xml tomcat 8"
 erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
 # enable tomcat admin and manager apps
 cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
-
-echo ">>>> adding lucene-bo-1.1.0.jar"
-# wget doesn't work nicely here for some reason. 
-# The file is stored as remotecontent\?filepath\=io%2Fbdrc%2Flucene%2Flucene-bo%2F1.1.0%2Flucene-bo-1.1.0.jar ?!
-curl $LUCENE_BO_REL > lucene-bo-1.1.0.jar
-cp lucene-bo-1.1.0.jar $CAT_HOME/lib/
 popd
 
 # download fuseki
@@ -116,6 +110,17 @@ cp /vagrant/conf/fuseki/shiro.ini $THE_BASE/
 erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/bdrc.ttl
 cp /vagrant/conf/fuseki/qonsole-config.js $THE_HOME/tomcat/webapps/fuseki/js/app/
 
+# the lucene-bo jar has to be added to fuseki/WEB-INF/lib/ otherwise 
+# tomcat class loading cannot find rest of Lucene classes
+echo ">>>> adding lucene-bo-1.1.0.jar"
+pushd $DOWNLOADS;
+# wget doesn't work nicely here for some reason. 
+# The file is stored as remotecontent\?filepath\=io%2Fbdrc%2Flucene%2Flucene-bo%2F1.1.0%2Flucene-bo-1.1.0.jar ?!
+curl -s $LUCENE_BO_REL > lucene-bo-1.1.0.jar
+cp /vagrant/conf/fuseki/ewts-converter-1.2.0.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+cp lucene-bo-1.1.0.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+popd
+
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
 
@@ -141,6 +146,8 @@ chown -R $TC_USER:$TC_GROUP $THE_HOME
 echo ">>>> starting ${MARPLE_SVC} service"
 systemctl daemon-reload
 systemctl enable $MARPLE_SVC
-systemctl start $MARPLE_SVC
+# systemctl start $MARPLE_SVC
+
+echo ">>>> Marple will have to be manually started the first time after the Lucene index is built"
 
 echo ">>>> fuseki provisioning complete"
