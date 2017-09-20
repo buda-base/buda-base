@@ -20,9 +20,11 @@
 @prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
 @prefix :        <http://base/#> .
 @prefix text:    <http://jena.apache.org/text#> .
-@prefix per:     <http://purl.bdrc.io/ontology/person#> .
-@prefix root:    <http://purl.bdrc.io/ontology/root#> .
-@prefix out:     <http://purl.bdrc.io/ontology/outline#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix adm:     <http://purl.bdrc.io/ontology/admin/> .
+@prefix bdd:     <http://purl.bdrc.io/data/> .
+@prefix bdo:     <http://purl.bdrc.io/ontology/core/> .
+@prefix bdr:     <http://purl.bdrc.io/resource/> .
 
 # [] ja:loadClass "org.seaborne.tdb2.TDB2" .
 # tdb2:DatasetTDB2  rdfs:subClassOf  ja:RDFDataset .
@@ -60,7 +62,7 @@
 # :dataset_<%= ENV['EP_NAME'] %> rdf:type      tdb2:DatasetTDB2 ;
 #      tdb2:location "/etc/fuseki/databases/<%= ENV['EP_NAME'] %>" ;
 #      tdb2:unionDefaultGraph true ;
-    .
+#   .
 
 :<%= ENV['EP_NAME'] %>_text_dataset rdf:type     text:TextDataset ;
     text:dataset   :dataset_<%= ENV['EP_NAME'] %> ;
@@ -71,36 +73,71 @@
 :<%= ENV['EP_NAME'] %>_lucene_index a text:TextIndexLucene ;
     text:directory <file:/etc/fuseki/lucene-<%= ENV['EP_NAME'] %>> ;
     text:storeValues true ;
+    text:multilingualSupport true ;
     text:entityMap :<%= ENV['EP_NAME'] %>_entmap ;
+    text:defineAnalyzers (
+        [ text:addLang "bo" ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ; ] ; 
+          ]
+        [ text:addLang "bo-x-ewts" ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
+            text:params (
+                [ text:paramName "segmentInWords" ;
+                  text:paramType text:TypeBoolean ; 
+                  text:paramValue true ]
+                [ text:paramName "lemmatize" ;
+                  text:paramType text:TypeBoolean ;
+                  text:paramValue true ]
+                [ text:paramName "filterChars" ;
+                  text:paramType text:TypeBoolean ;
+                  text:paramValue true ]
+                [ text:paramName "fromEwts" ;
+                  text:paramType text:TypeBoolean ;
+                  text:paramValue true ]
+                )
+            ] ; 
+          ]
+      ) ;
     .
 
-# Mapping in the index
-# URI stored in field "uri"
-# rdfs:label is mapped to field "text"
+# Index mappings
 :<%= ENV['EP_NAME'] %>_entmap a text:EntityMap ;
     text:entityField      "uri" ;
     text:uidField         "uid" ;
     text:defaultField     "label" ;
     text:langField        "lang" ;
-#    text:graphField       "graph" ; ## enable graph-specific indexing
+    text:graphField       "graph" ; ## enable graph-specific indexing
     text:map (
          [ text:field "label" ; 
-           text:predicate rdfs:label ;
-           text:analyzer [
-               a text:StandardAnalyzer ;
-               text:stopWords ("a" "an" "and" "but") ] ; ]
-         [ text:field "name" ; 
-           text:predicate root:name ; ]
-         [ text:field "pername" ;
-           text:predicate per:name ; ]
-         [ text:field "perPrimaryName" ;
-           text:predicate per:primaryName ; ]
-         [ text:field "perCommonName" ;
-           text:predicate per:commonName ; ]
-         [ text:field "perPersonalName" ;
-           text:predicate per:personalName ; ]
-         [ text:field "colophon" ; 
-           text:predicate out:colophon ; ]
+           text:predicate skos:prefLabel ]
+         [ text:field "altLabel" ; 
+           text:predicate skos:altLabel ; ]
+         [ text:field "rdfsLabel" ;
+           text:predicate rdfs:label ; ]
+         [ text:field "chunkContents" ;
+           text:predicate bdo:chunkContents ; ]
+         [ text:field "eTextTitle" ;
+           text:predicate bdo:eTextTitle ; ]
+         [ text:field "logMessage" ;
+           text:predicate adm:logMessage ; ]
+         [ text:field "noteText" ;
+           text:predicate bdo:noteText ; ]
+         [ text:field "workAuthorshipStatement" ;
+           text:predicate bdo:workAuthorshipStatement ; ]
+         [ text:field "workColophon" ; 
+           text:predicate bdo:workColophon ; ]
+         [ text:field "workEditionStatement" ;
+           text:predicate bdo:workEditionStatement ; ]
+         [ text:field "workPublisherLocation" ;
+           text:predicate bdo:workPublisherLocation ; ]
+         [ text:field "workPublisherName" ;
+           text:predicate bdo:workPublisherName ; ]
+         [ text:field "workSeriesName" ;
+           text:predicate bdo:workSeriesName ; ]
          ) ;
     .
     

@@ -4,12 +4,14 @@
 echo ">>>> Installing Fuseki"
 export TC_USER=fuseki
 export TC_GROUP=fuseki
+export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.42/bin/apache-tomcat-8.0.42.tar.gz"
 # set erb vars
 export SVC=fuseki
 export SVC_DESC="Jena-Fuseki Tomcat container"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export FUSEKI_REL="http://apache.claz.org/jena/binaries/apache-jena-fuseki-3.4.0.tar.gz"
 export FUSEKI_DIR="apache-jena-fuseki-3.4.0"
+export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v1.1.0/lucene-bo-1.1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
 else
@@ -37,7 +39,7 @@ mkdir -p $DOWNLOADS
 # download tomcat
 echo ">>>> downloading tomcat 8"
 pushd $DOWNLOADS;
-wget -q -c http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.42/bin/apache-tomcat-8.0.42.tar.gz
+wget -q -c $TC_REL
 # unpack tomcat
 echo ">>>> unpacking tomcat 8"
 mkdir -p $CAT_HOME
@@ -47,6 +49,9 @@ echo ">>>> configuring server.xml tomcat 8"
 erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
 # enable tomcat admin and manager apps
 cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
+echo ">>>> adding lucene-bo-1.1.0.jar"
+wget -q -c $LUCENE_BO_REL
+cp lucene-bo-1.1.0.jar $CAT_HOME/lib/
 popd
 
 # download fuseki
