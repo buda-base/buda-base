@@ -71,7 +71,7 @@
 
 # Text index description
 :<%= ENV['EP_NAME'] %>_lucene_index a text:TextIndexLucene ;
-    text:directory <file:/etc/fuseki/lucene-<%= ENV['EP_NAME'] %>> ;
+    text:directory <file:/etc/fuseki/<%= ENV['LUCENE_INDEX'] %>> ;
     text:storeValues true ;
     text:multilingualSupport true ;
     text:entityMap :<%= ENV['EP_NAME'] %>_entmap ;

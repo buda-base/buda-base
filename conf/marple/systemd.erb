@@ -1,0 +1,27 @@
+# Systemd unit file for Marple on Debian
+# for use with fuseki, solr, elasticsearch,, etc
+
+[Unit]
+Description=<%= ENV['MARPLE_SVC_DESC'] %>
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=<%= ENV['JAVA_HOME'] %>
+
+User=<%= ENV['TC_USER'] %>
+Group=<%= ENV['TC_GROUP'] %>
+
+UMask=0007
+
+PIDFile=<%= ENV['MARPLE_HOME'] %>/marple.pid
+
+ExecStart=<%= ENV['MARPLE_HOME'] %>/start.sh
+ExecStop=<%= ENV['MARPLE_HOME'] %>/stop.sh
+
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
