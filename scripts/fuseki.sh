@@ -11,7 +11,7 @@ export SVC_DESC="Jena-Fuseki Tomcat container"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export FUSEKI_REL="http://apache.claz.org/jena/binaries/apache-jena-fuseki-3.4.0.tar.gz"
 export FUSEKI_DIR="apache-jena-fuseki-3.4.0"
-export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v1.1.0/lucene-bo-1.1.0.jar"
+export LUCENE_BO_REL="https://search.maven.org/remotecontent?filepath=io/bdrc/lucene/lucene-bo/1.1.0/lucene-bo-1.1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
 else

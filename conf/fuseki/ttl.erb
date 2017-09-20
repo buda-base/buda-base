@@ -79,7 +79,22 @@
         [ text:addLang "bo" ; 
           text:analyzer [ 
             a text:GenericAnalyzer ;
-            text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ; ] ; 
+            text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
+            text:params (
+                [ text:paramName "segmentInWords" ;
+                  text:paramType text:TypeBoolean ; 
+                  text:paramValue false ]
+                [ text:paramName "lemmatize" ;
+                  text:paramType text:TypeBoolean ;
+                  text:paramValue true ]
+                [ text:paramName "filterChars" ;
+                  text:paramType text:TypeBoolean ;
+                  text:paramValue false ]
+                [ text:paramName "fromEwts" ;
+                  text:paramType text:TypeBoolean ;
+                  text:paramValue false ]
+                )
+            ] ; 
           ]
         [ text:addLang "bo-x-ewts" ; 
           text:analyzer [ 
@@ -88,13 +103,13 @@
             text:params (
                 [ text:paramName "segmentInWords" ;
                   text:paramType text:TypeBoolean ; 
-                  text:paramValue true ]
+                  text:paramValue false ]
                 [ text:paramName "lemmatize" ;
                   text:paramType text:TypeBoolean ;
                   text:paramValue true ]
                 [ text:paramName "filterChars" ;
                   text:paramType text:TypeBoolean ;
-                  text:paramValue true ]
+                  text:paramValue false ]
                 [ text:paramName "fromEwts" ;
                   text:paramType text:TypeBoolean ;
                   text:paramValue true ]
