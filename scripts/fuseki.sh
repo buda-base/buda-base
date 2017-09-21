@@ -15,7 +15,7 @@ export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export FUSEKI_REL="http://apache.claz.org/jena/binaries/apache-jena-fuseki-3.4.0.tar.gz"
 export FUSEKI_DIR="apache-jena-fuseki-3.4.0"
-export LUCENE_BO_REL="https://search.maven.org/remotecontent?filepath=io/bdrc/lucene/lucene-bo/1.1.0/lucene-bo-1.1.0.jar"
+export LUCENE_BO_REL="https://repo1.maven.org/maven2/io/bdrc/lucene/lucene-bo/1.1.1/lucene-bo-1.1.1.jar"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
@@ -114,9 +114,8 @@ cp /vagrant/conf/fuseki/qonsole-config.js $THE_HOME/tomcat/webapps/fuseki/js/app
 # tomcat class loading cannot find rest of Lucene classes
 echo ">>>> adding lucene-bo-1.1.0.jar"
 pushd $DOWNLOADS;
-# wget doesn't work nicely here for some reason. 
-# The file is stored as remotecontent\?filepath\=io%2Fbdrc%2Flucene%2Flucene-bo%2F1.1.0%2Flucene-bo-1.1.0.jar ?!
-curl -s $LUCENE_BO_REL > lucene-bo-1.1.0.jar
+wget -q -c $LUCENE_BO_REL
+# temporarily handle the converter dependency here
 cp /vagrant/conf/fuseki/ewts-converter-1.2.0.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 cp lucene-bo-1.1.0.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
@@ -132,11 +131,6 @@ mkdir $MARPLE_HOME
 cp $MARPLE_JAR $MARPLE_HOME/
 popd
 
-echo ">>>> configure start.sh and stop.sh"
-erb /vagrant/conf/marple/start.erb > $MARPLE_HOME/start.sh
-erb /vagrant/conf/marple/stop.erb > $MARPLE_HOME/stop.sh
-chmod a+x $MARPLE_HOME/start.sh $MARPLE_HOME/stop.sh
-
 echo ">>>> setting up ${MARPLE_SVC} as service"
 erb /vagrant/conf/marple/systemd.erb > /etc/systemd/system/$MARPLE_SVC.service
 
@@ -147,7 +141,6 @@ echo ">>>> starting ${MARPLE_SVC} service"
 systemctl daemon-reload
 systemctl enable $MARPLE_SVC
 # systemctl start $MARPLE_SVC
-
 echo ">>>> Marple will have to be manually started the first time after the Lucene index is built"
 
 echo ">>>> fuseki provisioning complete"

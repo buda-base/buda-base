@@ -17,8 +17,8 @@ UMask=0007
 
 PIDFile=<%= ENV['MARPLE_HOME'] %>/marple.pid
 
-ExecStart=<%= ENV['MARPLE_HOME'] %>/start.sh
-ExecStop=<%= ENV['MARPLE_HOME'] %>/stop.sh
+ExecStart=<%= ENV['JAVA_HOME'] %>/bin/java -jar <%= ENV['MARPLE_HOME'] %>/<%= ENV['MARPLE_JAR'] %> server <%= ENV['MARPLE_HOME'] %>/config.yml
+ExecStop=cat <%= ENV['$MARPLE_HOME'] %>/marple.pid | kill -9 -
 
 RestartSec=10
 Restart=always

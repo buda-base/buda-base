@@ -1,0 +1,23 @@
+indexPath: <%= ENV['THE_BASE'] %>/<%= ENV['LUCENE_INDEX'] %>
+
+server:
+  applicationContextPath: /
+  applicationConnectors:
+    - type: http
+      port: <%= ENV['MARPLE_APP_PORT'] %>
+  adminConnectors:
+    - type: http
+      port: <%= ENV['MARPLE_ADM_PORT'] %>
+
+logging:
+  level: INFO
+  loggers:
+    com.github.flaxsearch: DEBUG
+  appenders:
+    - type: file
+      currentLogFilename: <%= ENV['MARPLE_HOME'] %>/marple.log
+      threshold: ALL
+      archive: true
+      archivedLogFilenamePattern: <%= ENV['MARPLE_HOME'] %>/marple-%d.log
+      archivedFileCount: 5
+      timeZone: UTC
