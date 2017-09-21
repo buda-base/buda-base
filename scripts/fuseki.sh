@@ -16,6 +16,7 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export FUSEKI_REL="http://apache.claz.org/jena/binaries/apache-jena-fuseki-3.4.0.tar.gz"
 export FUSEKI_DIR="apache-jena-fuseki-3.4.0"
 export LUCENE_BO_REL="https://repo1.maven.org/maven2/io/bdrc/lucene/lucene-bo/1.1.1/lucene-bo-1.1.1.jar"
+export LUCENE_BO_JAR="lucene-bo-1.1.1.jar"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
@@ -112,12 +113,12 @@ cp /vagrant/conf/fuseki/qonsole-config.js $THE_HOME/tomcat/webapps/fuseki/js/app
 
 # the lucene-bo jar has to be added to fuseki/WEB-INF/lib/ otherwise 
 # tomcat class loading cannot find rest of Lucene classes
-echo ">>>> adding lucene-bo-1.1.0.jar"
+echo ">>>> adding ${LUCENE_BO_JAR}"
 pushd $DOWNLOADS;
 wget -q -c $LUCENE_BO_REL
 # temporarily handle the converter dependency here
 cp /vagrant/conf/fuseki/ewts-converter-1.2.0.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib/
-cp lucene-bo-1.1.0.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+cp $LUCENE_BO_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
 
 systemctl start $SVC
