@@ -17,6 +17,7 @@ export FUSEKI_REL="http://apache.claz.org/jena/binaries/apache-jena-fuseki-3.4.0
 export FUSEKI_DIR="apache-jena-fuseki-3.4.0"
 export LUCENE_BO_REL="https://repo1.maven.org/maven2/io/bdrc/lucene/lucene-bo/1.1.1/lucene-bo-1.1.1.jar"
 export LUCENE_BO_JAR="lucene-bo-1.1.1.jar"
+export EWTS_JAR="ewts-converter-1.2.0.jar"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
@@ -117,12 +118,15 @@ echo ">>>> adding ${LUCENE_BO_JAR}"
 pushd $DOWNLOADS;
 wget -q -c $LUCENE_BO_REL
 # temporarily handle the converter dependency here
-cp /vagrant/conf/fuseki/ewts-converter-1.2.0.jar $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+cp /vagrant/conf/fuseki/$EWTS_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 cp $LUCENE_BO_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
 
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
+
+echo ">>>> adding ${THE_HOME}/load-fuseki.sh"
+erb /vagrant/conf/fuseki/load-fuseki.erb > $THE_HOME/load-fuseki.sh
 
 # install Marple Lucene index monitor
 echo ">>>> installing Marple Lucene index monitor"

@@ -1,0 +1,11 @@
+#! /bin/bash
+
+export FUSEKI_JAR="<%= ENV['DOWNLOADS'] %>/<%= ENV['FUSEKI_DIR'] %>/fuseki-server.jar"
+export LUCENE_BO="<%= ENV['CAT_HOME'] %>/webapps/fuseki/WEB-INF/lib/<%= ENV['LUCENE_BO_JAR'] %>"
+export EWTS="<%= ENV['CAT_HOME'] %>/webapps/fuseki/WEB-INF/lib/<%= ENV['EWTS_JAR'] %>"
+
+# load TDB
+java -cp $FUSEKI_JAR tdb.tdbloader --tdb=<%= ENV['THE_BASE'] %>/configuration/$1 $2
+
+# index Lucene
+java -cp $FUSEKI_JAR:$LUCENE_BO:$EWTS jena.textindexer --desc=<%= ENV['THE_BASE'] %>/configuration/$1
