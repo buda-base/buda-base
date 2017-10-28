@@ -122,6 +122,10 @@ cp /vagrant/conf/fuseki/$EWTS_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 cp $LUCENE_BO_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
 
+# put a copy of the log4j.properties in $THE_BASE for use in development
+echo ">>>> copying log4j.properties to {$THE_BASE}"
+cp /vagrant/conf/fuseki/log4j.properties $THE_BASE/
+
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
 
