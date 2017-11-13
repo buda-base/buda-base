@@ -17,10 +17,7 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/apache-jena-fuseki-3.4.0.tar.gz"
 #export FUSEKI_DIR="apache-jena-fuseki-3.5.0"
 export FUSEKI_DIR="apache-jena-fuseki-3.4.0"
-export LUCENE_BO_REL="https://repo1.maven.org/maven2/io/bdrc/lucene/lucene-bo/1.1.1/lucene-bo-1.1.1.jar"
-export LUCENE_BO_JAR="lucene-bo-1.1.1.jar"
-export EWTS_REL="http://repo1.maven.org/maven2/io/bdrc/ewtsconverter/ewts-converter/1.2.0/ewts-converter-1.2.0.jar"
-export EWTS_JAR="ewts-converter-1.2.0.jar"
+export LUCENE_BO_JAR="/vagrant/conf/fuseki/lucene-bo-1.1.1.jar"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
@@ -109,27 +106,27 @@ systemctl start $SVC
 sleep 5
 systemctl stop $SVC
 echo ">>>> updating ${SVC} configuration"
-# update configuration and restart
 mkdir -p $THE_BASE/configuration
-cp /vagrant/conf/fuseki/shiro.ini $THE_BASE/
-erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/bdrc.ttl
-cp /vagrant/conf/fuseki/qonsole-config.js $THE_HOME/tomcat/webapps/fuseki/js/app/
 
+echo ">>>>>>>> adding shiro.ini to {$THE_BASE}/"
+cp /vagrant/conf/fuseki/shiro.ini $THE_BASE/
+
+echo ">>>>>>>> adding bdrc.ttl to {$THE_BASE}/configuration/"
+erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/bdrc.ttl
+
+echo ">>>>>>>> adding qonsole-config.js to {$CAT_HOME}/webapps/fuseki/js/app/"
+cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/
+
+echo ">>>>>>>> adding ${LUCENE_BO_JAR} to {$CAT_HOME}/webapps/fuseki/WEB-INF/lib/"
 # the lucene-bo jar has to be added to fuseki/WEB-INF/lib/ otherwise 
 # tomcat class loading cannot find rest of Lucene classes
-echo ">>>> adding ${LUCENE_BO_JAR}"
-pushd $DOWNLOADS;
-wget -q -c $LUCENE_BO_REL
-wget -q -c $EWTS_REL
-# temporarily handle the converter dependency here
-cp $EWTS_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 cp $LUCENE_BO_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
-popd
 
 # put a copy of the log4j.properties in $THE_BASE for use in development
-echo ">>>> copying log4j.properties to {$THE_BASE}"
+echo ">>>>>>>> copying log4j.properties to {$THE_BASE}/"
 cp /vagrant/conf/fuseki/log4j.properties $THE_BASE/
 
+echo ">>>> restarting ${SVC}"
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
 
