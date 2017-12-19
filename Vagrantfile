@@ -37,4 +37,5 @@ Vagrant.configure(2) do |config|
 # no need for couchapp (yet)
 #  config.vm.provision "couchapp", type: "shell", path: "scripts/couchapp.sh"
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
+  config.vm.provision "lds-search", type: "shell", path: "scripts/ldsearch.sh"
 end

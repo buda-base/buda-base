@@ -27,6 +27,20 @@ Similarly, the jena-fuseki server will be listening on:
 
     http://localhost:13180/fuseki
 
+Lds-search application is accessible at :
+
+	http://localhost:13180/lds-search/index.jsp
+
+Root for lds-rest resource description rest service  :
+
+	http://localhost:13180/lds-search/lookup/resource/
+
+Root for lds-search rest service  :
+
+	http://localhost:13180/lds-search/lookup/
+
+(see  https://github.com/BuddhistDigitalResourceCenter/lds-search/blob/master/README.md for details about using these two rest services)
+
 The command: `vagrant halt` will shut the instance down. After halting (or suspending the instance) a further: `vagrant up` will simply boot the instance without further downloads, and `vagrant destroy` will completely remove the instance. 
 
 If running an AWS instance, after provisioning access the instance via `ssh -p 15345` and delete
