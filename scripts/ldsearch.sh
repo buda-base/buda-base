@@ -17,8 +17,8 @@ echo ">>>> Cloning lds-search github repository..."
 git clone https://github.com/BuddhistDigitalResourceCenter/lds-search.git
 cd lds-search
 
-echo ">>>> Checking out version 92b9506 ..."
-git checkout 92b9506
+echo ">>>> Checking out version ca88449 ..."
+git checkout ca88449
 
 echo ">>>> OK : Cloning and checkout completed..."
 echo ">>>> Compiling and packaging lds-search application ..."
