@@ -35,6 +35,7 @@ echo ">>>> deploying lds-search application and performing cleanup"
 cd target
 
 mv lds-search.war $TOMCAT_DIR
+cp lds-search-classes.jar $FUSEKI_LIB
 rm -R $TMP
 
 echo ">>>> Stop then restart tomcat fuseki ..."
