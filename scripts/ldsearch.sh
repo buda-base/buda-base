@@ -36,6 +36,9 @@ cd target
 
 mv lds-search.war $TOMCAT_DIR
 cp lds-search-classes.jar $FUSEKI_LIB
+cd $FUSEKI_LIB
+chmod 660 lds-search-classes.jar lds-search.war commons-text-1.2.jar
+chown fuseki:fuseki lds-search-classes.jar lds-search.war commons-text-1.2.jar
 rm -R $TMP
 
 echo ">>>> Stop then restart tomcat fuseki ..."
