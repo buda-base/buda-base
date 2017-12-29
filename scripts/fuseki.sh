@@ -13,10 +13,8 @@ export SVC_DESC="Jena-Fuseki Tomcat container"
 export MARPLE_SVC=marple
 export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
-# export FUSEKI_REL="http://apache.claz.org/jena/binaries/apache-jena-fuseki-3.5.0.tar.gz"
-export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/apache-jena-fuseki-3.4.0.tar.gz"
-#export FUSEKI_DIR="apache-jena-fuseki-3.5.0"
-export FUSEKI_DIR="apache-jena-fuseki-3.4.0"
+export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/apache-jena-fuseki-3.6.0.tar.gz"
+export FUSEKI_DIR="apache-jena-fuseki-3.6.0"
 export LUCENE_BO_JAR="/vagrant/conf/fuseki/lucene-bo-1.1.1.jar"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
@@ -67,7 +65,7 @@ cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 popd
 
 # download fuseki
-echo ">>>> downloading jena-fuseki 3.4.0"
+echo ">>>> downloading jena-fuseki"
 pushd $DOWNLOADS;
 wget -q -c $FUSEKI_REL
 tar xf $FUSEKI_DIR.tar.gz
