@@ -73,6 +73,7 @@
     text:cacheQueries false ;
     text:multilingualSupport true ;
     text:entityMap :bdrc_entmap ;
+    text:analyzer [ a text:StandardAnalyzer ] ;
     text:defineAnalyzers (
         [ text:addLang "bo" ; 
           text:analyzer [ 

@@ -13,8 +13,9 @@ export SVC_DESC="Jena-Fuseki Tomcat container"
 export MARPLE_SVC=marple
 export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
-export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/apache-jena-fuseki-3.6.0.tar.gz"
-export FUSEKI_DIR="apache-jena-fuseki-3.6.0"
+# export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/apache-jena-fuseki-3.6.0.tar.gz"
+# export FUSEKI_DIR="apache-jena-fuseki-3.6.0"
+export FUSEKI_WAR="/vagrant/conf/fuseki/jena-fuseki-war-3.7.0-SNAPSHOT.war"
 export LUCENE_BO_JAR="/vagrant/conf/fuseki/lucene-bo-1.1.1.jar"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
@@ -65,14 +66,18 @@ cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 popd
 
 # download fuseki
-echo ">>>> downloading jena-fuseki"
-pushd $DOWNLOADS;
-wget -q -c $FUSEKI_REL
-tar xf $FUSEKI_DIR.tar.gz
-echo ">>>> copying fuseki war to tomcat container"
-# until new war is released copy locally updated war with log4j - JENA-1185
-cp $FUSEKI_DIR/fuseki.war $CAT_HOME/webapps
-popd
+#echo ">>>> downloading jena-fuseki"
+#pushd $DOWNLOADS;
+#wget -q -c $FUSEKI_REL
+#tar xf $FUSEKI_DIR.tar.gz
+#echo ">>>> copying fuseki war to tomcat container"
+## until new war is released copy locally updated war with log4j - JENA-1185
+#cp $FUSEKI_DIR/fuseki.war $CAT_HOME/webapps
+#popd
+
+# install fuseki from war file in /vagrant
+echo ">>>> using jena-fuseki-war-3.7.0-SNAPSHOT.war from conf/fuseki"
+cp $FUSEKI_WAR $CAT_HOME/webapps/fuseki.war
 
 # # use local copy of fuseki war with TDB2 in it.
 # echo ">>>> copying fuseki war with TDB2 to tomcat container"
