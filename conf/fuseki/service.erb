@@ -1,0 +1,25 @@
+description "<%= ENV['SVC_DESC'] %>"
+
+  start on runlevel [2345]
+  stop on runlevel [!2345]
+  respawn
+  respawn limit 10 5
+
+  setuid <%= ENV['TC_USER'] %>
+  setgid <%= ENV['TC_GROUP'] %>
+
+  env JAVA_HOME=<%= ENV['JAVA_HOME'] %>
+  env CATALINA_HOME=<%= ENV['CAT_HOME'] %>
+  
+  env FUSEKI_BASE=<%= ENV['THE_BASE'] %>
+
+  # Modify these options as needed
+  env JAVA_OPTS="-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom"
+  env CATALINA_OPTS="-Xms512M <%= ENV['MAX_MEM'] %> -server -XX:+UseParallelGC"
+
+  exec $CATALINA_HOME/bin/catalina.sh run
+
+  # cleanup temp directory after stop
+  post-stop script
+    rm -rf $CATALINA_HOME/temp/*
+  end script

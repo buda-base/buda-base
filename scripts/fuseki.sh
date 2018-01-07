@@ -15,7 +15,8 @@ export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/apache-jena-fuseki-3.6.0.tar.gz"
 # export FUSEKI_DIR="apache-jena-fuseki-3.6.0"
-export FUSEKI_WAR="/vagrant/conf/fuseki/jena-fuseki-war-3.7.0-SNAPSHOT.war"
+export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/files/1609829/jena-fuseki-war-3.7.0-SNAPSHOT.war.zip"
+export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
 export LUCENE_BO_JAR="/vagrant/conf/fuseki/lucene-bo-1.1.1.jar"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
@@ -66,26 +67,17 @@ cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 popd
 
 # download fuseki
-#echo ">>>> downloading jena-fuseki"
-#pushd $DOWNLOADS;
-#wget -q -c $FUSEKI_REL
-#tar xf $FUSEKI_DIR.tar.gz
-#echo ">>>> copying fuseki war to tomcat container"
-## until new war is released copy locally updated war with log4j - JENA-1185
-#cp $FUSEKI_DIR/fuseki.war $CAT_HOME/webapps
-#popd
-
-# install fuseki from war file in /vagrant
-echo ">>>> using jena-fuseki-war-3.7.0-SNAPSHOT.war from conf/fuseki"
+echo ">>>> downloading jena-fuseki war"
+pushd $DOWNLOADS;
+wget -q -c $FUSEKI_ZIP
+unzip $FUSEKI_WAR.zip
+echo ">>>> copying ${FUSEKI_WAR} to ${CAT_HOME}/webapps/fuseki.war"
 cp $FUSEKI_WAR $CAT_HOME/webapps/fuseki.war
-
-# # use local copy of fuseki war with TDB2 in it.
-# echo ">>>> copying fuseki war with TDB2 to tomcat container"
-# cp /vagrant/conf/fuseki/jena-fuseki-war-3.5.0-SNAPSHOT.war $CAT_HOME/webapps/fuseki.war
+popd
 
 echo ">>>> configuring FUSEKI_BASE"
 mkdir -p $THE_BASE
-ln -s $THE_BASE /etc/fuseki
+# ln -s $THE_BASE /etc/fuseki # replaced by FUSEKI_BASE env var in systemd.erb
 # fix permissions
 echo ">>>> fixing permissions"
 chown -R $USER:$USER $DOWNLOADS
@@ -100,7 +92,7 @@ popd
 
 # setup as Debian systemctl service listening on $MAIN_PORT
 echo ">>>> setting up ${SVC} as service"
-erb /vagrant/conf/tomcat/systemd.erb > /etc/systemd/system/$SVC.service
+erb /vagrant/conf/fuseki/systemd.erb > /etc/systemd/system/$SVC.service
 echo ">>>> starting ${SVC} service"
 systemctl daemon-reload
 systemctl enable $SVC
