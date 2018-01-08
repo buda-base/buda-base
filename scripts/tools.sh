@@ -13,11 +13,3 @@ echo ">>>> installing various common tools"
 # ruby needed for erb
 apt-get install tree git bash-completion sudo vim curl jq wget ruby -y
 echo ">>>> common tools and utilities installed"
-
-# Install git and maven for application integration
-echo ">>>> installing git"
-apt-get install git-core -y
-echo ">>>> OK : Git installation completed"
-echo ">>>> installing Maven tools"
-apt-get install maven -y
-echo ">>>> OK : Maven installation completed"

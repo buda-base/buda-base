@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "debian/stretch64"
   
-  disk = 'dataDisk.vdi'
+  disk = 'dataDisk2.vdi'
   config.vm.synced_folder ".", "/vagrant", type: "rsync",
     rsync__exclude: [ "dataDisk.vdi", ".git", ".gitignore", ".DS_Store", ".project" ],
     rsync__verbose: true
@@ -22,7 +22,7 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |vb|
       vb.memory = "8192"
       unless File.exist?(disk)
-        vb.customize ['createhd', '--filename', disk, '--size', 32 * 1024]
+        vb.customize ['createhd', '--filename', disk, '--size', 48 * 1024]
       end
       vb.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
   end
@@ -31,11 +31,11 @@ Vagrant.configure(2) do |config|
   config.vm.provision "first-local", type: "shell", path: "scripts/first-local.sh"
   config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
   config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
-  config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
-  config.vm.provision "couchdb", type: "shell", path: "scripts/couchdb.sh"
-  config.vm.provision "couchdb-lucene", type: "shell", path: "scripts/couchdb-lucene.sh"
+#  config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
+#  config.vm.provision "couchdb", type: "shell", path: "scripts/couchdb.sh"
+#  config.vm.provision "couchdb-lucene", type: "shell", path: "scripts/couchdb-lucene.sh"
 # no need for couchapp (yet)
 #  config.vm.provision "couchapp", type: "shell", path: "scripts/couchapp.sh"
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
-  config.vm.provision "lds-search", type: "shell", path: "scripts/ldsearch.sh"
+  config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
 end

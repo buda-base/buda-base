@@ -139,6 +139,9 @@ popd
 echo ">>>> setting up ${MARPLE_SVC} as service"
 erb /vagrant/conf/marple/systemd.erb > /etc/systemd/system/$MARPLE_SVC.service
 
+echo ">>>> creating ${MARPLE_HOME}/config.yml"
+erb /vagrant/conf/marple/config.erb > $MARPLE_HOME/config.yml
+
 echo ">>>> fixing permissions after updating ${MARPLE_SVC} configuration"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
