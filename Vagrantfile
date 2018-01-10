@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "debian/stretch64"
   
-  disk = 'dataDisk2.vdi'
+  disk = 'dataDisk.vdi'
   config.vm.synced_folder ".", "/vagrant", type: "rsync",
     rsync__exclude: [ "dataDisk.vdi", ".git", ".gitignore", ".DS_Store", ".project" ],
     rsync__verbose: true
@@ -17,6 +17,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13180, host: 13180 # jena-fuseki
   config.vm.network :forwarded_port, guest: 13190, host: 13190 # marple client
   config.vm.network :forwarded_port, guest: 13191, host: 13191 # marple admin
+  config.vm.network :forwarded_port, guest: 13280, host: 13280 # lds-pdi
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
