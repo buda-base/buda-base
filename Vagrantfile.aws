@@ -42,6 +42,7 @@ Vagrant.configure(2) do |config|
                                   'Ebs.VolumeSize' => 256, 
                                   'Ebs.VolumeType' => 'gp2' }]
 
+	override.nfs.functional = false
     override.ssh.username = "admin"
     override.ssh.private_key_path = "/usr/local/BUDA_TECH/BDRC_Dev_001.pem"
   end
