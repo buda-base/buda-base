@@ -20,6 +20,7 @@ export FUSEKI_LIB=$FUSEKI_WEBAPPS/fuseki/WEB-INF/lib
 
 export LDSPDI=ldspdi
 export LDSPDI_HOME=$DATA_DIR/$LDSPDI
+export QUERIES_HOME=$LDSPDI_HOME/queries/
 export CAT_HOME=$LDSPDI_HOME/tomcat
 export SHUTDOWN_PORT=13205
 export MAIN_PORT=13280
@@ -28,6 +29,8 @@ export AJP_PORT=13209
 export MAX_MEM="-Xmx2048M"
 
 export LDSPDI_WEBAPPS=$CAT_HOME/webapps
+export LDSPDI_PROPS=$LDSPDI_WEBAPPS/lds-pdi/ldspdi.properties
+export LDSPDI_PROPS2=$LDSPDI_WEBAPPS/lds-pdi/WEB-INF/classes/ldspdi.properties
 
 mkdir -p $CAT_HOME
 
@@ -56,17 +59,23 @@ popd
 # common-text is used in fuseki extensions called from queries via lds-pdi
 echo ">>>> Downloading apache common-text lib from maven"
 pushd $DOWNLOADS;
+mkdir LDSPDI
+pushd LDSPDI
 wget -q -c "http://central.maven.org/maven2/org/apache/commons/commons-text/1.2/commons-text-1.2.jar"
 cp commons-text-1.2.jar $FUSEKI_LIB/
 
 echo ">>>> Downloading lds-pdi 0.1"
 wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/v0.1/lds-pdi.zip"
-unzip lds-pdi.zip
+unzip -q lds-pdi.zip
 
-cp lds-pdi.war $LDSPDI_WEBAPPS/
+cp target/lds-pdi.war $LDSPDI_WEBAPPS/
 # the lds-pdi-classes are sparql extension functions used in queries from lds-pdi
-cp lds-pdi-classes.jar $FUSEKI_LIB/
+cp target/lds-pdi-classes.jar $FUSEKI_LIB/
+
+cp -R queries/ $LDSPDI_HOME/
 popd
+popd
+
 
 echo ">>>> fixing permissions"
 chown -R $USER:$USER $DOWNLOADS
@@ -74,12 +83,6 @@ chown -R $TC_USER:$TC_GROUP $LDSPDI_HOME
 
 chmod 660 $FUSEKI_LIB/lds-pdi-classes.jar $FUSEKI_LIB/commons-text-1.2.jar
 chown fuseki:fuseki $FUSEKI_LIB/lds-pdi-classes.jar $FUSEKI_LIB/commons-text-1.2.jar
-
-pushd $CAT_HOME
-chmod g+rwx conf webapps
-chmod g+r conf/*
-popd
-
 
 
 # setup as Debian systemctl service listening on $MAIN_PORT
@@ -89,7 +92,19 @@ echo ">>>> starting ${LDSPDI} service"
 systemctl daemon-reload
 systemctl enable $LDSPDI
 systemctl start $LDSPDI
+sleep 5
+systemctl stop $LDSPDI
 
+echo ">>>> configuring ${LDSPDI_PROPS}"
+erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS
+erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS2
+systemctl start $LDSPDI
+
+echo ">>>> fixing permissions 2"
+pushd $CAT_HOME
+chmod g+rwx conf webapps
+chmod g+r conf/*
+popd
 
 echo ">>>> restart fuseki to pickup lds-pdi dependencies"
 

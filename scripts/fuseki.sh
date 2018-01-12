@@ -77,7 +77,6 @@ popd
 
 echo ">>>> configuring FUSEKI_BASE"
 mkdir -p $THE_BASE
-# ln -s $THE_BASE /etc/fuseki # replaced by FUSEKI_BASE env var in systemd.erb
 # fix permissions
 echo ">>>> fixing permissions"
 chown -R $USER:$USER $DOWNLOADS
