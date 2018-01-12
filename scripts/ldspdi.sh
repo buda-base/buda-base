@@ -101,6 +101,7 @@ erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS2
 systemctl start $LDSPDI
 
 echo ">>>> fixing permissions 2"
+chown -R $TC_USER:$TC_GROUP $LDSPDI_HOME
 pushd $CAT_HOME
 chmod g+rwx conf webapps
 chmod g+r conf/*
