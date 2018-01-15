@@ -1,0 +1,64 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# this Vagrantfile can be used to provision an AWS ubuntu/trusty instance which can then
+# be used to create an instance for further dev use
+
+# on first use install the aws provider plugin for vagrant:
+# vagrant plugin install vagrant-aws
+# then add the "dummy" box which is reference below:
+# vagrant box add dummy https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box
+
+# the block device mapping may need to be adjusted when upgrading the Debian image
+# use the following to see what the name of the root dev is in the new image:\
+#
+#    aws ec2 describe-images --image-ids ami-b14ba7a7 --query 'Images[].RootDeviceName'
+
+# in ~/.profile or equiv add so credentials are available below. This assumes awscli setup.
+# export AWS_ACCESS_KEY_ID=`grep "aws_access_key_id" ~/.aws/credentials | awk -F " = " '{print $2}'`
+# export AWS_SECRET_ACCESS_KEY=`grep "aws_secret_access_key" ~/.aws/credentials | awk -F " = " '{print $2}'`
+
+# now use
+# vagrant up --provider=aws
+
+Vagrant.configure(2) do |config|
+  
+  config.vm.hostname = "budauth"
+
+  config.vm.box = "aws-dummy"
+  
+  config.vm.provider :aws do |aws, override|
+    # credentials for accessing AWS to perform a launch
+    aws.access_key_id = ENV[ 'AWS_ACCESS_KEY_ID' ]
+    aws.secret_access_key = ENV[ 'AWS_SECRET_ACCESS_KEY' ]
+    
+    aws.keypair_name = "BDRC_Dev_001"
+    aws.security_groups = [ 'BUDAUTH_SG' ]
+    # debian-jessie-amd64-hvm-2017-01-15-1221-ebs
+    aws.ami = "ami-b14ba7a7"
+    aws.instance_type = "m4.large"
+# use:  aws ec2 describe-images --image-ids ami-b14ba7a7    - substitute the aws.ami value
+# to determine exactly what the DeviceName needs to be
+# if the describe says xvda use that. If it says /dev/xvda use that
+    aws.block_device_mapping = [{ 'DeviceName' => '/dev/xvda', 
+                                  'Ebs.VolumeSize' => 64, 
+                                  'Ebs.VolumeType' => 'gp2' }]
+
+# the following is needed to avoid an error during start up:
+#      No host IP was given to the Vagrant core NFS helper. This is
+#      an internal error that should be reported as a bug.
+    override.nfs.functional = false
+    override.ssh.username = "admin"
+    override.ssh.private_key_path = "/usr/local/BUDA_TECH/BDRC_Dev_001.pem"
+  end
+  
+  config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
+  config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
+
+  config.vm.provision "gluu", type: "shell", path: "scripts/gluu.sh"
+
+# after all other provisioning the final step is to change the ssh port
+# to something other than 22 - make sure this is the last step since
+# vagrant will only knows how to work on port 22
+  config.vm.provision "set-ssh-port", type: "shell", path: "scripts/aws-debian.sh"
+end
