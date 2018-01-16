@@ -34,10 +34,12 @@ Vagrant.configure(2) do |config|
     
     aws.keypair_name = "BDRC_Dev_001"
     aws.security_groups = [ 'BDRC_Dev_SG_001' ]
-    # Debian 9.3 2018-01-06 w/ meltdown fix - US East (N. Virginia)
-    # https://wiki.debian.org/Cloud/AmazonEC2Image/Stretch
-    aws.ami = "ami-fed38484"
+    # debian-stretch-hvm-x86_64-gp2-2018-01-06-16218 - ami-628ad918
+    aws.ami = "ami-628ad918"
     aws.instance_type = "m4.xlarge"
+# use:  aws ec2 describe-images --image-ids ami-b14ba7a7    - substitute the aws.ami value
+# to determine exactly what the DeviceName needs to be
+# if the describe says xvda use that. If it says /dev/xvda use that
     aws.block_device_mapping = [{ 'DeviceName' => 'xvda', 
                                   'Ebs.VolumeSize' => 256, 
                                   'Ebs.VolumeType' => 'gp2' }]

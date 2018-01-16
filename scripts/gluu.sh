@@ -3,9 +3,9 @@
 # from https://gluu.org/docs/ce/installation-guide/install/
 echo ">>>> installing gluu"
 
-echo "deb https://repo.gluu.org/debian/ stable main" | sudo cat - > /etc/apt/sources.list.d/gluu-repo.list
+echo "deb https://repo.gluu.org/ubuntu/ xenial main" | sudo cat - > /etc/apt/sources.list.d/gluu-repo.list
 
-curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+curl https://repo.gluu.org/ubuntu/gluu-apt.key | apt-key add -
 
 apt-get install apt-transport-https
 
