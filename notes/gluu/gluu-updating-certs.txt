@@ -1,0 +1,77 @@
+Getting and installing certs on budauth.bdrc.io
+
+1) install certbot (https://certbot.eff.org/#ubuntuxenial-other)
+
+sudo apt-get update
+sudo apt-get install software-properties-common
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install certbot 
+
+
+2) Next using certbot manual so that the DNS challenge approach is used
+    (https://certbot.eff.org/docs/using.html#manual)
+    
+sudo certbot certonly --manual --preferred-challenges dns
+
+added budauth.bdrc.io and buda1.bdrc.io
+
+make the requested TXT records and then results:
+
+ - Congratulations! Your certificate and chain have been saved at:
+   /etc/letsencrypt/live/budauth.bdrc.io/fullchain.pem
+   Your key file has been saved at:
+   /etc/letsencrypt/live/budauth.bdrc.io/privkey.pem
+   Your cert will expire on 2018-04-17. To obtain a new or tweaked
+   version of this certificate in the future, simply run certbot
+   again. To non-interactively renew *all* of your certificates, run
+   "certbot renew"
+
+
+3) Installing the certs (http://budauth.bdrc.io:8000/admin-guide/certificate/)
+
+logged in via
+
+    sudo service gluu-server-3.1.1 login
+
+then
+
+    tar -czf /etc/certs ~/backup-certs/certs-orig-20180117.tar.gz
+    cp /opt/jdk1.8.0_112/jre/lib/security/cacerts ~/backup-certs/
+
+then from non-gluu root term
+
+    cd /etc/letsencrypt/live/budauth.bdrc.io/
+    cp privkey.pem fullchain.pem /opt/gluu-server-3.1.1/etc/certs/
+
+then as gluu root
+
+    mv privkey.pem httpd.key
+    mv fullchain.pem httpd.crt
+    openssl x509 -outform der -in httpd.crt -out httpd.der
+    /opt/jre/jre/bin/keytool -delete -alias budauth.bdrc.io_httpd -keystore /opt/jre/jre/lib/security/cacerts -storepass changeit
+    /opt/jre/jre/bin/keytool -importcert -file httpd.der -keystore /opt/jre/jre/lib/security/cacerts -alias budauth.bdrc.io_httpd -storepass changeit
+
+and restart
+
+service solserver stop
+service apache2 stop
+service oxauth stop
+service identity stop
+service oxauth-rp stop
+:
+:
+:
+service solserver start
+service apache2 start
+service oxauth start
+service identity start
+service oxauth-rp start
+
+
+
+
+Possibly useful notes:
+
+    https://support.gluu.org/other/3758/replace-httpd-certificate-with-letsencrypt-generated-certificate/
+    
