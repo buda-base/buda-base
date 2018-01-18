@@ -17,7 +17,8 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # export FUSEKI_DIR="apache-jena-fuseki-3.6.0"
 export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/v3.7.0-HiLiting/jena-fuseki-war-3.7.0-SNAPSHOT.war.zip"
 export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
-export LUCENE_BO_JAR="/vagrant/conf/fuseki/lucene-bo-1.1.1.jar"
+export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v1.1.1/lucene-bo-1.1.1.jar"
+export LUCENE_BO_JAR="lucene-bo-1.1.1.jar"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
@@ -114,7 +115,10 @@ cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/
 echo ">>>>>>>> adding ${LUCENE_BO_JAR} to {$CAT_HOME}/webapps/fuseki/WEB-INF/lib/"
 # the lucene-bo jar has to be added to fuseki/WEB-INF/lib/ otherwise 
 # tomcat class loading cannot find rest of Lucene classes
+pushd $DOWNLOADS;
+wget -q -c $LUCENE_BO_REL
 cp $LUCENE_BO_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+popd
 
 # put a copy of the log4j.properties in $THE_BASE for use in development
 echo ">>>>>>>> copying log4j.properties to {$THE_BASE}/"
