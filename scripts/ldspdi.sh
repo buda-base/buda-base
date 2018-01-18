@@ -64,8 +64,8 @@ pushd LDSPDI
 wget -q -c "http://central.maven.org/maven2/org/apache/commons/commons-text/1.2/commons-text-1.2.jar"
 cp commons-text-1.2.jar $FUSEKI_LIB/
 
-echo ">>>> Downloading lds-pdi 0.1"
-wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/v0.1/lds-pdi.zip"
+echo ">>>> Downloading lds-pdi 0.2"
+wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/v0.2/lds-pdi.zip"
 unzip -q lds-pdi.zip
 
 cp target/lds-pdi.war $LDSPDI_WEBAPPS/
