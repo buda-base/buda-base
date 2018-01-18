@@ -17,8 +17,9 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # export FUSEKI_DIR="apache-jena-fuseki-3.6.0"
 export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/v3.7.0-HiLiting/jena-fuseki-war-3.7.0-SNAPSHOT.war.zip"
 export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
-export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v1.1.1/lucene-bo-1.1.1.jar"
-export LUCENE_BO_JAR="lucene-bo-1.1.1.jar"
+export LUCENE_BO_VER=1.1.1
+export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
+export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
