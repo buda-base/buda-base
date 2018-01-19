@@ -69,6 +69,35 @@ service identity start
 service oxauth-rp start
 
 
+4) renewing certs
+
+needs some work to get the renewal to operate unattended. Also there would need to be a step to move the new certs to buda1.bdrc.io SO the obvious is to not try to have one SAN cert for buda1 and budauth but just have 2 of them and do the buda1 renewal on buda1 and use the certbot hook for nginx or apache2.
+
+$ sudo certbot renew --dry-run --force-renewal
+Saving debug log to /var/log/letsencrypt/letsencrypt.log
+
+-------------------------------------------------------------------------------
+Processing /etc/letsencrypt/renewal/budauth.bdrc.io.conf
+-------------------------------------------------------------------------------
+Could not choose appropriate plugin: The manual plugin is not working; there may be problems with your existing configuration.
+The error was: PluginError('An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.',)
+Attempting to renew cert (budauth.bdrc.io) from /etc/letsencrypt/renewal/budauth.bdrc.io.conf produced an unexpected error: The manual plugin is not working; there may be problems with your existing configuration.
+The error was: PluginError('An authentication script must be provided with --manual-auth-hook when using the manual plugin non-interactively.',). Skipping.
+All renewal attempts failed. The following certs could not be renewed:
+  /etc/letsencrypt/live/budauth.bdrc.io/fullchain.pem (failure)
+
+-------------------------------------------------------------------------------
+** DRY RUN: simulating 'certbot renew' close to cert expiry
+**          (The test certificates below have not been saved.)
+
+All renewal attempts failed. The following certs could not be renewed:
+  /etc/letsencrypt/live/budauth.bdrc.io/fullchain.pem (failure)
+** DRY RUN: simulating 'certbot renew' close to cert expiry
+**          (The test certificates above have not been saved.)
+-------------------------------------------------------------------------------
+1 renew failure(s), 0 parse failure(s)
+
+
 
 
 Possibly useful notes:
