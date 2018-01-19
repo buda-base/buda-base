@@ -6,9 +6,11 @@ export TC_USER=ldspdi
 export TC_GROUP=ldspdi
 
 if [ -d /mnt/data ] ; then 
-  export DATA_DIR=/mnt/data ; 
+  export DATA_DIR=/mnt/data ;
+  export LDSPDI_HOST=localhost ;
 else
   export DATA_DIR=/usr/local ;
+  export LDSPDI_HOST=buda1.bdrc.io ;
 fi
 echo ">>>> DATA_DIR: " $DATA_DIR
 export DOWNLOADS=$DATA_DIR/downloads
@@ -52,6 +54,7 @@ echo ">>>> configuring server.xml tomcat 8"
 erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
 # enable tomcat admin and manager apps
 cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
+erb /vagrant/conf/lds-pdi/context.xml.erb > $CAT_HOME/conf/context.xml
 popd
 
 
@@ -74,7 +77,7 @@ cp target/lds-pdi-classes.jar $FUSEKI_LIB/
 
 cp -R queries/ $LDSPDI_HOME/
 popd
-popd
+# ?? popd
 
 
 echo ">>>> fixing permissions"
@@ -92,13 +95,13 @@ echo ">>>> starting ${LDSPDI} service"
 systemctl daemon-reload
 systemctl enable $LDSPDI
 systemctl start $LDSPDI
-sleep 5
-systemctl stop $LDSPDI
 
-echo ">>>> configuring ${LDSPDI_PROPS}"
-erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS
-erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS2
-systemctl start $LDSPDI
+# echo ">>>> configuring ${LDSPDI_PROPS}"
+# sleep 5
+# systemctl stop $LDSPDI
+# erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS
+# erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS2
+# systemctl start $LDSPDI
 
 echo ">>>> fixing permissions 2"
 chown -R $TC_USER:$TC_GROUP $LDSPDI_HOME
