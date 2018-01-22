@@ -30,7 +30,8 @@ Vagrant.configure(2) do |config|
   
 # setup a second data drive for the services since the root drive is fixed at 10GB
   config.vm.provision "first-local", type: "shell", path: "scripts/first-local.sh"
-  config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
+#  config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
+  config.vm.provision "open-jdk", type: "shell", path: "scripts/open-jdk.sh"
   config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
 #  config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
 #  config.vm.provision "couchdb", type: "shell", path: "scripts/couchdb.sh"
