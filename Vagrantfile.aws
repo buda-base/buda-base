@@ -58,6 +58,7 @@ Vagrant.configure(2) do |config|
 #  config.vm.provision "couchapp", type: "shell", path: "scripts/couchapp.sh"
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
   config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
+  config.vm.provision "nginx", type: "shell", path: "scripts/nginx.sh"
 # after all other provisioning the final step is to change the ssh port
 # to something other than 22 - make sure this is the last step since
 # vagrant will only knows how to work on port 22
