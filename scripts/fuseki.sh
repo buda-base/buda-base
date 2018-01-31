@@ -66,6 +66,7 @@ echo ">>>> configuring server.xml tomcat 8"
 erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
 # enable tomcat admin and manager apps
 cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
+cp  /vagrant/conf/tomcat/web.xml $CAT_HOME/conf/
 popd
 
 # download fuseki
