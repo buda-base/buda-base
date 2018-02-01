@@ -18,7 +18,6 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13190, host: 13190 # marple client
   config.vm.network :forwarded_port, guest: 13191, host: 13191 # marple admin
   config.vm.network :forwarded_port, guest: 13280, host: 13280 # lds-pdi
-  config.vm.network :forwarded_port, guest: 3000, host: 3000 # blmp
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
@@ -34,7 +33,7 @@ Vagrant.configure(2) do |config|
 #  config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
   config.vm.provision "open-jdk", type: "shell", path: "scripts/open-jdk.sh"
   config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
-#  config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
+  config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
 #  config.vm.provision "couchdb", type: "shell", path: "scripts/couchdb.sh"
 #  config.vm.provision "couchdb-lucene", type: "shell", path: "scripts/couchdb-lucene.sh"
 # no need for couchapp (yet)

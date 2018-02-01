@@ -21,3 +21,17 @@ server {
 	    proxy_pass http://localhost:13280/;
 	}
 }
+
+server {
+	listen 80;
+
+   root /mnt/data/blmp/blmp-prototype-flow/build/ ;
+
+   server_name editor.bdrc.io;
+
+   index index.html;
+
+	location / {
+       try_files $uri /index.html;
+	}
+}
