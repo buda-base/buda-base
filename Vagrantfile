@@ -2,22 +2,23 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  
+
   config.vm.hostname = "buda1"
 
   config.vm.box = "debian/stretch64"
-  
+
   disk = 'dataDisk.vdi'
   config.vm.synced_folder ".", "/vagrant", type: "rsync",
     rsync__exclude: [ "dataDisk.vdi", ".git", ".gitignore", ".DS_Store", ".project" ],
     rsync__verbose: true
-  
+
   config.vm.network :forwarded_port, guest: 13598, host: 13598 # couchdb
   config.vm.network :forwarded_port, guest: 13599, host: 13599 # couchdb-lucene
   config.vm.network :forwarded_port, guest: 13180, host: 13180 # jena-fuseki
   config.vm.network :forwarded_port, guest: 13190, host: 13190 # marple client
   config.vm.network :forwarded_port, guest: 13191, host: 13191 # marple admin
   config.vm.network :forwarded_port, guest: 13280, host: 13280 # lds-pdi
+  config.vm.network :forwarded_port, guest: 3000, host: 3000 # blmp
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
@@ -27,7 +28,7 @@ Vagrant.configure(2) do |config|
       end
       vb.customize ['storageattach', :id,  '--storagectl', 'SATA Controller', '--port', 1, '--device', 0, '--type', 'hdd', '--medium', disk]
   end
-  
+
 # setup a second data drive for the services since the root drive is fixed at 10GB
   config.vm.provision "first-local", type: "shell", path: "scripts/first-local.sh"
 #  config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
@@ -40,4 +41,5 @@ Vagrant.configure(2) do |config|
 #  config.vm.provision "couchapp", type: "shell", path: "scripts/couchapp.sh"
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
   config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
+  config.vm.provision "blmp", type: "shell", path: "scripts/blmp.sh"
 end
