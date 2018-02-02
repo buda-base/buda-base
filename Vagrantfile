@@ -18,6 +18,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13190, host: 13190 # marple client
   config.vm.network :forwarded_port, guest: 13191, host: 13191 # marple admin
   config.vm.network :forwarded_port, guest: 13280, host: 13280 # lds-pdi
+  config.vm.network :forwarded_port, guest: 13380, host: 13380 # blmp
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
@@ -41,5 +42,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
   config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
   config.vm.provision "blmp", type: "shell", path: "scripts/blmp.sh"
-
+  config.vm.provision "nginx", type: "shell", path: "scripts/nginx.sh"
 end

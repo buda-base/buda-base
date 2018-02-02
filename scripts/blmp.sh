@@ -7,7 +7,6 @@ if [ -d /mnt/data ] ; then
   export DATA_DIR=/mnt/data ; 
 else
   export DATA_DIR=/usr/local ;
-  export ON_AWS=yes ;
 fi
 
 echo ">>>> DATA_DIR: " $DATA_DIR
@@ -21,17 +20,12 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 mkdir -p $BLMP_HOME
 pushd $BLMP_HOME
 
-echo ">>>> downloading owl-schema"
-git clone https://github.com/BuddhistDigitalResourceCenter/owl-schema.git
-
-echo ">>>> downloading & installing blmp-prototype_flow"
-if $ON_AWS then
-    echo ">>>> should be installing blmp in nginx" ;
-else
+if [ ! -d $BLMP_HOME/blmp-prototype-flow ] ; then 
+	echo ">>>> downloading owl-schema"
+	git clone https://github.com/BuddhistDigitalResourceCenter/owl-schema.git
+  	echo ">>>> downloading & installing blmp-prototype_flow"
 	git clone https://github.com/BuddhistDigitalResourceCenter/blmp-prototype-flow.git
-	ls -l blmp* owl*
 	cd blmp-prototype-flow
-	ls -l public
 	yarn install
 	yarn build
 fi

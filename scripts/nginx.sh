@@ -2,18 +2,25 @@
 
 echo ">>>> Installing Nginx and Openssl"
 
-apt-get install nginx openssl
+apt-get install nginx openssl -y
 
 if [ ! -f /etc/nginx/dhparam.pem ]; then
-    openssl dhparam -out /etc/nginx/dhparam.pem 2048
+	echo ">>>> create key (may take some time)"
+    openssl dhparam -out /etc/nginx/dhparam.pem 2048 2> /dev/null
 fi
 
-cp /vagrant/conf/nginx/ssl_params > /etc/nginx/ssl_params
+cp /vagrant/conf/nginx/ssl_params /etc/nginx/ssl_params
 
-echo ">>>> set up default config: port 80 to ldspdi
+echo ">>>> set up nginx"
 # rm the link to /etc/nginx/sites-available/default
-rm /etc/nginx/sites-enabled/default
-cp /vagrant/conf/nginx/default /etc/nginx/sites-enabled/
+rm -f /etc/nginx/sites-enabled/default
+
+if [ -d /mnt/data ] ; then 
+  cp /vagrant/conf/nginx/local.conf /etc/nginx/sites-enabled/
+else
+  cp /vagrant/conf/nginx/aws.conf /etc/nginx/sites-enabled/
+fi
+
 
 sudo systemctl enable nginx
 
