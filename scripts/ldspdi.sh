@@ -7,15 +7,15 @@ export TC_GROUP=ldspdi
 
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ;
-  export LDSPDI_HOST=localhost ;
 else
   export DATA_DIR=/usr/local ;
-  export LDSPDI_HOST=buda1.bdrc.io ;
 fi
 echo ">>>> DATA_DIR: " $DATA_DIR
 export DOWNLOADS=$DATA_DIR/downloads
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export FUSEKI=fuseki
+export FUSEKI_HOST=localhost
+export FUSEKI_PORT=13180
 export FUSEKI_HOME=$DATA_DIR/$FUSEKI
 export FUSEKI_WEBAPPS=$FUSEKI_HOME/tomcat/webapps
 export FUSEKI_LIB=$FUSEKI_WEBAPPS/fuseki/WEB-INF/lib
@@ -61,8 +61,8 @@ popd
 # common-text is used in fuseki extensions called from queries via lds-pdi
 echo ">>>> Downloading apache common-text lib from maven"
 pushd $DOWNLOADS;
-mkdir LDSPDI
-pushd LDSPDI
+mkdir $LDSPDI
+pushd $LDSPDI
 wget -q -c "http://central.maven.org/maven2/org/apache/commons/commons-text/1.2/commons-text-1.2.jar"
 cp commons-text-1.2.jar $FUSEKI_LIB/
 
@@ -70,7 +70,13 @@ echo ">>>> Downloading lds-pdi 0.4.5"
 wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/v0.4.5/lds-pdi.zip"
 unzip -q lds-pdi.zip
 
-cp lds-pdi.war $LDSPDI_WEBAPPS/
+echo ">>>> move webapps/ROOT to admin so ldspdi runs as ROOT"
+pushd $LDSPDI_WEBAPPS
+mv ROOT admin
+popd
+
+echo ">>>> cp lds-pdi.war $LDSPDI_WEBAPPS/ROOT.war"
+cp lds-pdi.war $LDSPDI_WEBAPPS/ROOT.war
 # the lds-pdi-classes are sparql extension functions used in queries from lds-pdi
 cp lds-pdi-classes.jar $FUSEKI_LIB/
 
@@ -86,7 +92,7 @@ chown fuseki:fuseki $FUSEKI_LIB/lds-pdi-classes.jar $FUSEKI_LIB/commons-text-1.2
 
 
 # setup as Debian systemctl service listening on $MAIN_PORT
-echo ">>>> setting up ${LDSPDI} as service"
+echo ">>>> setting up ${LDSPDI} as service listening on ${MAIN_PORT}"
 erb /vagrant/conf/tomcat/systemd.erb > /etc/systemd/system/$LDSPDI.service
 echo ">>>> starting ${LDSPDI} service"
 systemctl daemon-reload

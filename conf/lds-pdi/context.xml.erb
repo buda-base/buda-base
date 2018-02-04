@@ -34,7 +34,7 @@
     <Valve className="org.apache.catalina.valves.CometConnectionManagerValve" />
     -->
     
-    <Parameter name="fuseki" value="http://<%= ENV['LDSPDI_HOST'] %>:<%= ENV['MAIN_PORT'] %>/fuseki/bdrcrw/query"
+    <Parameter name="fuseki" value="http://<%= ENV['FUSEKI_HOST'] %>:<%= ENV['FUSEKI_PORT'] %>/fuseki/bdrcrw/query"
         override="false"/>
     <Parameter name="queryPath" value="<%= ENV['QUERIES_HOME'] %>"
             override="false"/>
