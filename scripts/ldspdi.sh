@@ -31,8 +31,6 @@ export AJP_PORT=13209
 export MAX_MEM="-Xmx2048M"
 
 export LDSPDI_WEBAPPS=$CAT_HOME/webapps
-export LDSPDI_PROPS=$LDSPDI_WEBAPPS/lds-pdi/ldspdi.properties
-export LDSPDI_PROPS2=$LDSPDI_WEBAPPS/lds-pdi/WEB-INF/classes/ldspdi.properties
 
 mkdir -p $CAT_HOME
 
@@ -68,18 +66,16 @@ pushd LDSPDI
 wget -q -c "http://central.maven.org/maven2/org/apache/commons/commons-text/1.2/commons-text-1.2.jar"
 cp commons-text-1.2.jar $FUSEKI_LIB/
 
-echo ">>>> Downloading lds-pdi 0.2"
-wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/v0.2/lds-pdi.zip"
+echo ">>>> Downloading lds-pdi 0.4.5"
+wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/v0.4.5/lds-pdi.zip"
 unzip -q lds-pdi.zip
 
-cp target/lds-pdi.war $LDSPDI_WEBAPPS/
+cp lds-pdi.war $LDSPDI_WEBAPPS/
 # the lds-pdi-classes are sparql extension functions used in queries from lds-pdi
-cp target/lds-pdi-classes.jar $FUSEKI_LIB/
+cp lds-pdi-classes.jar $FUSEKI_LIB/
 
-cp -R queries/ $LDSPDI_HOME/
 popd
-# ?? popd
-
+popd
 
 echo ">>>> fixing permissions"
 chown -R $USER:$USER $DOWNLOADS
@@ -96,13 +92,6 @@ echo ">>>> starting ${LDSPDI} service"
 systemctl daemon-reload
 systemctl enable $LDSPDI
 systemctl start $LDSPDI
-
-# echo ">>>> configuring ${LDSPDI_PROPS}"
-# sleep 5
-# systemctl stop $LDSPDI
-# erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS
-# erb /vagrant/conf/lds-pdi/properties.erb > $LDSPDI_PROPS2
-# systemctl start $LDSPDI
 
 echo ">>>> fixing permissions 2"
 chown -R $TC_USER:$TC_GROUP $LDSPDI_HOME
