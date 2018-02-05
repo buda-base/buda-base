@@ -45,8 +45,8 @@ useradd -s /bin/bash -g $TC_GROUP -d $LDSPDI_HOME $TC_USER
 # install tomcat container
 # tomcat should have been downloaded by fuseki.sh
 echo ">>>> installing tomcat 8 for ldspdi"
-pushd $DOWNLOADS;
 tar xf $DOWNLOADS/apache-tomcat-8*tar.gz -C $CAT_HOME --strip-components=1
+
 # configure server
 echo ">>>> configuring server.xml tomcat 8"
 erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
@@ -54,8 +54,7 @@ erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
 cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 cp  /vagrant/conf/tomcat/web.xml $CAT_HOME/conf/
 erb /vagrant/conf/lds-pdi/context.xml.erb > $CAT_HOME/conf/context.xml
-popd
-
+cp /vagrant/conf/lds-pdi/update.sh $LDSPDI_HOME/
 
 
 # common-text is used in fuseki extensions called from queries via lds-pdi
