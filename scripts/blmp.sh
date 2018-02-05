@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
 echo ">>>> Installing blmp..."
 export SVC_DESC=" BUDA Library Management Portal"
@@ -18,6 +19,7 @@ export BLMP_HOME=$DATA_DIR/$BLMP
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 mkdir -p $BLMP_HOME
+
 pushd $BLMP_HOME
 
 if [ ! -d $BLMP_HOME/blmp-prototype-flow ] ; then 
@@ -29,3 +31,7 @@ if [ ! -d $BLMP_HOME/blmp-prototype-flow ] ; then
 	yarn install
 	yarn build
 fi
+
+# adding update.sh script
+cp /vagrant/conf/blmp/update.sh $BLMP_HOME
+chmod a+x $BLMP_HOME/update.sh
