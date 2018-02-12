@@ -27,8 +27,8 @@ groupadd $TC_GROUP
 useradd -s /bin/bash -g $TC_GROUP -d $CANTALOUPE_HOME $TC_USER
 
 
-# install tomcat container
-# tomcat should have been downloaded by fuseki.sh
+# install jetty container
+# jetty should have been downloaded by fuseki.sh
 echo ">>>> installing jetty 9 for cantaloupe"
 
 mkdir $DOWNLOADS
@@ -41,7 +41,7 @@ tar xf $DOWNLOADS/jetty-distribution-9*tar.gz -C $CANTALOUPE_HOME --strip-compon
 
 # configure server
 echo ">>>> configuring jetty 9 for deployment"
-OKerb /vagrant/conf/jetty/cantaloupe-app.xml.erb > $CANTALOUPE_WEBAPPS/cantaloupe-app.xml
+erb /vagrant/conf/jetty/cantaloupe-app.xml.erb > $CANTALOUPE_WEBAPPS/cantaloupe-app.xml
 
 git clone https://github.com/BuddhistDigitalResourceCenter/cantaloupe-bdrc.git
 cd $CANTALOUPE_GIT
