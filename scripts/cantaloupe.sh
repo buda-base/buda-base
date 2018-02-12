@@ -58,7 +58,7 @@ chown -R $TC_USER:$TC_GROUP $CANTALOUPE_HOME
 
 # setup as Debian systemctl service listening on 9099
 echo ">>>> setting up ${CANTALOUPE} as service listening on 9099"
-erb /vagrant/conf/jetty/systemd.erb > /etc/systemd/system/$LDSPDI.service
+erb /vagrant/conf/jetty/systemd.erb > /etc/systemd/system/$CANTALOUPE.service
 
 rm -r $DOWNLOADS
 
