@@ -1,0 +1,1 @@
+ java -DSTOP.PORT=8181 -DSTOP.KEY=stop_jetty -Dcantaloupe.config=cantaloupe.properties -Xmx2g -jar start.jar
