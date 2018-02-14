@@ -1,5 +1,4 @@
-# Systemd unit file for jetty on Debian
-# for use with cantaloupe image server
+# Systemd unit file for cantaloupe
 
 [Unit]
 Description=<%= ENV['SVC_DESC'] %>
@@ -10,6 +9,7 @@ Type=forking
 
 Environment=JAVA_HOME=<%= ENV['JAVA_HOME'] %>
 Environment=CANTALOUPE_HOME=<%= ENV['CANTALOUPE_HOME'] %>
+Environment=GEM_PATH=<%= ENV['GEM_HOME'] %> 
 
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
