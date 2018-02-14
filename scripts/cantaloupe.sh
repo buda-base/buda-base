@@ -57,8 +57,8 @@ mv Cantaloupe-3.4.1/Cantaloupe-3.4.1.war $CANTALOUPE_HOME/cantaloupe.war
 popd
 
 echo ">>>> getting Cantaloupe script..."
-wget -q -c 'https://raw.githubusercontent.com/BuddhistDigitalResourceCenter/cantaloupe-scripts/master/ruby/delegates.rb'
-cp delegates.rb $CANTALOUPE_HOME
+
+cp /vagrant/conf/cantaloupe/delegates.rb $CANTALOUPE_HOME
 erb /vagrant/conf/cantaloupe/startup.sh.erb > $CANTALOUPE_HOME/startup.sh
 erb /vagrant/conf/cantaloupe/shutdown.sh.erb > $CANTALOUPE_HOME/shutdown.sh
 
