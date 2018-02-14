@@ -59,6 +59,8 @@ popd
 echo ">>>> getting Cantaloupe script..."
 
 cp /vagrant/conf/cantaloupe/delegates.rb $CANTALOUPE_HOME
+cp /vagrant/conf/cantaloupe/cantaloupe.properties $CANTALOUPE_HOME
+
 erb /vagrant/conf/cantaloupe/startup.sh.erb > $CANTALOUPE_HOME/startup.sh
 erb /vagrant/conf/cantaloupe/shutdown.sh.erb > $CANTALOUPE_HOME/shutdown.sh
 
