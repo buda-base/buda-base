@@ -36,7 +36,7 @@ mkdir -p $CANTALOUPE_HOME
 
 if [ $(dpkg-query -W -f='${Status}' gem 2>/dev/null | grep -c "ok installed") -eq 0 ];
 then
-	apt-get install gem memcached -y
+	apt-get install memcached -y
 fi
 
 echo ">>>> Installing gems"
