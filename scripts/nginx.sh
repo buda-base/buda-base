@@ -10,6 +10,7 @@ if [ ! -f /etc/nginx/dhparam.pem ]; then
 fi
 
 cp /vagrant/conf/nginx/ssl_params /etc/nginx/ssl_params
+cp /vagrant/conf/nginx/acmechallenge.conf /etc/nginx/
 
 echo ">>>> set up nginx"
 # rm the link to /etc/nginx/sites-available/default
