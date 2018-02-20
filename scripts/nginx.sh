@@ -22,7 +22,6 @@ else
   cp /vagrant/conf/nginx/aws.conf /etc/nginx/sites-enabled/
 fi
 
-
 sudo systemctl enable nginx
 
 sudo systemctl restart nginx

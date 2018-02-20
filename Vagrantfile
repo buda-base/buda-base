@@ -42,6 +42,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
   config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
   config.vm.provision "blmp", type: "shell", path: "scripts/blmp.sh"
+  config.vm.provision "pdl", type: "shell", path: "scripts/pdl.sh"
   config.vm.provision "cantaloupe", type: "shell", path: "scripts/cantaloupe.sh"
   config.vm.provision "nginx", type: "shell", path: "scripts/nginx.sh"
 end
