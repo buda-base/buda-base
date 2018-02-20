@@ -16,6 +16,7 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export GEM_HOME=$DATA_DIR/ruby
 export CANTALOUPE=cantaloupe
 export CANTALOUPE_HOME=$DATA_DIR/$CANTALOUPE/jetty
+export CANTALOUPE_LOGS=$CANTALOUPE_HOME/logs
 export CANTALOUPE_WEBAPPS=$CANTALOUPE_HOME/webapps
 export CANTALOUPE_GIT=$DATA_DIR/downloads/cantaloupe-bdrc
 
@@ -59,7 +60,7 @@ popd
 echo ">>>> getting Cantaloupe script..."
 
 cp /vagrant/conf/cantaloupe/delegates.rb $CANTALOUPE_HOME
-cp /vagrant/conf/cantaloupe/cantaloupe.properties $CANTALOUPE_HOME
+erb /vagrant/conf/cantaloupe/cantaloupe.properties.erb > $CANTALOUPE_HOME/cantaloupe.properties
 
 erb /vagrant/conf/cantaloupe/startup.sh.erb > $CANTALOUPE_HOME/startup.sh
 erb /vagrant/conf/cantaloupe/shutdown.sh.erb > $CANTALOUPE_HOME/shutdown.sh
