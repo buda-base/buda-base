@@ -13,6 +13,7 @@ define( [], function() {
       "rdfs" : "http://www.w3.org/2000/01/rdf-schema#",
       "skos" : "http://www.w3.org/2004/02/skos/core#",
       "tbr" : "http://purl.bdrc.io/ontology/toberemoved/",
+      "text" : "http://jena.apache.org/text#",
       "vcard" : "http://www.w3.org/2006/vcard/ns#",
       "xsd" : "http://www.w3.org/2001/XMLSchema#"
     },
