@@ -40,7 +40,7 @@ module Cantaloupe
           return static;
         end
       else      
-        response = open('http://purl.bdrc.io/resource/templates?searchType=Item_basicInfo&R_RES='+item[4..-1]+'&jsonOut').read
+        response = open('http://purl.bdrc.io/query/Item_basicInfo?R_RES='+item[4..-1]+'&jsonOut').read
       end      
       
       if(JSON.parse(response.to_s)["rows"].length>0)
