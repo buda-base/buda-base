@@ -21,7 +21,10 @@ export VER=$1
 
 echo ">>>> Downloading lds-pdi ${VER}"
 pushd $DOWNLOADS/$LDSPDI;
+rm -f lds-pdi.zip
+echo '>>>> wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/${VER}/lds-pdi.zip"'
 wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/${VER}/lds-pdi.zip"
+echo `ls -l lds-pdi.zip`
 unzip -q lds-pdi.zip
 
 mv lds-pdi.war lds-pdi-$VER.war
