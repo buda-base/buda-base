@@ -28,7 +28,7 @@ export SHUTDOWN_PORT=13205
 export MAIN_PORT=13280
 export REDIR_PORT=13243
 export AJP_PORT=13209
-export MAX_MEM="-Xmx2048M"
+export MAX_MEM="-Xmx4096M"
 
 export LDSPDI_WEBAPPS=$CAT_HOME/webapps
 
