@@ -42,10 +42,10 @@ module Cantaloupe
         response = open(url).read
       end      
       
-      if(JSON.parse(response.to_s)["rows"].length>0)
-        access= JSON.parse(response.to_s)["rows"][0]["dataRow"]["access"]["value"]
+      if(JSON.parse(response.to_s)["results"].length>0)
+        access= JSON.parse(response.to_s)["results"][0]["bindings"]["access"]["value"]
         if(access =='http://purl.bdrc.io/resource/AccessOpen')
-          work= JSON.parse(response.to_s)["rows"][0]["dataRow"]["work"]["value"]
+          work= JSON.parse(response.to_s)["results"][0]["bindings"]["work"]["value"]
           workShort = work[29..-1]
           key=image[0].split(".").first
           s3= 'Works/'+(Digest::MD5.hexdigest workShort)[0..1]+"/"+workShort+"/images/"+workShort+"-"+key[0,key.length-4]+"/"+image[0]
