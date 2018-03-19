@@ -4,6 +4,9 @@ require 'json'
 require 'open-uri'
 require 'digest'
 require 'dalli'
+require "net/http"
+require 'net/https'
+require "uri"
 
 module Cantaloupe
 
@@ -23,6 +26,7 @@ module Cantaloupe
     #                   or nil if not found.
     #
     def self.get_object_key(identifier, context)
+
       #cache options and client
       options = { :namespace => "cantaloupe_cache", :compress => true }
       dc = Dalli::Client.new('localhost:11211', options)
@@ -38,14 +42,20 @@ module Cantaloupe
           return static;
         end
       else
-        url =  'http://purl.bdrc.io/query/Item_basicInfo?R_RES='+item+'&jsonOut'
-        response = open(url).read
+        uri = URI.parse("http://purl.bdrc.io/query/Item_basicInfo")
+        http = Net::HTTP.new(uri.host,uri.port)
+        req = Net::HTTP::Post.new(uri.path)
+        payload = {"R_RES" => item }
+        req.set_form_data(payload)
+        response = http.request(req).body.to_s
+        dc.set(item, response)
       end      
       
-      if(JSON.parse(response.to_s)["results"].length>0)
-        access= JSON.parse(response.to_s)["results"][0]["bindings"]["access"]["value"]
+      responsej = JSON.parse(response)
+      if(responsej["results"].length>0)
+        access= responsej["results"][0]["bindings"]["access"]["value"]
         if(access =='http://purl.bdrc.io/resource/AccessOpen')
-          work= JSON.parse(response.to_s)["results"][0]["bindings"]["work"]["value"]
+          work= responsej["results"][0]["bindings"]["work"]["value"]
           workShort = work[29..-1]
           key=image[0].split(".").first
           s3= 'Works/'+(Digest::MD5.hexdigest workShort)[0..1]+"/"+workShort+"/images/"+workShort+"-"+key[0,key.length-4]+"/"+image[0]
@@ -61,5 +71,6 @@ module Cantaloupe
     end
   end 
 end
+
 #puts Cantaloupe::authorized?('bdr:I29329::I1KG150430315.jpg', 'full', 'operations', 'resulting_size','output_format', 'request_uri', 'request_headers', 'client_ip','cookies')
 #puts Cantaloupe::AmazonS3Resolver::get_object_key('bdr:I29329::I1KG150430315.jpg', 'full')
