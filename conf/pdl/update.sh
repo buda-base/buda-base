@@ -16,9 +16,9 @@ export PATH="$ROOT/.yarn/bin:$PATH"
 
 echo ">>>> DATA_DIR: " $DATA_DIR
 
-export BLMP_HOME=$DATA_DIR/blmp
+export PDL_HOME=$DATA_DIR/pdl
 
-cd $BLMP_HOME/public-digital-library
+cd $PDL_HOME/public-digital-library
 
 echo ">>>> git pull"
 git pull
