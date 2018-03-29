@@ -138,6 +138,62 @@
                 )
             ] ; 
           ]
+        [ text:addLang "zh-hans" ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramType text:TypeString ; 
+                  text:paramValue "TC2PYstrict" ]
+                [ text:paramName "stopwords" ;
+                  text:paramType text:TypeBoolean ;
+                  text:paramValue true ]
+                [ text:paramName "filterChars" ;
+                  text:paramType text:TypeInt ;
+                  text:paramValue 3 ]
+                )
+            ] ; 
+          ]
+        [ text:addLang "zh-hant" ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramType text:TypeString ; 
+                  text:paramValue "TC2PYstrict" ]
+                [ text:paramName "stopwords" ;
+                  text:paramType text:TypeBoolean ;
+                  text:paramValue true ]
+                [ text:paramName "filterChars" ;
+                  text:paramType text:TypeInt ;
+                  text:paramValue 3 ]
+                )
+            ] ; 
+          ]
+        [ text:addLang "zh-latn-pinyin" ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramType text:TypeString ; 
+                  text:paramValue "PYstrict" ]
+                )
+            ] ; 
+          ]
+        [ text:addLang "zh-latn-pinyin-x-ndia" ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramType text:TypeString ; 
+                  text:paramValue "PYlazy" ]
+                )
+            ] ; 
+          ]
       ) ;
     .
 

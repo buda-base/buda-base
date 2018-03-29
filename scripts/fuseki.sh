@@ -20,6 +20,9 @@ export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
 export LUCENE_BO_VER=1.2.0
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
 export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
+export LUCENE_ZH_VER=0.1.0
+export LUCENE_ZH_JAR="lucene-zh-${LUCENE_ZH_VER}.jar"
+export LUCENE_ZH_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
@@ -120,6 +123,8 @@ echo ">>>>>>>> adding ${LUCENE_BO_JAR} to {$CAT_HOME}/webapps/fuseki/WEB-INF/lib
 pushd $DOWNLOADS;
 wget -q -c $LUCENE_BO_REL
 cp $LUCENE_BO_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+wget -q -c $LUCENE_ZH_REL
+cp $LUCENE_ZH_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
 
 # put a copy of the log4j.properties in $THE_BASE for use in development
