@@ -12,17 +12,17 @@ fi
 
 echo ">>>> DATA_DIR: " $DATA_DIR
 export DOWNLOADS=$DATA_DIR/downloads
-export BLMP=pdl
-export BLMP_HOME=$DATA_DIR/$BLMP
+export PDL=pdl
+export PDL_HOME=$DATA_DIR/$PDL
 
 # to use yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
-mkdir -p $BLMP_HOME
+mkdir -p $PDL_HOME
 
-pushd $BLMP_HOME
+pushd $PDL_HOME
 
-if [ ! -d $BLMP_HOME/blmp-prototype-flow ] ; then 
+if [ ! -d $PDL_HOME/blmp-prototype-flow ] ; then 
   	echo ">>>> downloading & installing blmp-prototype_flow"
 	git clone https://github.com/BuddhistDigitalResourceCenter/public-digital-library.git
 	cd public-digital-library
@@ -31,5 +31,5 @@ if [ ! -d $BLMP_HOME/blmp-prototype-flow ] ; then
 fi
 
 # adding update.sh script
-cp /vagrant/conf/pdl/update.sh $BLMP_HOME
-chmod a+x $BLMP_HOME/update.sh
+cp /vagrant/conf/pdl/update.sh $PDL_HOME
+chmod a+x $PDL_HOME/update.sh
