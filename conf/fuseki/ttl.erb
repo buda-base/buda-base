@@ -139,6 +139,7 @@
             ] ; 
           ]
         [ text:addLang "zh-hans" ; 
+          text:searchWith "zh-latn-pinyin" ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
@@ -156,6 +157,7 @@
             ] ; 
           ]
         [ text:addLang "zh-hant" ; 
+          text:searchWith "zh-latn-pinyin" ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
@@ -184,6 +186,7 @@
             ] ; 
           ]
         [ text:addLang "zh-latn-pinyin-x-ndia" ; 
+          text:searchWith "zh-latn-pinyin" ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
