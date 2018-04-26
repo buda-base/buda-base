@@ -161,4 +161,7 @@ systemctl enable $MARPLE_SVC
 # systemctl start $MARPLE_SVC
 echo ">>>> Marple will have to be manually started the first time after the Lucene index is built"
 
+cp /vagrant/conf/fuseki/update.sh $THE_HOME
+chmod a+x $THE_HOME/update.sh
+
 echo ">>>> fuseki provisioning complete"
