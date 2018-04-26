@@ -45,72 +45,6 @@ export MARPLE_ADM_PORT=13191
 export MARPLE_JAR=marple-1.0.jar
 export MARPLE_HOME=$THE_HOME/marple
 
-# # add Service USER
-# echo ">>>> adding user: ${TC_USER}"
-# groupadd $TC_GROUP
-# # useradd -s /bin/false -g $TC_GROUP -d $THE_HOME $TC_USER
-# # during development let the user login
-# useradd -s /bin/bash -g $TC_GROUP -d $THE_HOME $TC_USER
-
-# # place to download non apt-get items
-# mkdir -p $DOWNLOADS
-
-# # install tomcat container
-# # download tomcat
-# echo ">>>> downloading tomcat 8"
-# pushd $DOWNLOADS;
-# wget -q -c $TC_REL
-# # unpack tomcat
-# echo ">>>> unpacking tomcat 8"
-# mkdir -p $CAT_HOME
-# tar xf $DOWNLOADS/apache-tomcat-8*tar.gz -C $CAT_HOME --strip-components=1
-# # configure server
-# echo ">>>> configuring server.xml tomcat 8"
-# erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
-# # enable tomcat admin and manager apps
-# cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
-# cp  /vagrant/conf/tomcat/web.xml $CAT_HOME/conf/
-# popd
-
-# # download fuseki
-# echo ">>>> downloading jena-fuseki war"
-# pushd $DOWNLOADS;
-# wget -q -c $FUSEKI_ZIP
-# unzip $FUSEKI_WAR.zip
-# echo ">>>> copying ${FUSEKI_WAR} to ${CAT_HOME}/webapps/fuseki.war"
-# cp $FUSEKI_WAR $CAT_HOME/webapps/fuseki.war
-# popd
-
-# echo ">>>> configuring FUSEKI_BASE"
-# mkdir -p $THE_BASE
-# # fix permissions
-# echo ">>>> fixing permissions"
-# chown -R $USER:$USER $DOWNLOADS
-# chown -R $TC_USER:$TC_GROUP $THE_HOME
-
-# pushd $CAT_HOME
-# # chgrp -R $TC_USER conf webapps
-# chmod g+rwx conf webapps
-# chmod g+r conf/*
-# # chown -R $TC_USER work/ temp/ logs/ webapps/
-# popd
-
-# # setup as Debian systemctl service listening on $MAIN_PORT
-# echo ">>>> setting up ${SVC} as service"
-# erb /vagrant/conf/fuseki/systemd.erb > /etc/systemd/system/$SVC.service
-# echo ">>>> starting ${SVC} service"
-# systemctl daemon-reload
-# systemctl enable $SVC
-# systemctl start $SVC
-# # wait for fuseki to finish initializing $THE_BASE
-# sleep 5
-# systemctl stop $SVC
-# echo ">>>> updating ${SVC} configuration"
-# mkdir -p $THE_BASE/configuration
-
-# echo ">>>>>>>> adding shiro.ini to {$THE_BASE}/"
-# cp /vagrant/conf/fuseki/shiro.ini $THE_BASE/
-
 echo ">>>>>>>> updating bdrc.ttl to {$THE_BASE}/configuration/"
 erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/bdrc.ttl
 
@@ -127,38 +61,8 @@ wget -q -c $LUCENE_ZH_REL
 cp $LUCENE_ZH_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
 
-# # put a copy of the log4j.properties in $THE_BASE for use in development
-# echo ">>>>>>>> copying log4j.properties to {$THE_BASE}/"
-# cp /vagrant/conf/fuseki/log4j.properties $THE_BASE/
-
 echo ">>>> restarting ${SVC}"
 systemctl restart $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
-
-# echo ">>>> adding ${THE_HOME}/load-fuseki.sh"
-# erb /vagrant/conf/fuseki/load-fuseki.erb > $THE_HOME/load-fuseki.sh
-
-# # install Marple Lucene index monitor
-# echo ">>>> installing Marple Lucene index monitor"
-# pushd $DOWNLOADS;
-# wget -q -c $MARPLE_REL
-# mkdir $MARPLE_HOME
-# cp $MARPLE_JAR $MARPLE_HOME/
-# popd
-
-# echo ">>>> setting up ${MARPLE_SVC} as service"
-# erb /vagrant/conf/marple/systemd.erb > /etc/systemd/system/$MARPLE_SVC.service
-
-# echo ">>>> creating ${MARPLE_HOME}/config.yml"
-# erb /vagrant/conf/marple/config.erb > $MARPLE_HOME/config.yml
-
-# echo ">>>> fixing permissions after updating ${MARPLE_SVC} configuration"
-# chown -R $TC_USER:$TC_GROUP $THE_HOME
-
-# echo ">>>> starting ${MARPLE_SVC} service"
-# systemctl daemon-reload
-# systemctl enable $MARPLE_SVC
-# # systemctl start $MARPLE_SVC
-# echo ">>>> Marple will have to be manually started the first time after the Lucene index is built"
 
 echo ">>>> Fuseki updating complete"
