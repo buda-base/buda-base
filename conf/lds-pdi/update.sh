@@ -16,8 +16,13 @@ fi
 export DOWNLOADS="$DATA_DIR/downloads"
 export LDSPDI="ldspdi"
 export LDSPDI_HOME="$DATA_DIR/$LDSPDI"
+export FUSEKI=fuseki
+export FUSEKI_HOME=$DATA_DIR/$FUSEKI
+export FUSEKI_WEBAPPS=$FUSEKI_HOME/tomcat/webapps
+export FUSEKI_LIB=$FUSEKI_WEBAPPS/fuseki/WEB-INF/lib
 
 export VER=$1
+export CLASSES=$2
 
 echo ">>>> Downloading lds-pdi ${VER}"
 pushd $DOWNLOADS/$LDSPDI;
@@ -32,5 +37,12 @@ mv lds-pdi-classes.jar lds-pdi-classes-$VER.jar
 chown ldspdi:ldspdi lds-pdi-$VER.war
 
 cp lds-pdi-$VER.war $LDSPDI_HOME/tomcat/webapps/ROOT.war
+
+if [ "$CLASSES" -eq "classes" ] ; then
+	echo ">>>> updating fuseki lds-pdi-classes.jar"
+	cp lds-pdi-classes-$VER.jar $FUSEKI_LIB/lds-pdi-classes.jar
+	systemctl restart fuseki
+	echo ">>>> fuseki restarted"
+fi
 
 echo ">>>> lds-pdi updated to ${VER}"
