@@ -70,7 +70,7 @@
     text:entityMap :<%= ENV['EP_NAME'] %>_entmap ;
     text:defineAnalyzers (
         [ text:addLang "bo" ; 
-          text:searchFor ( "bo", "bo-x-ewts", "bo-alalc97" ) ;
+          text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
@@ -94,7 +94,7 @@
             ] ; 
           ]
         [ text:addLang "bo-x-ewts" ; 
-          text:searchFor ( "bo", "bo-x-ewts", "bo-alalc97" ) ;
+          text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
@@ -118,7 +118,7 @@
             ] ; 
           ]
         [ text:addLang "bo-alalc97" ; 
-          text:searchFor ( "bo", "bo-x-ewts", "bo-alalc97" ) ;
+          text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
@@ -142,7 +142,7 @@
             ] ; 
           ]
         [ text:addLang "zh-hans" ; 
-          text:searchFor ( "zh-hans", "zh-hant", "zh-latn-pinyin", "zh-latn-pinyin-x-ndia" ) ;
+          text:searchFor ( "zh-hans" "zh-hant" "zh-latn-pinyin" "zh-latn-pinyin-x-ndia" ) ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
@@ -160,7 +160,7 @@
             ] ; 
           ]
         [ text:addLang "zh-hant" ; 
-          text:searchFor ( "zh-hans", "zh-hant", "zh-latn-pinyin", "zh-latn-pinyin-x-ndia" ) ;
+          text:searchFor ( "zh-hans" "zh-hant" "zh-latn-pinyin" "zh-latn-pinyin-x-ndia" ) ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
@@ -178,7 +178,7 @@
             ] ; 
           ]
         [ text:addLang "zh-latn-pinyin" ; 
-          text:searchFor ( "zh-hans", "zh-hant", "zh-latn-pinyin", "zh-latn-pinyin-x-ndia" ) ;
+          text:searchFor ( "zh-hans" "zh-hant" "zh-latn-pinyin" "zh-latn-pinyin-x-ndia" ) ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
@@ -190,7 +190,7 @@
             ] ; 
           ]
         [ text:addLang "zh-latn-pinyin-x-ndia" ; 
-          text:searchFor ( "zh-hans", "zh-hant", "zh-latn-pinyin", "zh-latn-pinyin-x-ndia" ) ;
+          text:searchFor ( "zh-hans" "zh-hant" "zh-latn-pinyin" "zh-latn-pinyin-x-ndia" ) ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
