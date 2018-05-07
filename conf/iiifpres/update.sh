@@ -12,18 +12,23 @@ export DOWNLOADS="$DATA_DIR/downloads"
 export IIIFPRES="iiifpres"
 export IIIFPRES_HOME="$DATA_DIR/$IIIFPRES"
 
+service iiifpres stop
+
 echo ">>>> cloning iiifpres"
-pushd $DOWNLOADS/$IIIFPRES;
+mkdir -p $DOWNLOADS/$IIIFPRES
+pushd $DOWNLOADS/$IIIFPRES
 
 git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-presentation.git tmpgitiiifpresentation
 pushd tmpgitiiifpresentation
-if [ "$#" -e 1 ]; then
+if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
-mvn war:war
+mvn clean package
 chown iiifpres:iiifpres target/*.war
 mv target/*.war $IIIFPRES_HOME/tomcat/webapps/ROOT.war
 popd
 rm -rf --preserve-root tmpgitiiifpresentation
+
+service iiifpres start
 
 echo ">>>> iiifpres installed"
