@@ -20,6 +20,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13280, host: 13280 # lds-pdi
   config.vm.network :forwarded_port, guest: 13380, host: 13380 # blmp
   config.vm.network :forwarded_port, guest: 13480, host: 13480 # iiifpres
+  config.vm.network :forwarded_port, guest: 13580, host: 13580 # iiifserv
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
@@ -43,6 +44,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
   config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
   config.vm.provision "iiifpres", type: "shell", path: "scripts/iiifpres.sh"
+  config.vm.provision "iiifserv", type: "shell", path: "scripts/iiifserv.sh"
   config.vm.provision "blmp", type: "shell", path: "scripts/blmp.sh"
   config.vm.provision "pdl", type: "shell", path: "scripts/pdl.sh"
   config.vm.provision "cantaloupe", type: "shell", path: "scripts/cantaloupe.sh"
