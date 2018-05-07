@@ -1,0 +1,26 @@
+# Systemd unit file for iiifserv
+
+[Unit]
+Description=<%= ENV['SVC_DESC'] %>
+After=syslog.target network.target
+
+[Service]
+Type=forking
+
+Environment=JAVA_HOME=<%= ENV['JAVA_HOME'] %>
+Environment=IIFSERV_HOME=<%= ENV['THE_HOME'] %>
+
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+
+ExecStart=/bin/sh <%=ENV['THE_HOME'] %>/startup.sh
+ExecStop=/bin/sh <%=ENV['THE_HOME'] %>/shutdown.sh
+
+User=<%= ENV['TC_USER'] %>
+Group=<%= ENV['TC_GROUP'] %>
+
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

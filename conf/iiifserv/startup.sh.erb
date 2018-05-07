@@ -1,0 +1,2 @@
+cd <%= ENV['THE_HOME'] %>
+java -Dserver.port=13680 -jar -Dspring.profile.active=PROD  buda-hymir-exec.jar & echo $! > ./pid.file &
