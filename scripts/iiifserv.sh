@@ -42,7 +42,6 @@ echo ">>>> fixing permissions"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
 erb /vagrant/conf/iiifserv/startup.sh.erb > $THE_HOME/startup.sh
-erb /vagrant/conf/iiifserv/shutdown.sh.erb > $THE_HOME/shutdown.sh
 
 # setup as Debian systemctl service listening on 15680
 echo ">>>> setting up ${IIIFSERV} as service listening on 15680"
