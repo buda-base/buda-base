@@ -45,11 +45,11 @@ erb /vagrant/conf/iiifserv/startup.sh.erb > $THE_HOME/startup.sh
 
 # setup as Debian systemctl service listening on 15680
 echo ">>>> setting up ${IIIFSERV} as service listening on 15680"
-erb /vagrant/conf/iiifserv/systemd.erb > /etc/systemd/system/$IIIFSERV.service
+erb /vagrant/conf/iiifserv/systemd.erb > /etc/systemd/system/$SVC.service
 
 echo ">>>> starting ${SVC} service"
-
-echo ">>>> restarting ${SVC}"
+systemctl daemon-reload
+systemctl enable $SVC
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
 

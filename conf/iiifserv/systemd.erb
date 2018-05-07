@@ -5,15 +5,16 @@ Description=<%= ENV['SVC_DESC'] %>
 After=syslog.target network.target
 
 [Service]
-Type=forking
+Type=simple
 
 Environment=JAVA_HOME=<%= ENV['JAVA_HOME'] %>
 Environment=IIFSERV_HOME=<%= ENV['THE_HOME'] %>
 
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
-ExecStart=/bin/sh <%=ENV['THE_HOME'] %>/startup.sh
-ExecReload=/bin/kill -HUP $MAINPID
+WorkingDirectory=<%= ENV['THE_HOME'] %>
+ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -jar -Dspring.profile.active=PROD buda-hymir-exec.jar
+SuccessExitStatus=143
 
 User=<%= ENV['TC_USER'] %>
 Group=<%= ENV['TC_GROUP'] %>
