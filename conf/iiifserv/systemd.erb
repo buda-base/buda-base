@@ -12,8 +12,8 @@ Environment=IIFSERV_HOME=<%= ENV['THE_HOME'] %>
 
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
-ExecStart=/bin/sh <%=ENV['THE_HOME'] %>/startup.sh
-ExecStop=/bin/sh <%=ENV['THE_HOME'] %>/shutdown.sh
+ExecStart=/bin/sh <%=ENV['IIIFSERV_HOME'] %>/startup.sh
+ExecReload=/bin/kill -HUP $MAINPID
 
 User=<%= ENV['TC_USER'] %>
 Group=<%= ENV['TC_GROUP'] %>

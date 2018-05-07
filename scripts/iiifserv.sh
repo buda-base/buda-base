@@ -39,11 +39,9 @@ chown $TC_USER:$TC_GROUP target/*.jar
 cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/buda-hymir-exec.jar
 
 echo ">>>> fixing permissions"
-chown -R $TC_USER:$TC_USER $DOWNLOADS
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
 erb /vagrant/conf/iiifserv/startup.sh.erb > $THE_HOME/startup.sh
-erb /vagrant/conf/iiifserv/shutdown.sh.erb > $THE_HOME/shutdown.sh
 
 # setup as Debian systemctl service listening on 15680
 echo ">>>> setting up ${IIIFSERV} as service listening on 15680"
