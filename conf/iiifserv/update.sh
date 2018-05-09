@@ -11,7 +11,7 @@ export DOWNLOADS="$DATA_DIR/downloads"
 export IIIFSERV="iiifserv"
 export THE_HOME=$DATA_DIR/$SVC
 
-systemctl stop iiifserver
+service iiifserv stop
 
 echo ">>>> cloning iiifserv"
 mkdir -p $DOWNLOADS
@@ -33,6 +33,6 @@ cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/buda-hymir-exec.jar
 cd /
 rm -rf $DOWNLOADS/$IIIFSERV
 
-systemctl start iiifserver
+service iiifserv stop
 
 echo ">>>> iiifserv was updated"
