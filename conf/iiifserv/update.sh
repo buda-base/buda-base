@@ -29,7 +29,7 @@ chown $TC_USER:$TC_GROUP target/*.jar
 cp target/*-exec.jar $THE_HOME/buda-hymir-exec.jar
 
 popd
-rm -rf --preserve-root $DOWNLOADS/$IIIFSERV
+rm -rf --preserve-root $DOWNLOADS/buda-iiif-server
 
 service iiifserv start
 
