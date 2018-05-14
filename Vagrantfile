@@ -21,6 +21,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13380, host: 13380 # blmp
   config.vm.network :forwarded_port, guest: 13480, host: 13480 # iiifpres
   config.vm.network :forwarded_port, guest: 13580, host: 13580 # iiifserv
+  config.vm.network :forwarded_port, guest: 13581, host: 13581 # iiifserv monitoring
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
