@@ -18,6 +18,7 @@ echo ">>>> cloning iiifpres"
 mkdir -p $DOWNLOADS/$IIIFPRES
 pushd $DOWNLOADS/$IIIFPRES
 
+rm -rf --preserve-root tmpgitiiifpresentation
 git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-presentation.git tmpgitiiifpresentation
 pushd tmpgitiiifpresentation
 if [ "$#" -eq 1 ]; then
