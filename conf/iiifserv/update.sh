@@ -17,8 +17,8 @@ mkdir -p $THE_HOME
 
 # install iiifserv
 echo ">>>> installing iiif server"
+rm -f -r $DOWNLOADS/buda-iiif-server
 pushd $DOWNLOADS;
-rm -rf --preserve-root $DOWNLOADS/buda-iiif-server
 git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-server.git
 cd buda-iiif-server
 if [ "$#" -eq 1 ]; then
@@ -30,7 +30,7 @@ chown $TC_USER:$TC_GROUP target/*.jar
 cp target/*-exec.jar $THE_HOME/buda-hymir-exec.jar
 
 popd
-rm -rf --preserve-root $DOWNLOADS/buda-iiif-server
+#rm -rf --preserve-root $DOWNLOADS/$IIIFSERV
 
 service iiifserv start
 
