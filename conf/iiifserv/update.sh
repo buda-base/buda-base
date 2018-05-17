@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
 
 echo ">>>> Updating iiif server"
-export DATA_DIR=/usr/local ;
+if [ -d /mnt/data ] ; then 
+  export DATA_DIR=/mnt/data ; 
+else
+  export DATA_DIR=/usr/local ;
+fi
 export TC_USER=iiifserv
 export TC_GROUP=iiifserv
 export SVC=iiifserv
