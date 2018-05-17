@@ -69,6 +69,44 @@
     text:multilingualSupport true ;
     text:entityMap :<%= ENV['EP_NAME'] %>_entmap ;
     text:defineAnalyzers (
+        [ text:defineAnalyzer :hanzAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramValue "TC2SC" ]
+                [ text:paramName "stopwords" ;
+                  text:paramValue true ]
+                [ text:paramName "filterChars" ;
+                  text:paramValue 3 ]
+                )
+            ] ; 
+          ]        
+        [ text:defineAnalyzer :han2pinyin ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramValue "TC2PYstrict" ]
+                [ text:paramName "stopwords" ;
+                  text:paramValue false ]
+                [ text:paramName "filterChars" ;
+                  text:paramValue 0 ]
+                )
+            ] ; 
+          ]
+        [ text:defineAnalyzer :pinyin ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramValue "PYstrict" ]
+                )
+            ] ; 
+          ]
         [ text:addLang "bo" ; 
           text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
           text:analyzer [ 
@@ -142,64 +180,31 @@
             ] ; 
           ]
         [ text:addLang "zh-hans" ; 
-          text:searchFor ( "zh-hans" "zh-hant" "zh-latn-pinyin" "zh-latn-pinyin-x-ndia" ) ;
-          text:analyzer [ 
-            a text:GenericAnalyzer ;
-            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
-            text:params (
-                [ text:paramName "profile" ;
-                  text:paramType text:TypeString ; 
-                  text:paramValue "TC2PYstrict" ]
-                [ text:paramName "stopwords" ;
-                  text:paramType text:TypeBoolean ;
-                  text:paramValue true ]
-                [ text:paramName "filterChars" ;
-                  text:paramType text:TypeInt ;
-                  text:paramValue 3 ]
-                )
-            ] ; 
+          text:searchFor ( "zh-hans" "zh-hant" ) ;
+          text:auxIndex ( "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :hanzAnalyzer ] ; 
           ]
         [ text:addLang "zh-hant" ; 
-          text:searchFor ( "zh-hans" "zh-hant" "zh-latn-pinyin" "zh-latn-pinyin-x-ndia" ) ;
-          text:analyzer [ 
-            a text:GenericAnalyzer ;
-            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
-            text:params (
-                [ text:paramName "profile" ;
-                  text:paramType text:TypeString ; 
-                  text:paramValue "TC2PYstrict" ]
-                [ text:paramName "stopwords" ;
-                  text:paramType text:TypeBoolean ;
-                  text:paramValue true ]
-                [ text:paramName "filterChars" ;
-                  text:paramType text:TypeInt ;
-                  text:paramValue 3 ]
-                )
-            ] ; 
+          text:searchFor ( "zh-hans" "zh-hant" ) ;
+          text:auxIndex ( "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :hanzAnalyzer ] ; 
           ]
-        [ text:addLang "zh-latn-pinyin" ; 
-          text:searchFor ( "zh-hans" "zh-hant" "zh-latn-pinyin" "zh-latn-pinyin-x-ndia" ) ;
-          text:analyzer [ 
-            a text:GenericAnalyzer ;
-            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
-            text:params (
-                [ text:paramName "profile" ;
-                  text:paramType text:TypeString ; 
-                  text:paramValue "PYstrict" ]
-                )
-            ] ; 
-          ]
-        [ text:addLang "zh-latn-pinyin-x-ndia" ; 
-          text:searchFor ( "zh-hans" "zh-hant" "zh-latn-pinyin" "zh-latn-pinyin-x-ndia" ) ;
-          text:analyzer [ 
-            a text:GenericAnalyzer ;
-            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
-            text:params (
-                [ text:paramName "profile" ;
-                  text:paramType text:TypeString ; 
-                  text:paramValue "PYlazy" ]
-                )
-            ] ; 
+        [ text:addLang "zh-latn-pinyin" ;
+          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :pinyin ] ; 
+          ]        
+        [ text:addLang "zh-aux-han2pinyin" ;
+          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :pinyin ] ; 
+          text:indexAnalyzer :han2pinyin ; 
           ]
       ) ;
     .
