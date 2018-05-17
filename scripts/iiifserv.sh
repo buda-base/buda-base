@@ -9,7 +9,12 @@ export SVC_DESC="BUDA IIIF Server"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 #export JAVA_HOME=/opt/java-jdk/jdk1.8.0_151
 echo $JAVA_HOME
-export DATA_DIR=/usr/local
+
+if [ -d /mnt/data ] ; then 
+  export DATA_DIR=/mnt/data ; 
+else
+  export DATA_DIR=/usr/local ;
+fi
 
 sudo apt install libturbojpeg0-dev
 
