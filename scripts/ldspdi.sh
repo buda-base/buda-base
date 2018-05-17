@@ -65,8 +65,8 @@ pushd $LDSPDI
 wget -q -c "http://central.maven.org/maven2/org/apache/commons/commons-text/1.2/commons-text-1.2.jar"
 cp commons-text-1.2.jar $FUSEKI_LIB/
 
-echo ">>>> Downloading lds-pdi 0.4.5"
-wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/v0.4.5/lds-pdi.zip"
+echo ">>>> Downloading lds-pdi 0.8.15"
+wget -q -c "https://github.com/BuddhistDigitalResourceCenter/lds-pdi/releases/download/v0.8.15/lds-pdi.zip"
 unzip -q lds-pdi.zip
 
 echo ">>>> move webapps/ROOT to admin so ldspdi runs as ROOT"
