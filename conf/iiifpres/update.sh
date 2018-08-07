@@ -26,6 +26,7 @@ if [ "$#" -eq 1 ]; then
 fi
 mvn clean package
 chown iiifpres:iiifpres target/*.war
+rm -rf --preserve-root $IIIFPRES_HOME/tomcat/webapps/ROOT
 mv target/*.war $IIIFPRES_HOME/tomcat/webapps/ROOT.war
 popd
 rm -rf --preserve-root tmpgitiiifpresentation
