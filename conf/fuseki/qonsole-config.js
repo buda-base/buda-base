@@ -14,6 +14,8 @@ define( [], function() {
       "bdr"   : "http://purl.bdrc.io/resource/",
       "aut"   : "http://purl.bdrc.io/ontology/ext/auth/",
       "adr"   : "http://purl.bdrc.io/resource-auth/",
+      "bdan"  : "http://purl.bdrc.io/annotation/",
+      "bdac"  : "http://purl.bdrc.io/anncollection/",
       "oa"	  : "http://www.w3.org/ns/oa#",
       "foaf"  : "http://xmlns.com/foaf/0.1/",
       "skos"  : "http://www.w3.org/2004/02/skos/core#",
