@@ -13,17 +13,19 @@ export SVC_DESC="Jena-Fuseki Tomcat container"
 export MARPLE_SVC=marple
 export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
-# export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/apache-jena-fuseki-3.6.0.tar.gz"
-# export FUSEKI_DIR="apache-jena-fuseki-3.6.0"
-export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/v3.7.0-AuxIndex/jena-fuseki-war-3.7.0-SNAPSHOT.war.zip"
-export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
-export LUCENE_BO_VER=1.2.0
+export FUSEKI_DIR="apache-jena-fuseki-3.8.0"
+export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
+export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
+export FUSEKI_WAR="fuseki.war"
+# export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/v3.7.0-AuxIndex/jena-fuseki-war-3.7.0-SNAPSHOT.war.zip"
+# export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
+export LUCENE_BO_VER=1.4.1
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
 export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
-export LUCENE_ZH_VER=0.3.0
+export LUCENE_ZH_VER=0.4.0
 export LUCENE_ZH_JAR="lucene-zh-${LUCENE_ZH_VER}.jar"
 export LUCENE_ZH_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
-export LUCENE_SA_VER=0.1.0
+export LUCENE_SA_VER=0.2.0
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
 export LUCENE_SA_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
@@ -78,10 +80,16 @@ popd
 # download fuseki
 echo ">>>> downloading jena-fuseki war"
 pushd $DOWNLOADS;
-wget -q -c $FUSEKI_ZIP
-unzip $FUSEKI_WAR.zip
+# wget -q -c $FUSEKI_ZIP
+# unzip $FUSEKI_WAR.zip
+echo ">>>>>>>> wget -q -c ${FUSEKI_REL}"
+wget -q -c $FUSEKI_REL
+echo ">>>>>>>> tar xf ${FUSEKI_BIN}"
+tar xf $FUSEKI_BIN
 echo ">>>> copying ${FUSEKI_WAR} to ${CAT_HOME}/webapps/fuseki.war"
+pushd $FUSEKI_DIR
 cp $FUSEKI_WAR $CAT_HOME/webapps/fuseki.war
+popd
 popd
 
 echo ">>>> configuring FUSEKI_BASE"

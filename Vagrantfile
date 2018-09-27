@@ -12,8 +12,8 @@ Vagrant.configure(2) do |config|
     rsync__exclude: [ "dataDisk.vdi", ".git", ".gitignore", ".DS_Store", ".project" ],
     rsync__verbose: true
 
-  config.vm.network :forwarded_port, guest: 13598, host: 13598 # couchdb
-  config.vm.network :forwarded_port, guest: 13599, host: 13599 # couchdb-lucene
+#  config.vm.network :forwarded_port, guest: 13598, host: 13598 # couchdb
+#  config.vm.network :forwarded_port, guest: 13599, host: 13599 # couchdb-lucene
   config.vm.network :forwarded_port, guest: 13180, host: 13180 # jena-fuseki
   config.vm.network :forwarded_port, guest: 13190, host: 13190 # marple client
   config.vm.network :forwarded_port, guest: 13191, host: 13191 # marple admin
