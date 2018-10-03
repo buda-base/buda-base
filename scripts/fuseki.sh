@@ -176,5 +176,7 @@ echo ">>>> Marple will have to be manually started the first time after the Luce
 
 cp /vagrant/conf/fuseki/update.sh $THE_HOME
 chmod a+x $THE_HOME/update.sh
+cp /vagrant/conf/fuseki/update-ttl-config.sh $THE_HOME
+chmod a+x $THE_HOME/update-ttl-config.sh
 
 echo ">>>> fuseki provisioning complete"
