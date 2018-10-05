@@ -17,13 +17,13 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # export FUSEKI_DIR="apache-jena-fuseki-3.6.0"
 export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/v3.7.0-HiLiting/jena-fuseki-war-3.7.0-SNAPSHOT.war.zip"
 export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
-export LUCENE_BO_VER=1.2.0
+export LUCENE_BO_VER=1.4.2
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
 export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
-export LUCENE_ZH_VER=0.3.0
+export LUCENE_ZH_VER=0.4.1
 export LUCENE_ZH_JAR="lucene-zh-${LUCENE_ZH_VER}.jar"
 export LUCENE_ZH_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
-export LUCENE_SA_VER=0.1.0
+export LUCENE_SA_VER=1.0.0
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
 export LUCENE_SA_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
@@ -57,6 +57,9 @@ cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/
 echo ">>>>>>>> updating analyzers to {$CAT_HOME}/webapps/fuseki/WEB-INF/lib/"
 # the lucene-bo jar has to be added to fuseki/WEB-INF/lib/ otherwise 
 # tomcat class loading cannot find rest of Lucene classes
+rm $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-bo*.jar
+rm $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-sa*.jar
+rm $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-zh*.jar
 pushd $DOWNLOADS;
 # wget -q -c $LUCENE_BO_REL
 wget -q $LUCENE_BO_REL -O $LUCENE_BO_JAR
