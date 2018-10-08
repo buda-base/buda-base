@@ -4,7 +4,7 @@ echo ">>>> Installing lds-pdi application..."
 export SVC_DESC="Linked Data Service - Public Data Interface container"
 export TC_USER=ldspdi
 export TC_GROUP=ldspdi
-export TOMCAT_VER=8.0.42
+export TOMCAT_VER=8.0.53
 export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
 
 if [ -d /mnt/data ] ; then 
