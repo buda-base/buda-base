@@ -4,7 +4,8 @@
 echo ">>>> Installing Fuseki"
 export TC_USER=fuseki
 export TC_GROUP=fuseki
-export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.42/bin/apache-tomcat-8.0.42.tar.gz"
+export TOMCAT_VER=8.0.42
+export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
 # set erb vars
 # endpoint name for fuseki
 export EP_NAME=bdrc
@@ -68,7 +69,7 @@ wget -q -c $TC_REL
 # unpack tomcat
 echo ">>>> unpacking tomcat 8"
 mkdir -p $CAT_HOME
-tar xf $DOWNLOADS/apache-tomcat-8*tar.gz -C $CAT_HOME --strip-components=1
+tar xf $DOWNLOADS/apache-tomcat-$TOMCAT_VER.tar.gz -C $CAT_HOME --strip-components=1
 # configure server
 echo ">>>> configuring server.xml tomcat 8"
 erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml

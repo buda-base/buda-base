@@ -5,8 +5,9 @@ if [ $(dpkg-query -W -f='${Status}' nodejs 2>/dev/null | grep -c "ok installed")
 then
 	echo ">>>> installing node.js; npm; and n"
 	curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-	apt-get install -y nodejs build-essential
+	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+	apt-get install -y nodejs build-essential yarn
 	npm install -g n
-	curl -o- -L https://yarnpkg.com/install.sh | bash
-	export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+	#export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 fi

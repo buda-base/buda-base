@@ -17,6 +17,7 @@ define( [], function() {
       "bdan"  : "http://purl.bdrc.io/annotation/",
       "bdac"  : "http://purl.bdrc.io/anncollection/",
       "oa"	  : "http://www.w3.org/ns/oa#",
+      "as"    : "http://www.w3.org/ns/activitystreams#",
       "foaf"  : "http://xmlns.com/foaf/0.1/",
       "skos"  : "http://www.w3.org/2004/02/skos/core#",
       "tbr"   : "http://purl.bdrc.io/ontology/toberemoved/",

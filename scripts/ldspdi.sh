@@ -4,6 +4,8 @@ echo ">>>> Installing lds-pdi application..."
 export SVC_DESC="Linked Data Service - Public Data Interface container"
 export TC_USER=ldspdi
 export TC_GROUP=ldspdi
+export TOMCAT_VER=8.0.42
+export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
 
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ;
@@ -42,10 +44,13 @@ groupadd $TC_GROUP
 useradd -s /bin/bash -g $TC_GROUP -d $LDSPDI_HOME $TC_USER
 
 
-# install tomcat container
-# tomcat should have been downloaded by fuseki.sh
-echo ">>>> installing tomcat 8 for ldspdi"
-tar xf $DOWNLOADS/apache-tomcat-8*tar.gz -C $CAT_HOME --strip-components=1
+echo ">>>> downloading tomcat 8"
+pushd $DOWNLOADS;
+wget -q -c $TC_REL
+# unpack tomcat
+echo ">>>> unpacking tomcat 8"
+mkdir -p $CAT_HOME
+tar xf $DOWNLOADS/apache-tomcat-$TOMCAT_VER.tar.gz -C $CAT_HOME --strip-components=1
 
 # configure server
 echo ">>>> configuring server.xml tomcat 8"

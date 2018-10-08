@@ -39,16 +39,11 @@ Vagrant.configure(2) do |config|
   config.vm.provision "open-jdk", type: "shell", path: "scripts/open-jdk.sh"
   config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
   config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
-#  config.vm.provision "couchdb", type: "shell", path: "scripts/couchdb.sh"
-#  config.vm.provision "couchdb-lucene", type: "shell", path: "scripts/couchdb-lucene.sh"
-# no need for couchapp (yet)
-#  config.vm.provision "couchapp", type: "shell", path: "scripts/couchapp.sh"
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
   config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
   config.vm.provision "iiifpres", type: "shell", path: "scripts/iiifpres.sh"
   config.vm.provision "iiifserv", type: "shell", path: "scripts/iiifserv.sh"
   config.vm.provision "blmp", type: "shell", path: "scripts/blmp.sh"
   config.vm.provision "pdl", type: "shell", path: "scripts/pdl.sh"
-#  config.vm.provision "cantaloupe", type: "shell", path: "scripts/cantaloupe.sh"
   config.vm.provision "nginx", type: "shell", path: "scripts/nginx.sh"
 end

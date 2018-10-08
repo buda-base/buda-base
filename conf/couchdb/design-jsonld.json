@@ -1,8 +1,0 @@
-{
-  "_id": "_design/jsonld",
-  "shows": {
-    "jsonld": "function(doc, req) {\n  return toJSON({\n    \"@graph\": doc[\"@graph\"],\n    \"@context\": doc[\"@context\"]});\n}",
-    "revOnly": "function(doc, req) {\n  return toJSON(doc[\"_rev\"]);\n}"
-  },
-  "language": "javascript"
-}
