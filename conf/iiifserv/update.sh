@@ -28,7 +28,7 @@ cd buda-iiif-server
 if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
-mvn clean package
+mvn -B clean package
 
 chown $TC_USER:$TC_GROUP target/*.jar
 cp target/*-exec.jar $THE_HOME/buda-hymir-exec.jar

@@ -4,7 +4,7 @@
 echo ">>>> Installing Fuseki"
 export TC_USER=fuseki
 export TC_GROUP=fuseki
-export TOMCAT_VER=8.0.42
+export TOMCAT_VER=8.0.53
 export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
 # set erb vars
 # endpoint name for fuseki

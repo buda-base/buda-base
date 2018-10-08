@@ -2,7 +2,7 @@
 
 echo ">>>> Installing Nginx and Openssl"
 
-apt-get install nginx openssl -y
+apt-get install nginx openssl -y -q
 
 if [ ! -f /etc/nginx/dhparam.pem ]; then
 	echo ">>>> create key (may take some time)"

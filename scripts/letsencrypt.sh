@@ -2,7 +2,7 @@ if [ $(dpkg-query -W -f='${Status}' python-certbot-nginx 2>/dev/null | grep -c "
 then
 	echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list
 	apt-get update
-	apt-get install python-certbot-nginx -t stretch-backports -y
+	apt-get install python-certbot-nginx -t stretch-backports -y -q
 fi
 
 mkdir -p /var/www/letsencrypt

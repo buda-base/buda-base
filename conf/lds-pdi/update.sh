@@ -29,7 +29,7 @@ pushd $DOWNLOADS;
 rm -f $LDSPDI
 git clone https://github.com/BuddhistDigitalResourceCenter/lds-pdi.git
 pushd $DOWNLOADS/$LDSPDI;
-mvn clean package
+mvn -B clean package
 mv target/lds-pdi.war target/lds-pdi-$VER.war
 mv target/lds-pdi-classes.jar target/lds-pdi-classes-$VER.jar
 chown ldspdi:ldspdi target/lds-pdi-$VER.war

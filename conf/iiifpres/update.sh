@@ -24,7 +24,7 @@ pushd tmpgitiiifpresentation
 if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
-mvn clean package
+mvn -B clean package
 chown iiifpres:iiifpres target/*.war
 rm -rf --preserve-root $IIIFPRES_HOME/tomcat/webapps/ROOT
 mv target/*.war $IIIFPRES_HOME/tomcat/webapps/ROOT.war

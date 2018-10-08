@@ -41,7 +41,7 @@ echo ">>>> installing iiif server"
 cd $DOWNLOADS;
 git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-server.git
 cd $IIIFSERV
-mvn package
+mvn -B package
 chown $TC_USER:$TC_GROUP target/*.jar
 cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/buda-hymir-exec.jar
 
