@@ -26,17 +26,17 @@ export CLASSES=$2
 
 echo ">>>> Downloading lds-pdi ${VER}"
 pushd $DOWNLOADS;
-rm -f $LDSPDI
+rm -rf --preserve-root lds-pdi
 git clone https://github.com/BuddhistDigitalResourceCenter/lds-pdi.git
-pushd $DOWNLOADS/$LDSPDI;
-mvn -B clean package
+pushd $DOWNLOADS/lds-pdi;
+mvn -B -q clean package
 mv target/lds-pdi.war target/lds-pdi-$VER.war
 mv target/lds-pdi-classes.jar target/lds-pdi-classes-$VER.jar
 chown ldspdi:ldspdi target/lds-pdi-$VER.war
 
 cp target/lds-pdi-$VER.war $LDSPDI_HOME/tomcat/webapps/ROOT.war
 
-if [ "$CLASSES" -eq "classes" ] ; then
+if [ "$CLASSES" == "classes" ] ; then
 	echo ">>>> updating fuseki lds-pdi-classes.jar"
 	cp target/lds-pdi-classes-$VER.jar $FUSEKI_LIB/lds-pdi-classes.jar
 	systemctl restart fuseki

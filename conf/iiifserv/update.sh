@@ -21,7 +21,7 @@ mkdir -p $THE_HOME
 
 # install iiifserv
 echo ">>>> installing iiif server"
-rm -f -r $DOWNLOADS/buda-iiif-server
+rm -rf --preserve-root $DOWNLOADS/buda-iiif-server
 pushd $DOWNLOADS;
 git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-server.git
 cd buda-iiif-server

@@ -60,7 +60,7 @@ cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 cp  /vagrant/conf/tomcat/web.xml $CAT_HOME/conf/
 erb /vagrant/conf/lds-pdi/context.xml.erb > $CAT_HOME/conf/context.xml
 cp /vagrant/conf/lds-pdi/update.sh $LDSPDI_HOME/
-
+chmod u+x $LDSPDI_HOME/update.sh
 
 # common-text is used in fuseki extensions called from queries via lds-pdi
 echo ">>>> Downloading apache common-text lib from maven"
