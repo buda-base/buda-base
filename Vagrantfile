@@ -12,8 +12,6 @@ Vagrant.configure(2) do |config|
     rsync__exclude: [ "dataDisk.vdi", ".git", ".gitignore", ".DS_Store", ".project" ],
     rsync__verbose: true
 
-#  config.vm.network :forwarded_port, guest: 13598, host: 13598 # couchdb
-#  config.vm.network :forwarded_port, guest: 13599, host: 13599 # couchdb-lucene
   config.vm.network :forwarded_port, guest: 13180, host: 13180 # jena-fuseki
   config.vm.network :forwarded_port, guest: 13190, host: 13190 # marple client
   config.vm.network :forwarded_port, guest: 13191, host: 13191 # marple admin
@@ -35,7 +33,6 @@ Vagrant.configure(2) do |config|
 
 # setup a second data drive for the services since the root drive is fixed at 10GB
   config.vm.provision "first-local", type: "shell", path: "scripts/first-local.sh"
-#  config.vm.provision "oracle-jdk", type: "shell", path: "scripts/oracle-jdk.sh"
   config.vm.provision "open-jdk", type: "shell", path: "scripts/open-jdk.sh"
   config.vm.provision "tools", type: "shell", path: "scripts/tools.sh"
   config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
