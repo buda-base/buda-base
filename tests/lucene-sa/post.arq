@@ -1,0 +1,9 @@
+prefix bdr:   <http://purl.bdrc.io/resource/>
+
+DELETE
+WHERE
+{ 
+  GRAPH bdr:testlucenesa {
+    ?s ?p ?o .
+  } 
+}

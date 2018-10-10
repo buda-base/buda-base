@@ -35,9 +35,10 @@ def run_test(testdir):
     print("executing "+queryPath)
     results = QueryEndpoint.query().convert()
     exprectedPath = path.join(testdir, "expected.json")
-    expectedData = None
-    with open(exprectedPath) as f:
-        expectedData = json.load(f)
+    expectedData = {}
+    if (path.isfile(exprectedPath)):
+        with open(exprectedPath) as f:
+            expectedData = json.load(f)
     resultsOrderedStr = json.dumps(results, sort_keys=True, indent=4, ensure_ascii=False)
     expectedOrderedStr = json.dumps(expectedData, sort_keys=True, indent=4, ensure_ascii=False)
     testname = path.relpath(testdir)
@@ -68,4 +69,4 @@ def run_testgroup(testgroupname, specifictest=None):
 
 if __name__ == '__main__':
     run_testgroup("lucene-zh")
-    #run_testgroup("lucene-sa")
+    run_testgroup("lucene-sa")

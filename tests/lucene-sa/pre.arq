@@ -1,0 +1,14 @@
+prefix :      <http://purl.bdrc.io/ontology/core/>
+prefix bdr:   <http://purl.bdrc.io/resource/>
+prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+INSERT DATA
+{
+  GRAPH bdr:testlucenesa {
+	bdr:TEST0 rdfs:label   "saṅgīti"@sa-x-iast  .
+
+	bdr:TEST1 rdfs:label   "nāmasaṅgīti"@sa-x-iast  .
+    
+    bdr:TEST2 rdfs:label   "सङ्गीति"@sa-deva .
+  }
+}

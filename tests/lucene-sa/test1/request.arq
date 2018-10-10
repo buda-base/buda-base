@@ -1,0 +1,8 @@
+prefix : <http://purl.bdrc.io/ontology/core/>
+prefix text: <http://jena.apache.org/text#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+select ?s ?sc ?lit
+where {
+	(?s ?sc ?lit) text:query ( rdfs:label "saṅgīti"@sa-x-iast )
+}
