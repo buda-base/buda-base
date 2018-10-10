@@ -1,0 +1,45 @@
+{
+    "head": {
+        "vars": [
+            "s",
+            "sc",
+            "lit"
+        ]
+    },
+    "results": {
+        "bindings": [
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "saṅgīti",
+                    "xml:lang": "sa-x-iast"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/TEST0"
+                },
+                "sc": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#float",
+                    "type": "literal",
+                    "value": "1.0866088"
+                }
+            },
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "सङ्गीति",
+                    "xml:lang": "sa-deva"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/TEST2"
+                },
+                "sc": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#float",
+                    "type": "literal",
+                    "value": "0.42121348"
+                }
+            }
+        ]
+    }
+}
