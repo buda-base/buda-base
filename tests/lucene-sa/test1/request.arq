@@ -8,4 +8,4 @@ where {
 	GRAPH bdr:testlucenesa {
 		(?s ?sc ?lit) text:query ( rdfs:label "\"saṅgīti\""@sa-x-iast )
 	}
-}
+} order by ?s ?sc ?lit
