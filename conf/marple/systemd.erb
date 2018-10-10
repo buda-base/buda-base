@@ -14,7 +14,7 @@ Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./
 User=<%= ENV['TC_USER'] %>
 Group=<%= ENV['TC_GROUP'] %>
 
-WorkingDirectory=<%= ENV['$MARPLE_HOME'] %>
+WorkingDirectory=<%= ENV['MARPLE_HOME'] %>
 ExecStart=/usr/bin/java -jar -XX:+ExitOnOutOfMemoryError <%= ENV['MARPLE_JAR'] %> server config.yml
 SuccessExitStatus=143
 
