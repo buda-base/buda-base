@@ -31,6 +31,8 @@ Lds-pdi application is accessible at :
 
 (see  https://github.com/BuddhistDigitalResourceCenter/lds-pdi/blob/master/README.md for details about using this rest services)
 
+The Marple web interface can be accessed at `http://localhost:13190`.
+
 The command: `vagrant halt` will shut the instance down. After halting (or suspending the instance) a further: `vagrant up` will simply boot the instance without further downloads, and `vagrant destroy` will completely remove the instance. 
 
 If running an AWS instance, after provisioning access the instance via `ssh -p 15345` and delete

@@ -1,8 +1,11 @@
 prefix : <http://purl.bdrc.io/ontology/core/>
+prefix bdr:   <http://purl.bdrc.io/resource/>
 prefix text: <http://jena.apache.org/text#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 select ?s ?sc ?lit
 where {
-	(?s ?sc ?lit) text:query ( rdfs:label "dān zhū ěr"@zh-latn-pinyin )
+	GRAPH bdr:testlucenezh {
+		(?s ?sc ?lit) text:query ( rdfs:label "\"dān zhū ěr\""@zh-latn-pinyin )
+	}
 } order by ?s ?sc ?lit

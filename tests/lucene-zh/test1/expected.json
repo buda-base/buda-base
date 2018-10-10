@@ -21,7 +21,7 @@
                 "sc": {
                     "datatype": "http://www.w3.org/2001/XMLSchema#float",
                     "type": "literal",
-                    "value": "0.14734559"
+                    "value": "0.87281966"
                 }
             },
             {
@@ -37,7 +37,7 @@
                 "sc": {
                     "datatype": "http://www.w3.org/2001/XMLSchema#float",
                     "type": "literal",
-                    "value": "0.19100356"
+                    "value": "1.0037936"
                 }
             }
         ]
