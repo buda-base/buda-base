@@ -27,7 +27,7 @@ Similarly, the jena-fuseki server will be listening on:
 
 Lds-pdi application is accessible at :
 
-	http://localhost:13280/index.jsp
+	http://localhost:13280/
 
 (see  https://github.com/BuddhistDigitalResourceCenter/lds-pdi/blob/master/README.md for details about using this rest services)
 

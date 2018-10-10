@@ -1,0 +1,12 @@
+prefix :      <http://purl.bdrc.io/ontology/core/>
+prefix bdr:   <http://purl.bdrc.io/resource/>
+prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+INSERT DATA
+{
+  GRAPH bdr:testlucenezh {
+    bdr:T3CN2023  a         :Topic ;
+        rdfs:label       "丹珠爾大藏經"@zh-hant , "dan zhu er"@zh-latn-pinyin-x-ndia, "lóng qīn rè jiàng bā"@zh-latn-pinyin , "丹珠尔"@zh-hans , "ནམ་མཁའི་སྙིང་པོ"@bo , "nam mkha'i snying po"@bo-x-ewts ;
+        .
+  }
+}

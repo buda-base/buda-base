@@ -1,0 +1,45 @@
+{
+    "head": {
+        "vars": [
+            "s",
+            "sc",
+            "lit"
+        ]
+    },
+    "results": {
+        "bindings": [
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "丹珠爾大藏經",
+                    "xml:lang": "zh-hant"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/T3CN2023"
+                },
+                "sc": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#float",
+                    "type": "literal",
+                    "value": "0.14734559"
+                }
+            },
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "丹珠尔",
+                    "xml:lang": "zh-hans"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/T3CN2023"
+                },
+                "sc": {
+                    "datatype": "http://www.w3.org/2001/XMLSchema#float",
+                    "type": "literal",
+                    "value": "0.19100356"
+                }
+            }
+        ]
+    }
+}
