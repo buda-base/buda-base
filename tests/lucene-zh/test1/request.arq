@@ -3,7 +3,7 @@ prefix bdr:   <http://purl.bdrc.io/resource/>
 prefix text: <http://jena.apache.org/text#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
-select ?s ?sc ?lit
+select ?s ?lit
 where {
 	GRAPH bdr:testlucenezh {
 		(?s ?sc ?lit) text:query ( rdfs:label "\"dān zhū ěr\""@zh-latn-pinyin )

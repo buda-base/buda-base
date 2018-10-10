@@ -6,11 +6,14 @@ import os.path as path
 import json
 import glob
 
-QueryEndpoint = SPARQLWrapper("http://localhost:13180/fuseki/bdrcrw/query")
+#BaseUrl="http://buda1.bdrc.io:13180/fuseki/bdrcrw/"
+BaseUrl="http://localhost:13180/fuseki/bdrcrw/"
+
+QueryEndpoint = SPARQLWrapper(BaseUrl+"query")
 QueryEndpoint.setRequestMethod(POSTDIRECTLY)
 QueryEndpoint.setMethod(POST)
 QueryEndpoint.setReturnFormat(JSON)
-UpdateEndpoint = SPARQLWrapper("http://localhost:13180/fuseki/bdrcrw/update")
+UpdateEndpoint = SPARQLWrapper(BaseUrl+"update")
 UpdateEndpoint.setRequestMethod(POSTDIRECTLY)
 UpdateEndpoint.setMethod(POST)
 ThisPath = os.path.dirname(os.path.abspath(__file__))
