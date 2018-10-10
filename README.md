@@ -12,34 +12,24 @@ The base platform is built using Vagrant and VirtualBox.
 This will grind awhile installing the following:
 
 * Debian Jessie
-* Oracle JDK 8
-* couchdb and its dependencies
 * node.js
 * jena-fuseki
+* the BUDA Linked Data interface
+* the BUDA IIIF Server and IIIF Presentatin API server
+* the BUDA web editor (BLMP)
+* the BUDA public library interface
 
 Once the initial install has completed the command: `vagrant ssh` will connect to the instance where development, customization of the environment and so on can be performed as for any headless server.
-
-The couchdb is listening on port 13598 from the host system:
-
-    http://localhost:13598/_utils/
 
 Similarly, the jena-fuseki server will be listening on:
 
     http://localhost:13180/fuseki
 
-Lds-search application is accessible at :
+Lds-pdi application is accessible at :
 
-	http://localhost:13180/lds-search/index.jsp
+	http://localhost:13280/index.jsp
 
-Root for lds-rest resource description rest service  :
-
-	http://localhost:13180/lds-search/lookup/resource/
-
-Root for lds-search rest service  :
-
-	http://localhost:13180/lds-search/lookup/
-
-(see  https://github.com/BuddhistDigitalResourceCenter/lds-search/blob/master/README.md for details about using these two rest services)
+(see  https://github.com/BuddhistDigitalResourceCenter/lds-pdi/blob/master/README.md for details about using this rest services)
 
 The command: `vagrant halt` will shut the instance down. After halting (or suspending the instance) a further: `vagrant up` will simply boot the instance without further downloads, and `vagrant destroy` will completely remove the instance. 
 
