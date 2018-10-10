@@ -312,7 +312,7 @@
           text:indexAnalyzer :han2pinyin ; 
           ]
         [ text:addLang "sa-x-ndia" ;
-          text:searchFor ( "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" ) ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer ] ;
@@ -336,35 +336,35 @@
             text:useAnalyzer :slpLenientIndexAnalyzer ] ; 
           ]
         [ text:addLang "sa-deva" ;
-          text:searchFor ( "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-alalc97" ) ;
+          text:searchFor ( "sa-deva" "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-alalc97" ) ;
           text:auxIndex ( "sa-aux-deva2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :devaWordAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-iso" ;
-          text:searchFor ( "sa-x-iast" "sa-x-slp1" "sa-deva" "sa-alalc97" ) ;
+          text:searchFor ( "sa-x-iso" "sa-x-iast" "sa-x-slp1" "sa-deva" "sa-alalc97" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanWordAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-slp1" ;
-          text:searchFor ( "sa-x-iast" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
+          text:searchFor ( "sa-x-slp1" "sa-x-iast" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
           text:auxIndex ( "sa-aux-slp2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :slpWordAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-iast" ;
-          text:searchFor ( "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
+          text:searchFor ( "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanWordAnalyzer ] ; 
           ]
         [ text:addLang "sa-alalc97" ;
-          text:searchFor ( "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-iast" ) ;
+          text:searchFor ( "sa-alalc97" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-iast" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
