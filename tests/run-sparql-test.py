@@ -51,25 +51,23 @@ def run_test(testdir):
     else:
         print("OK: test "+testname+" passes")
 
-def run_testgroup(testgroupname, specifictest=None):
-    prepath = path.join(ThisPath, testgroupname, "pre.arq")
+def run_pre_post(testgroupname, name):
+    prepath = path.join(ThisPath, testgroupname, name+".arq")
     preStr = None
     with open(prepath, 'r') as myfile:
         preStr = myfile.read()
     UpdateEndpoint.setQuery(preStr)
     print("executing "+prepath)
     UpdateEndpoint.query()
+
+def run_testgroup(testgroupname, specifictest=None):
+    run_pre_post(testgroupname, "post")
+    run_pre_post(testgroupname, "pre")
     testdirs = get_all_tests(testgroupname, specifictest)
     for testdir in testdirs:
         run_test(testdir)
-    postpath = path.join(ThisPath, testgroupname, "post.arq")
-    postStr = None
-    with open(postpath, 'r') as myfile:
-        postStr = myfile.read()
-    print("executing "+postpath)
-    UpdateEndpoint.setQuery(postStr)
-    UpdateEndpoint.query()
+    #run_pre_post(testgroupname, "post")
 
 if __name__ == '__main__':
-    run_testgroup("lucene-zh")
+    #run_testgroup("lucene-zh")
     run_testgroup("lucene-sa")
