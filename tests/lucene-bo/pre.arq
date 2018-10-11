@@ -1,0 +1,10 @@
+prefix :      <http://purl.bdrc.io/ontology/core/>
+prefix bdr:   <http://purl.bdrc.io/resource/>
+prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+INSERT DATA
+{
+  GRAPH bdr:testlucenebo {
+	bdr:TEST0 rdfs:label   "shes rab kyi pha rol tu phyin pa stong phrag brgya pa/"@bo-x-ewts  .
+  }
+}
