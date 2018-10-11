@@ -244,11 +244,11 @@
                 [ text:paramName "stopFilename" ;
                   text:paramValue "" ]
                 )
-            ] ; 
+            ] ;
           ]
-        [ text:addLang "bo-x-ewts" ; 
+        [ text:addLang "bo-x-ewts" ;
           text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
-          text:analyzer [ 
+          text:analyzer [
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
             text:params (
@@ -263,9 +263,9 @@
                 [ text:paramName "stopFilename" ;
                   text:paramValue "" ]
                 )
-            ] ; 
+            ] ;
           ]
-        [ text:addLang "bo-alalc97" ; 
+        [ text:addLang "bo-alalc97" ;
           text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
           text:analyzer [ 
             a text:GenericAnalyzer ;
@@ -282,58 +282,68 @@
                 [ text:paramName "stopFilename" ;
                   text:paramValue "" ]
                 )
-            ] ; 
+            ] ;
           ]
-        [ text:addLang "zh-hans" ; 
+        [ text:addLang "zh-hans" ;
           text:searchFor ( "zh-hans" "zh-hant" ) ;
           text:auxIndex ( "zh-aux-han2pinyin" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :hanzAnalyzer ] ; 
+            text:useAnalyzer :hanzAnalyzer ] ;
           ]
         [ text:addLang "zh-hant" ; 
           text:searchFor ( "zh-hans" "zh-hant" ) ;
           text:auxIndex ( "zh-aux-han2pinyin" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :hanzAnalyzer ] ; 
+            text:useAnalyzer :hanzAnalyzer
+            ] ;
           ]
         [ text:addLang "zh-latn-pinyin" ;
           text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :pinyin ] ; 
-          ]        
+            text:useAnalyzer :pinyin
+            ] ;
+          ]
         [ text:addLang "zh-aux-han2pinyin" ;
           text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :pinyin ] ; 
-          text:indexAnalyzer :han2pinyin ; 
+            text:useAnalyzer :pinyin
+            ] ;
+          text:indexAnalyzer :han2pinyin ;
           ]
         [ text:addLang "sa-x-ndia" ;
           text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :romanLenientQueryAnalyzer ] ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
           ]
         [ text:addLang "sa-aux-deva2Ndia" ;
           text:searchFor ( "sa-x-ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :devaLenientIndexAnalyzer ] ; 
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          text:indexAnalyzer :devaLenientIndexAnalyzer ;
           ]
         [ text:addLang "sa-aux-roman2Ndia" ;
           text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-slp2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :romanLenientIndexAnalyzer ] ; 
+            text:useAnalyzer :romanLenientQueryAnalyzer 
+            ] ; 
+          text:indexAnalyzer :romanLenientIndexAnalyzer ;
           ]
         [ text:addLang "sa-aux-slp2Ndia" ;
           text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :slpLenientIndexAnalyzer ] ; 
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          text:indexAnalyzer :slpLenientIndexAnalyzer ;
           ]
         [ text:addLang "sa-deva" ;
           text:searchFor ( "sa-deva" "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-alalc97" ) ;
