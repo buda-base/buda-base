@@ -21,6 +21,17 @@
             {
                 "lit": {
                     "type": "literal",
+                    "value": "nāma-saṅgīti",
+                    "xml:lang": "sa-x-iast"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/TEST1"
+                }
+            },
+            {
+                "lit": {
+                    "type": "literal",
                     "value": "सङ्गीति",
                     "xml:lang": "sa-deva"
                 },

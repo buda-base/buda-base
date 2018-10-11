@@ -7,7 +7,7 @@ INSERT DATA
   GRAPH bdr:testlucenesa {
 	bdr:TEST0 rdfs:label   "saṅgīti"@sa-x-iast  .
 
-	bdr:TEST1 rdfs:label   "nāmasaṅgīti"@sa-x-iast  .
+	bdr:TEST1 rdfs:label   "nāma-saṅgīti"@sa-x-iast  .
     
     bdr:TEST2 rdfs:label   "सङ्गीति"@sa-deva .
 
