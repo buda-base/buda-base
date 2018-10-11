@@ -5,6 +5,7 @@ import os
 import os.path as path
 import json
 import glob
+import time
 
 #BaseUrl="http://buda1.bdrc.io:13180/fuseki/bdrcrw/"
 BaseUrl="http://localhost:13180/fuseki/bdrcrw/"
@@ -63,6 +64,8 @@ def run_pre_post(testgroupname, name):
 def run_testgroup(testgroupname, specifictest=None):
     run_pre_post(testgroupname, "post")
     run_pre_post(testgroupname, "pre")
+    print("let a few seconds for the index to be generated")
+    time.sleep(5)
     testdirs = get_all_tests(testgroupname, specifictest)
     for testdir in testdirs:
         run_test(testdir)
@@ -70,4 +73,4 @@ def run_testgroup(testgroupname, specifictest=None):
 
 if __name__ == '__main__':
     #run_testgroup("lucene-zh")
-    run_testgroup("lucene-sa")
+    run_testgroup("lucene-sa", "test2")

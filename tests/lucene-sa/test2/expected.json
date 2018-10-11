@@ -1,0 +1,45 @@
+{
+    "head": {
+        "vars": [
+            "s",
+            "lit"
+        ]
+    },
+    "results": {
+        "bindings": [
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "saṅgīti",
+                    "xml:lang": "sa-x-iast"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/TEST0"
+                }
+            },
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "सङ्गीति",
+                    "xml:lang": "sa-deva"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/TEST2"
+                }
+            },
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "sangiti",
+                    "xml:lang": "sa-x-ndia"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/TEST3"
+                }
+            }
+        ]
+    }
+}
