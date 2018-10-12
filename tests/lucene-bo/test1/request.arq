@@ -6,6 +6,6 @@ PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 select ?s ?lit
 where {
 	GRAPH bdr:testlucenebo {
-		(?s ?sc ?lit) text:query ( rdfs:label "\"pha rol tu phyin pa\""@bo-x-ewts )
+		(?s ?sc ?lit) text:query ( rdfs:label "\"ཕ་རོལ་ཏུ་ཕྱིན་པ\""@bo-x-ewts )
 	}
 } order by ?s ?sc ?lit

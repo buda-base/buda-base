@@ -73,4 +73,6 @@ def run_testgroup(testgroupname, specifictest=None):
 
 if __name__ == '__main__':
     #run_testgroup("lucene-zh")
+    #run_testgroup("lucene-sa", "test1")
     run_testgroup("lucene-sa", "test2")
+    #run_testgroup("lucene-bo")
