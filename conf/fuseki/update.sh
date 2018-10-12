@@ -63,9 +63,9 @@ cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/
 echo ">>>>>>>> updating analyzers to {$CAT_HOME}/webapps/fuseki/WEB-INF/lib/"
 # the lucene-bo jar has to be added to fuseki/WEB-INF/lib/ otherwise 
 # tomcat class loading cannot find rest of Lucene classes
-rm $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-bo-*.jar
-rm $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-sa-*.jar
-rm $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-zh-*.jar
+rm -f $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-bo-*.jar
+rm -f $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-sa-*.jar
+rm -f $CAT_HOME/webapps/fuseki/WEB-INF/lib/lucene-zh-*.jar
 pushd $DOWNLOADS;
 # wget -q -c $LUCENE_BO_REL
 wget -q $LUCENE_BO_REL -O $LUCENE_BO_JAR
