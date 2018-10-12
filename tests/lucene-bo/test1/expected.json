@@ -1,0 +1,23 @@
+{
+    "head": {
+        "vars": [
+            "s",
+            "lit"
+        ]
+    },
+    "results": {
+        "bindings": [
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "shes rab kyi pha rol tu phyin pa stong phrag brgya pa/",
+                    "xml:lang": "bo-x-ewts"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/TEST0"
+                }
+            }
+        ]
+    }
+}

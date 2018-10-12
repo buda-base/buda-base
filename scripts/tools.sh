@@ -7,7 +7,8 @@ apt upgrade -y
 #install common tools and utilities
 echo ">>>> installing common tools and utilities"
 echo ">>>> installing python setup tools"
-apt-get install python-dev libxml2-dev libxslt-dev libyaml-dev python-setuptools lsof -y -q
+apt-get install python-dev libxml2-dev libxslt-dev libyaml-dev python-setuptools python-pip python3-pip lsof -y -q
+pip3 install sparqlwrapper -q
 echo ">>>> installing various common tools"
 # ruby needed for erb
 apt-get install tree git bash-completion sudo vim curl jq wget ruby maven -y -q
