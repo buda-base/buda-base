@@ -10,19 +10,8 @@
             {
                 "lit": {
                     "type": "literal",
-                    "value": "丹珠爾大藏經",
+                    "value": "丹1珠2爾大藏經",
                     "xml:lang": "zh-hant"
-                },
-                "s": {
-                    "type": "uri",
-                    "value": "http://purl.bdrc.io/resource/T3CN2023"
-                }
-            },
-            {
-                "lit": {
-                    "type": "literal",
-                    "value": "丹珠尔",
-                    "xml:lang": "zh-hans"
                 },
                 "s": {
                     "type": "uri",
