@@ -2,3 +2,4 @@
 .vagrant
 *.vdi
 .pydevproject
+/.project
