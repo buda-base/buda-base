@@ -14,10 +14,13 @@ export SVC_DESC="Jena-Fuseki Tomcat container"
 export MARPLE_SVC=marple
 export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
-export FUSEKI_DIR="apache-jena-fuseki-3.9.0"
-export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
-export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
-export FUSEKI_WAR="fuseki.war"
+# FUSEKI VARS
+export FUSEKI_WAR="jena-fuseki-war-3.10.0-SNAPSHOT.war"
+export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/3.10.0-SNAP_01/${FUSEKI_WAR}.zip"
+#export FUSEKI_DIR="apache-jena-fuseki-3.9.0"
+#export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
+#export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
+#export FUSEKI_WAR="fuseki.war"
 # export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/v3.7.0-AuxIndex/jena-fuseki-war-3.7.0-SNAPSHOT.war.zip"
 # export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
 export LUCENE_BO_VER=1.4.2
@@ -35,7 +38,7 @@ if [ -d /mnt/data ] ; then
 else
   export DATA_DIR=/usr/local ;
 fi
-echo ">>>> DATA_DIR: " $DATA_DIR
+echo ">>>> DATA_DIR: ${DATA_DIR}"
 export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
 export THE_BASE=$THE_HOME/base
@@ -81,16 +84,20 @@ popd
 # download fuseki
 echo ">>>> downloading jena-fuseki war"
 pushd $DOWNLOADS;
-# wget -q -c $FUSEKI_ZIP
-# unzip $FUSEKI_WAR.zip
-echo ">>>>>>>> wget -q -c ${FUSEKI_REL}"
-wget -q -c $FUSEKI_REL
-echo ">>>>>>>> tar xf ${FUSEKI_BIN}"
-tar xf $FUSEKI_BIN
-echo ">>>> copying ${FUSEKI_WAR} to ${CAT_HOME}/webapps/fuseki.war"
-pushd $FUSEKI_DIR
+# INSTALL FROM BDRC GITHUB
+echo ">>>>>>>> wget -q -c ${FUSEKI_ZIP}"
+wget -q -c $FUSEKI_ZIP
+unzip $FUSEKI_WAR.zip
 cp $FUSEKI_WAR $CAT_HOME/webapps/fuseki.war
-popd
+# INSTALL FROM APACHE
+#echo ">>>>>>>> wget -q -c ${FUSEKI_REL}"
+#wget -q -c $FUSEKI_REL
+#echo ">>>>>>>> tar xf ${FUSEKI_BIN}"
+#tar xf $FUSEKI_BIN
+#echo ">>>> copying ${FUSEKI_WAR} to ${CAT_HOME}/webapps/fuseki.war"
+#pushd $FUSEKI_DIR
+#cp $FUSEKI_WAR $CAT_HOME/webapps/fuseki.war
+#popd
 popd
 
 echo ">>>> configuring FUSEKI_BASE"
