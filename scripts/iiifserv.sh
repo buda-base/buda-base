@@ -45,6 +45,8 @@ mvn -B package
 chown $TC_USER:$TC_GROUP target/*.jar
 cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/buda-hymir-exec.jar
 
+cp /vagrant/conf/iiifserv/update.sh $THE_HOME/
+
 echo ">>>> fixing permissions"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 

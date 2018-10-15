@@ -2,7 +2,7 @@
 
 # update and install parted
 echo ">>>> update and install parted"
-apt-get update
+apt-get update -q
 apt-get install parted -y -q
 
 # format, partition, mount second disk
