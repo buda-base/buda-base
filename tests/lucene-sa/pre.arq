@@ -12,5 +12,7 @@ INSERT DATA
     bdr:TEST2 rdfs:label   "सङ्गीति"@sa-deva .
 
     bdr:TEST3 rdfs:label   "sangiti"@sa-x-ndia  .
+
+    bdr:TEST4 rdfs:label   "mañjuśrījñānasattvasya paramārtha nāma saṃgīti"@sa-x-iast .
   }
 }
