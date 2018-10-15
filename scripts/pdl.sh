@@ -26,8 +26,8 @@ if [ ! -d $PDL_HOME/blmp-prototype-flow ] ; then
   	echo ">>>> downloading & installing pdl"
 	git clone https://github.com/BuddhistDigitalResourceCenter/public-digital-library.git
 	cd public-digital-library
-	yarn install
-	yarn build
+	yarn -s --non-interactive install
+	yarn -s --non-interactive build
 fi
 
 # adding update.sh script

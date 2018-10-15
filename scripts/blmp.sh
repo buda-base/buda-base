@@ -28,8 +28,8 @@ if [ ! -d $BLMP_HOME/blmp-prototype-flow ] ; then
   	echo ">>>> downloading & installing blmp-prototype_flow"
 	git clone https://github.com/BuddhistDigitalResourceCenter/blmp-prototype-flow.git
 	cd blmp-prototype-flow
-	yarn install
-	yarn build
+	yarn -s --non-interactive install
+	yarn -s --non-interactive build
 fi
 
 # adding update.sh script

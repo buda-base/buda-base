@@ -24,9 +24,9 @@ echo ">>>> git pull"
 git pull
 
 echo ">>>> yarn install"
-yarn install
+yarn -s --non-interactive install
 
 echo ">>>> yarn build"
-yarn build
+yarn -s --non-interactive build
 
 echo ">>>> blmp update done"
