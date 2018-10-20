@@ -15,10 +15,8 @@ export MARPLE_SVC=marple
 export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # FUSEKI VARS
-# loading from github/bdrc-buda
 export FUSEKI_WAR="jena-fuseki-war-3.10.0-SNAPSHOT.war"
 export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/3.10.0-SNAP_01/${FUSEKI_WAR}.zip"
-# loading from apache releases
 #export FUSEKI_DIR="apache-jena-fuseki-3.9.0"
 #export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
 #export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
@@ -31,7 +29,7 @@ export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo
 export LUCENE_ZH_VER=0.4.1
 export LUCENE_ZH_JAR="lucene-zh-${LUCENE_ZH_VER}.jar"
 export LUCENE_ZH_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
-export LUCENE_SA_VER=1.0.\5
+export LUCENE_SA_VER=1.0.5
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
 export LUCENE_SA_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"

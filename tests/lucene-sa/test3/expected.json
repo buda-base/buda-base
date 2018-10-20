@@ -1,0 +1,23 @@
+{
+    "head": {
+        "vars": [
+            "s",
+            "lit"
+        ]
+    },
+    "results": {
+        "bindings": [
+            {
+                "lit": {
+                    "type": "literal",
+                    "value": "mañjuśrījñānasattvasya paramārtha nāma saṃgīti",
+                    "xml:lang": "sa-x-iast"
+                },
+                "s": {
+                    "type": "uri",
+                    "value": "http://purl.bdrc.io/resource/TEST4"
+                }
+            }
+        ]
+    }
+}
