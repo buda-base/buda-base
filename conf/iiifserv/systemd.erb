@@ -13,7 +13,7 @@ Environment=IIFSERV_HOME=<%= ENV['THE_HOME'] %>
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
 WorkingDirectory=<%= ENV['THE_HOME'] %>
-ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -Dspring.config.location=file:/usr/local/iiifserv/application.yml -Dspring.profiles.active=PROD -XX:+ExitOnOutOfMemoryError -Xmx2g -jar  buda-hymir-exec.jar
+ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -Dspring.config.location=file:/etc/buda/iiifserv/application.yml -Dspring.profiles.active=PROD -XX:+ExitOnOutOfMemoryError -Xmx2g -jar  buda-hymir-exec.jar
 SuccessExitStatus=143
 
 User=<%= ENV['TC_USER'] %>
