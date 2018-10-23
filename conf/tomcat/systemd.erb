@@ -14,7 +14,7 @@ Environment=CATALINA_HOME=<%= ENV['CAT_HOME'] %>
 Environment=CATALINA_BASE=<%= ENV['CAT_HOME'] %>
 
 Environment='CATALINA_OPTS=-Xms512M <%= ENV['MAX_MEM'] %> -server -XX:+UseParallelGC'
-Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -D<%= ENV['SVC'] %>.configpath=/etc/buda/<%= ENV['SVC'] %>/'
 
 ExecStart=<%= ENV['CAT_HOME'] %>/bin/startup.sh
 ExecStop=<%= ENV['CAT_HOME'] %>/bin/shutdown.sh

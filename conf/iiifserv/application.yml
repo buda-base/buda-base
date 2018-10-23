@@ -1,0 +1,99 @@
+# local/default
+endpoints:
+  hypermedia:
+    enabled: true
+
+info:
+  app:
+    encoding: '@project.build.sourceEncoding@'
+    java:
+      source: '@maven.compiler.source@'
+      target: '@maven.compiler.target@'
+    project:
+      name: '@project.name@'
+      groupId: '@project.groupId@'
+      artifactId: '@project.artifactId@'
+      version: '@project.version@'
+
+management:
+  context-path: '/monitoring'
+  port: 13581
+  security:
+    enabled: false
+
+security:
+  basic:
+    enabled: false
+  headers:
+    # disables pragma no-cache header
+    cache: false
+
+server:
+  contextPath: /
+  server-header: "@project.name@ v@project.version@"
+
+spring:
+  profiles:
+    active: local
+  thymeleaf:
+    cache: false
+    mode: HTML
+  security:
+    user:
+      name: admin
+      password: secret1
+    
+buda:
+  S3resolver: 'io.bdrc.iiif.resolver.BdrcS3Resolver'
+
+custom:
+  iiif:
+    image:
+      canonicalRedirect: false
+
+cache-control:
+  maxage: '31536000'
+
+access-control:
+  Allow-Origin: '*'
+  Allow-Headers: 'Origin, Authorization, Keep-Alive, User-Agent, If-Modified-Since, If-None-Match, Cache-Control'
+  Allow-Credentials: 'true'
+  Allow-Methods: 'GET, POST, OPTIONS, HEAD'
+  Expose-Headers: 'Cache-Control,ETag, Last-Modified, Content-Type, Cache-Control, Vary, Access-Control-Max-Age'
+---
+
+# PROD
+management:
+  security:
+    enabled: true
+
+spring:
+  profiles: PROD
+  thymeleaf:
+    cache: true
+  security:
+    user:
+      name: admin
+      password: secret1
+
+server:
+  contextPath: /
+  server-header: "@project.name@ v@project.version@"
+    
+buda:
+  S3resolver: 'io.bdrc.iiif.resolver.BdrcS3Resolver'
+
+custom:
+  iiif:
+    image:
+      canonicalRedirect: false
+
+cache-control:
+  maxage: '31536000'
+
+access-control:
+  Allow-Origin: '*'
+  Allow-Headers: 'Origin, Authorization, Keep-Alive, User-Agent, If-Modified-Since, If-None-Match, Cache-Control'
+  Allow-Credentials: 'true'
+  Allow-Methods: 'GET, POST, OPTIONS, HEAD'
+  Expose-Headers: 'Cache-Control,ETag, Last-Modified, Content-Type, Cache-Control, Vary, Access-Control-Max-Age'
