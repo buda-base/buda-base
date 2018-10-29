@@ -12,6 +12,7 @@ export SVC=iiifserv
 export DOWNLOADS="$DATA_DIR/downloads"
 export IIIFSERV="iiifserv"
 export THE_HOME=$DATA_DIR/$SVC
+export AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/iiifserv/credentials
 
 service iiifserv stop
 
