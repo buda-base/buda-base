@@ -9,7 +9,7 @@ Type=simple
 
 Environment=JAVA_HOME=<%= ENV['JAVA_HOME'] %>
 Environment=IIFSERV_HOME=<%= ENV['THE_HOME'] %>
-Environment=AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/iiifserv/credentials
+Environment=AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/<%= ENV['SVC'] %>/credentials
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
 WorkingDirectory=<%= ENV['THE_HOME'] %>
