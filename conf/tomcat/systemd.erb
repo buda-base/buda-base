@@ -12,6 +12,7 @@ Environment=JAVA_HOME=<%= ENV['JAVA_HOME'] %>
 Environment=CATALINA_PID=<%= ENV['CAT_HOME'] %>/temp/tomcat.pid
 Environment=CATALINA_HOME=<%= ENV['CAT_HOME'] %>
 Environment=CATALINA_BASE=<%= ENV['CAT_HOME'] %>
+Environment=AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/<%= ENV['SVC'] %>/credentials
 
 Environment='CATALINA_OPTS=-Xms512M <%= ENV['MAX_MEM'] %> -server -XX:+UseParallelGC'
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom -D<%= ENV['SVC'] %>.configpath=/etc/buda/<%= ENV['SVC'] %>/'
