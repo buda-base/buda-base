@@ -67,6 +67,7 @@
     text:directory <file:<%= ENV['THE_BASE'] %>/<%= ENV['LUCENE_INDEX'] %>> ;
     text:storeValues true ;
     text:multilingualSupport true ;
+    text:ignoreIndexErrors true ;
     text:entityMap :<%= ENV['EP_NAME'] %>_entmap ;
     text:defineAnalyzers (
         [ text:defineAnalyzer :romanWordAnalyzer ; 
