@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 # update and install parted
-echo ">>>> update and install parted"
-apt-get update -q
-apt-get install parted -y -q
+echo ">>>> update packages"
+apt-get update -y -qq
+echo ">>>> installing parted"
+apt-get install parted -y -qq
 
 # format, partition, mount second disk
 echo ">>>> format, partition, mount second disk"

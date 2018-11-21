@@ -3,7 +3,7 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.hostname = "buda1"
+  config.vm.hostname = "buda-local"
 
   config.vm.box = "debian/stretch64"
 
