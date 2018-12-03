@@ -24,7 +24,11 @@
 Vagrant.configure(2) do |config|
 
   require 'fileutils'
-  FileUtils.cp_r( ENV['BUDA_PROPS'] , "conf/shared/etc/buda" )
+  if(ENV['BUDA_PROPS'])
+    FileUtils.cp_r( ENV['BUDA_PROPS'] , "conf/shared/etc/buda" )
+  else
+    abort("script aborted: BUDA_PROPS env variable must be set !")
+  end
   
   config.vm.hostname = "buda1"
 
