@@ -51,6 +51,8 @@ erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
 # enable tomcat admin and manager apps
 cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 cp  /vagrant/conf/tomcat/web.xml $CAT_HOME/conf/
+cp /vagrant/conf/etc/buda/iiifpres/iiifpres-private.properties /etc/buda/iiifpres/
+chown $TC_USER:$TC_USER /etc/buda/iiifpres/iiifpres-private.properties
 popd
 
 # install iiifpres

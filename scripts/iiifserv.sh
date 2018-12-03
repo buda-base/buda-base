@@ -40,11 +40,9 @@ mkdir -p $THE_HOME
 echo ">>>> installing iiif server"
 cd $DOWNLOADS;
 git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-server.git
-
-echo ">>>> setting up Geolite DB"
-wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.tar.gz
-tar -xvzf GeoLite2-Country.tar.gz
-sudo cp */GeoLite2-Country.mmdb /etc/buda/share/geolite/GeoLite2-Country.mmdb
+cp /vagrant/conf/etc/buda/iiifserv/iiifserv-private.properties /etc/buda/iiifserv/
+chown $TC_USER:$TC_USER /etc/buda/iiifserv/iiifserv-private.properties
+cp /vagrant/conf/etc/buda/share/geolite/GeoLite2-Country.mmdb /etc/buda/share/geolite/GeoLite2-Country.mmdb
 
 cd $IIIFSERV
 mvn -B package
