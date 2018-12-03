@@ -3,6 +3,10 @@
 
 Vagrant.configure(2) do |config|
 
+  require 'fileutils'
+  FileUtils.cp_r( ENV['BUDA_PROPS'] , "conf/shared/etc/buda" )
+
+
   config.vm.hostname = "buda-local"
 
   config.vm.box = "debian/stretch64"
