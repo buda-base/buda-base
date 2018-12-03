@@ -42,7 +42,6 @@ cd $DOWNLOADS;
 git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-server.git
 cp /vagrant/conf/etc/buda/iiifserv/iiifserv-private.properties /etc/buda/iiifserv/
 chown $TC_USER:$TC_USER /etc/buda/iiifserv/iiifserv-private.properties
-cp /vagrant/conf/etc/buda/share/geolite/GeoLite2-Country.mmdb /etc/buda/share/geolite/GeoLite2-Country.mmdb
 
 cd $IIIFSERV
 mvn -B package
