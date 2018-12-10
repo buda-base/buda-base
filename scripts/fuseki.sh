@@ -16,14 +16,12 @@ export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # FUSEKI VARS
 export FUSEKI_WAR="jena-fuseki-war-3.10.0-SNAPSHOT.war"
-export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/3.10.0-SNAP_02/${FUSEKI_WAR}.zip"
+export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/3.10.0-SNAP_03/${FUSEKI_WAR}.zip"
 # export FUSEKI_DIR="apache-jena-fuseki-3.9.0"
 # export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
 # export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
 # export FUSEKI_WAR="fuseki.war"
-# export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/v3.7.0-AuxIndex/jena-fuseki-war-3.7.0-SNAPSHOT.war.zip"
-# export FUSEKI_WAR="jena-fuseki-war-3.7.0-SNAPSHOT.war"
-export LUCENE_BO_VER=1.4.3
+export LUCENE_BO_VER=1.4.4
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
 export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
 export LUCENE_ZH_VER=0.4.1
