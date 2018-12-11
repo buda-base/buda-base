@@ -39,4 +39,11 @@ cp /vagrant/conf/etc/buda/iiifpres/iiifpres-private.properties /etc/buda/iiifpre
 chown iiifpres:iiifpres /etc/buda/iiifpres/credentials
 chown iiifpres:iiifpres /etc/buda/iiifpres/iiifpres-private.properties
 
+#Config blmp and pdl
+echo ">>>> setting up pdl and blmp config"
+mkdir -p /etc/buda/pdl
+mkdir -p /etc/buda/blmp
+cp /vagrant/conf/etc/buda/pdl/config.json /etc/buda/pdl/
+cp /vagrant/conf/etc/buda/blmp/config.json /etc/buda/blmp/
+
 echo ">>>> Buda services config was set"
