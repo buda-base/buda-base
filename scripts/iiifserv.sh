@@ -40,8 +40,6 @@ mkdir -p $THE_HOME
 echo ">>>> installing iiif server"
 cd $DOWNLOADS;
 git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-server.git
-cp /vagrant/conf/etc/buda/iiifserv/iiifserv-private.properties /etc/buda/iiifserv/
-chown $TC_USER:$TC_USER /etc/buda/iiifserv/iiifserv-private.properties
 
 cd $IIIFSERV
 mvn -B package
@@ -49,7 +47,6 @@ chown $TC_USER:$TC_GROUP target/*.jar
 cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/buda-hymir-exec.jar
 
 cp /vagrant/conf/iiifserv/update.sh $THE_HOME/
-cp /vagrant/conf/iiifserv/application.yml /etc/buda/iiifserv/
 
 echo ">>>> fixing permissions"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
