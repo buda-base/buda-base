@@ -7,7 +7,7 @@ export TC_GROUP=gitmail
 export TOMCAT_VER=8.0.53
 export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
 # set erb vars
-export SVC=gitmil
+export SVC=githubmail
 export SVC_DESC="Github email service"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 if [ -d /mnt/data ] ; then 
