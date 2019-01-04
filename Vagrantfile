@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
   if(ENV['BUDA_PROPS'])
     FileUtils.cp_r( ENV['BUDA_PROPS'] , "conf/shared/etc/buda" )
   else
-    abort("script aborted: BUDA_PROPS env variable must be set !")
+    print("BUDA_PROPS env variable is not set : using default configuration !")
   end
 
 
