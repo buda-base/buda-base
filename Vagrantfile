@@ -7,7 +7,7 @@ Vagrant.configure(2) do |config|
   if(ENV['BUDA_PROPS'])
     FileUtils.cp_r( ENV['BUDA_PROPS'] , "conf/shared/etc/buda" )
   else
-    abort("script aborted: BUDA_PROPS env variable must be set !")
+    puts("BUDA_PROPS env variable is not set : using default configuration !")
   end
 
 
@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13380, host: 13380 # blmp
   config.vm.network :forwarded_port, guest: 13480, host: 13480 # iiifpres
   config.vm.network :forwarded_port, guest: 13580, host: 13580 # iiifserv
-  config.vm.network :forwarded_port, guest: 13680, host: 13680 # githubmail
+  config.vm.network :forwarded_port, guest: 13780, host: 13780 # githubmail
   config.vm.network :forwarded_port, guest: 13581, host: 13581 # iiifserv monitoring
   config.vm.network :forwarded_port, guest: 13680, host: 13680 # public library
 
