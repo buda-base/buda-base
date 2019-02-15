@@ -54,4 +54,5 @@ Vagrant.configure(2) do |config|
   config.vm.provision "blmp", type: "shell", path: "scripts/blmp.sh"
   config.vm.provision "pdl", type: "shell", path: "scripts/pdl.sh"
   config.vm.provision "nginx", type: "shell", path: "scripts/nginx.sh"
+  config.vm.provision "letsencrypt", type: "shell", path: "scripts/letsencrypt.sh"
 end

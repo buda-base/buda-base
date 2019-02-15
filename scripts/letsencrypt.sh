@@ -8,3 +8,7 @@ fi
 mkdir -p /var/www/letsencrypt
 
 crontab -l | { cat; echo "0 12 * * * /usr/bin/certbot renew --quiet"; } | crontab -
+
+# procedure:
+# certbot certonly -d iiif.bdrc.io --webroot --agree-tos -m github@tbrc.org -w /var/www/letsencrypt
+# uncomment the ssl part of iiif.bdrc.io in /etc/nginx/sites-available/aws.conf
