@@ -13,7 +13,9 @@ fi
 echo ">>>> DATA_DIR: " $DATA_DIR
 export DOWNLOADS=$DATA_DIR/downloads
 export PDL=pdl
+export PDLDEV=pdl-dev
 export PDL_HOME=$DATA_DIR/$PDL
+export PDLDEV_HOME=$DATA_DIR/$PDLDEV
 
 # to use yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
@@ -33,3 +35,6 @@ fi
 # adding update.sh script
 cp /vagrant/conf/pdl/update.sh $PDL_HOME
 chmod a+x $PDL_HOME/update.sh
+
+echo ">>>> copying files to dev environment"
+cp -R $PDL_HOME $PDLDEV_HOME
