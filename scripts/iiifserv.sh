@@ -16,7 +16,7 @@ else
   export DATA_DIR=/usr/local ;
 fi
 
-sudo apt install libturbojpeg0-dev libturbojpeg0 -y -q
+sudo apt install libturbojpeg0 -y -q
 
 echo ">>>> DATA_DIR: " $DATA_DIR
 echo ">>>> JAVA_HOME: " $JAVA_HOME
