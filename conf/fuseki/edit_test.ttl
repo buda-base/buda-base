@@ -1,0 +1,412 @@
+# Fuseki configuration for BDRC, configures two endpoints:
+#   - /bdrc is read-only
+#   - /bdrcrw is read-write
+#
+# This was painful to come up with but the web interface basically allows no option
+# and there is no subclass inference by default so such a configuration file is necessary.
+#
+# The main doc sources are:
+#  - https://jena.apache.org/documentation/fuseki2/fuseki-configuration.html
+#  - https://jena.apache.org/documentation/assembler/assembler-howto.html
+#  - https://jena.apache.org/documentation/assembler/assembler.ttl
+#
+# See https://jena.apache.org/documentation/fuseki2/fuseki-layout.html for the destination of this file.
+
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tdb:     <http://jena.hpl.hp.com/2008/tdb#> .
+@prefix tdb2:    <http://jena.apache.org/2016/tdb#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix :        <http://base/#> .
+@prefix text:    <http://jena.apache.org/text#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix adm:     <http://purl.bdrc.io/ontology/admin/> .
+@prefix bdd:     <http://purl.bdrc.io/data/> .
+@prefix bdo:     <http://purl.bdrc.io/ontology/core/> .
+@prefix bdr:     <http://purl.bdrc.io/resource/> .
+@prefix f:       <java:io.bdrc.ldspdi.sparql.functions.> .
+
+[] rdf:type fuseki:Server ;
+   fuseki:services (
+     :testrw
+   ) .
+
+:testrw rdf:type fuseki:Service ;
+    fuseki:name                       "testrw" ;   # name of the dataset in the url
+    fuseki:serviceQuery               "query" ;    # SPARQL query service
+    fuseki:serviceUpdate              "update" ;   # SPARQL update service
+    fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
+    fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
+    fuseki:dataset                    :test_text_dataset ;
+    .
+
+:test_text_dataset rdf:type     text:TextDataset ;
+     text:dataset  :dataset_test ;
+     text:index    :test_lucene_index ;
+     .
+
+# using TDB
+:dataset_test rdf:type      tdb:DatasetTDB ;
+     tdb:location "/usr/local/fuseki/base/databases/test" ;
+     tdb:unionDefaultGraph true ;
+     .
+
+# Text index description
+:test_lucene_index a text:TextIndexLucene ;
+    text:directory <file:/usr/local/fuseki/base/lucene-test> ;
+    text:storeValues true ;
+    text:multilingualSupport true ;
+    text:entityMap :test_entmap ;
+    text:defineAnalyzers (
+        [ text:defineAnalyzer :romanWordAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
+            text:params (
+                [ text:paramName "mode" ;
+                  text:paramValue "word" ]
+                [ text:paramName "inputEncoding" ;
+                  text:paramValue "roman" ]
+                [ text:paramName "mergePrepositions" ;
+                  text:paramValue true ]
+                [ text:paramName "filterGeminates" ;
+                  text:paramValue true ]
+                )
+            ] ; 
+          ]  
+        [ text:defineAnalyzer :devaWordAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
+            text:params (
+                [ text:paramName "mode" ;
+                  text:paramValue "word" ]
+                [ text:paramName "inputEncoding" ;
+                  text:paramValue "deva" ]
+                [ text:paramName "mergePrepositions" ;
+                  text:paramValue true ]
+                [ text:paramName "filterGeminates" ;
+                  text:paramValue true ]
+                )
+            ] ; 
+          ]  
+        [ text:defineAnalyzer :slpWordAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
+            text:params (
+                [ text:paramName "mode" ;
+                  text:paramValue "word" ]
+                [ text:paramName "inputEncoding" ;
+                  text:paramValue "SLP" ]
+                [ text:paramName "mergePrepositions" ;
+                  text:paramValue true ]
+                [ text:paramName "filterGeminates" ;
+                  text:paramValue true ]
+                )
+            ] ; 
+          ]  
+        [ text:defineAnalyzer :romanLenientIndexAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
+            text:params (
+                [ text:paramName "mode" ;
+                  text:paramValue "syl" ]
+                [ text:paramName "inputEncoding" ;
+                  text:paramValue "roman" ]
+                [ text:paramName "mergePrepositions" ;
+                  text:paramValue false ]
+                [ text:paramName "filterGeminates" ;
+                  text:paramValue true ]
+                [ text:paramName "lenient" ;
+                  text:paramValue "index" ]
+                )
+            ] ; 
+          ]  
+        [ text:defineAnalyzer :devaLenientIndexAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
+            text:params (
+                [ text:paramName "mode" ;
+                  text:paramValue "syl" ]
+                [ text:paramName "inputEncoding" ;
+                  text:paramValue "deva" ]
+                [ text:paramName "mergePrepositions" ;
+                  text:paramValue false ]
+                [ text:paramName "filterGeminates" ;
+                  text:paramValue true ]
+                [ text:paramName "lenient" ;
+                  text:paramValue "index" ]
+                )
+            ] ; 
+          ]  
+        [ text:defineAnalyzer :slpLenientIndexAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
+            text:params (
+                [ text:paramName "mode" ;
+                  text:paramValue "syl" ]
+                [ text:paramName "inputEncoding" ;
+                  text:paramValue "SLP" ]
+                [ text:paramName "mergePrepositions" ;
+                  text:paramValue false ]
+                [ text:paramName "filterGeminates" ;
+                  text:paramValue true ]
+                [ text:paramName "lenient" ;
+                  text:paramValue "index" ]
+                )
+            ] ; 
+          ]  
+        [ text:defineAnalyzer :romanLenientQueryAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
+            text:params (
+                [ text:paramName "mode" ;
+                  text:paramValue "syl" ]
+                [ text:paramName "inputEncoding" ;
+                  text:paramValue "roman" ]
+                [ text:paramName "mergePrepositions" ;
+                  text:paramValue false ]
+                [ text:paramName "filterGeminates" ;
+                  text:paramValue false ]
+                [ text:paramName "lenient" ;
+                  text:paramValue "query" ]
+                )
+            ] ; 
+          ]  
+        [ text:defineAnalyzer :hanzAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramValue "TC2SC" ]
+                [ text:paramName "stopwords" ;
+                  text:paramValue false ]
+                [ text:paramName "filterChars" ;
+                  text:paramValue 0 ]
+                )
+            ] ; 
+          ]  
+        [ text:defineAnalyzer :han2pinyin ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramValue "TC2PYstrict" ]
+                [ text:paramName "stopwords" ;
+                  text:paramValue false ]
+                [ text:paramName "filterChars" ;
+                  text:paramValue 0 ]
+                )
+            ] ; 
+          ]
+        [ text:defineAnalyzer :pinyin ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.zh.ChineseAnalyzer" ;
+            text:params (
+                [ text:paramName "profile" ;
+                  text:paramValue "PYstrict" ]
+                )
+            ] ; 
+          ]
+        [ text:addLang "bo" ; 
+          text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
+            text:params (
+                [ text:paramName "segmentInWords" ;
+                  text:paramValue false ]
+                [ text:paramName "lemmatize" ;
+                  text:paramValue true ]
+                [ text:paramName "filterChars" ;
+                  text:paramValue false ]
+                [ text:paramName "inputMode" ;
+                  text:paramValue "unicode" ]
+                [ text:paramName "stopFilename" ;
+                  text:paramValue "" ]
+                )
+            ] ;
+          ]
+        [ text:addLang "bo-x-ewts" ;
+          text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
+          text:analyzer [
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
+            text:params (
+                [ text:paramName "segmentInWords" ;
+                  text:paramValue false ]
+                [ text:paramName "lemmatize" ;
+                  text:paramValue true ]
+                [ text:paramName "filterChars" ;
+                  text:paramValue false ]
+                [ text:paramName "inputMode" ;
+                  text:paramValue "ewts" ]
+                [ text:paramName "stopFilename" ;
+                  text:paramValue "" ]
+                )
+            ] ;
+          ]
+        [ text:addLang "bo-alalc97" ;
+          text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.bo.TibetanAnalyzer" ;
+            text:params (
+                [ text:paramName "segmentInWords" ;
+                  text:paramValue false ]
+                [ text:paramName "lemmatize" ;
+                  text:paramValue true ]
+                [ text:paramName "filterChars" ;
+                  text:paramValue false ]
+                [ text:paramName "inputMode" ;
+                  text:paramValue "alalc" ]
+                [ text:paramName "stopFilename" ;
+                  text:paramValue "" ]
+                )
+            ] ;
+          ]
+        [ text:addLang "zh-hans" ;
+          text:searchFor ( "zh-hans" "zh-hant" ) ;
+          text:auxIndex ( "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :hanzAnalyzer ] ;
+          ]
+        [ text:addLang "zh-hant" ; 
+          text:searchFor ( "zh-hans" "zh-hant" ) ;
+          text:auxIndex ( "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :hanzAnalyzer
+            ] ;
+          ]
+        [ text:addLang "zh-latn-pinyin" ;
+          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :pinyin
+            ] ;
+          ]
+        [ text:addLang "zh-aux-han2pinyin" ;
+          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :pinyin
+            ] ;
+          text:indexAnalyzer :han2pinyin ;
+          ]
+        [ text:addLang "sa-x-ndia" ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          ]
+        [ text:addLang "sa-aux-deva2Ndia" ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          text:indexAnalyzer :devaLenientIndexAnalyzer ;
+          ]
+        [ text:addLang "sa-aux-roman2Ndia" ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-slp2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer 
+            ] ; 
+          text:indexAnalyzer :romanLenientIndexAnalyzer ;
+          ]
+        [ text:addLang "sa-aux-slp2Ndia" ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          text:indexAnalyzer :slpLenientIndexAnalyzer ;
+          ]
+        [ text:addLang "sa-deva" ;
+          text:searchFor ( "sa-deva" "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-alalc97" ) ;
+          text:auxIndex ( "sa-aux-deva2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :devaWordAnalyzer ] ; 
+          ]
+        [ text:addLang "sa-x-iso" ;
+          text:searchFor ( "sa-x-iso" "sa-x-iast" "sa-x-slp1" "sa-deva" "sa-alalc97" ) ;
+          text:auxIndex ( "sa-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanWordAnalyzer ] ; 
+          ]
+        [ text:addLang "sa-x-slp1" ;
+          text:searchFor ( "sa-x-slp1" "sa-x-iast" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
+          text:auxIndex ( "sa-aux-slp2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :slpWordAnalyzer ] ; 
+          ]
+        [ text:addLang "sa-x-iast" ;
+          text:searchFor ( "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
+          text:auxIndex ( "sa-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanWordAnalyzer ] ; 
+          ]
+        [ text:addLang "sa-alalc97" ;
+          text:searchFor ( "sa-alalc97" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-iast" ) ;
+          text:auxIndex ( "sa-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanWordAnalyzer ] ; 
+          ]
+      ) ;
+    .
+
+# Index mappings
+:test_entmap a text:EntityMap ;
+    text:entityField      "uri" ;
+    text:uidField         "uid" ;
+    text:defaultField     "label" ;
+    text:langField        "lang" ;
+    text:graphField       "graph" ; ## enable graph-specific indexing
+    text:map (
+         [ text:field "label" ; 
+           text:predicate skos:prefLabel ]
+         [ text:field "altLabel" ; 
+           text:predicate skos:altLabel ; ]
+         [ text:field "rdfsLabel" ;
+           text:predicate rdfs:label ; ]
+         [ text:field "chunkContents" ;
+           text:predicate bdo:chunkContents ; ]
+         [ text:field "eTextTitle" ;
+           text:predicate bdo:eTextTitle ; ]
+         [ text:field "logMessage" ;
+           text:predicate adm:logMessage ; ]
+         [ text:field "noteText" ;
+           text:predicate bdo:noteText ; ]
+         [ text:field "workAuthorshipStatement" ;
+           text:predicate bdo:workAuthorshipStatement ; ]
+         [ text:field "workColophon" ; 
+           text:predicate bdo:workColophon ; ]
+         [ text:field "workEditionStatement" ;
+           text:predicate bdo:workEditionStatement ; ]
+         [ text:field "workPublisherLocation" ;
+           text:predicate bdo:workPublisherLocation ; ]
+         [ text:field "workPublisherName" ;
+           text:predicate bdo:workPublisherName ; ]
+         [ text:field "workSeriesName" ;
+           text:predicate bdo:workSeriesName ; ]
+         ) ;
+    .
+    
