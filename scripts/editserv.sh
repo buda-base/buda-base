@@ -34,8 +34,8 @@ useradd -s /bin/bash -g $TC_GROUP -d $THE_HOME $TC_USER
 mkdir -p $DOWNLOADS
 mkdir -p $THE_HOME
 
-# install iiifserv
-echo ">>>> installing iiif server"
+# install editserv
+echo ">>>> installing edit server"
 cd $DOWNLOADS;
 git clone https://github.com/buda-base/editserv.git
 
