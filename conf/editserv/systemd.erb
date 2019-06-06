@@ -1,0 +1,27 @@
+# Systemd unit file for iiifserv
+
+[Unit]
+Description=<%= ENV['SVC_DESC'] %>
+After=syslog.target network.target
+
+[Service]
+Type=simple
+
+Environment=JAVA_HOME=<%= ENV['JAVA_HOME'] %>
+Environment=EDITSERV_HOME=<%= ENV['THE_HOME'] %>
+Environment=AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/<%= ENV['SVC'] %>/credentials
+Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
+
+WorkingDirectory=<%= ENV['THE_HOME'] %>
+ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -Deditserv.configpath=/etc/buda/editserv/ -XX:+ExitOnOutOfMemoryError -Xmx2g -jar  editserv-exec.jar
+SuccessExitStatus=143
+
+User=<%= ENV['TC_USER'] %>
+Group=<%= ENV['TC_GROUP'] %>
+
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

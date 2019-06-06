@@ -30,6 +30,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13780, host: 13780 # githubmail
   config.vm.network :forwarded_port, guest: 13581, host: 13581 # iiifserv monitoring
   config.vm.network :forwarded_port, guest: 13680, host: 13680 # public library
+  config.vm.network :forwarded_port, guest: 13880, host: 13880 # edition server
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
@@ -50,6 +51,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
   config.vm.provision "iiifpres", type: "shell", path: "scripts/iiifpres.sh"
   config.vm.provision "iiifserv", type: "shell", path: "scripts/iiifserv.sh"
+  config.vm.provision "editserv", type: "shell", path: "scripts/editserv.sh"
   config.vm.provision "githubmail", type: "shell", path: "scripts/githubmail.sh"
   config.vm.provision "blmp", type: "shell", path: "scripts/blmp.sh"
   config.vm.provision "pdl", type: "shell", path: "scripts/pdl.sh"
