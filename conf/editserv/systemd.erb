@@ -13,7 +13,7 @@ Environment=AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/<%= ENV['SVC'] %>/credentials
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
 WorkingDirectory=<%= ENV['THE_HOME'] %>
-ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -Deditserv.configpath=/etc/buda/editserv/ -Dspring.profiles.active=PROD -XX:+ExitOnOutOfMemoryError -Xmx2g -jar  editserv-exec.jar
+ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -Dspring.config.location=file:/etc/buda/editserv/application.yml -Deditserv.configpath=/etc/buda/editserv/ -Dspring.profiles.active=PROD -XX:+ExitOnOutOfMemoryError -Xmx2g -jar  editserv-exec.jar
 SuccessExitStatus=143
 
 User=<%= ENV['TC_USER'] %>
