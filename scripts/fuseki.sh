@@ -24,7 +24,7 @@ export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
 export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
 export FUSEKI_WAR="fuseki.war"
 # BUDA Lucene analyzers
-export LUCENE_BO_VER=1.4.4
+export LUCENE_BO_VER=1.5.0
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
 export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
 export LUCENE_ZH_VER=0.4.1
