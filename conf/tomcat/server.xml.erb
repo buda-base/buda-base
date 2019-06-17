@@ -128,7 +128,11 @@
         <!--
         <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
         -->
-
+        <!-- For getting remote IP forwarded by nginx (through header X-Real-IP) -->
+        <Valve className="org.apache.catalina.valves.RemoteIpValve"
+               remoteIpHeader="X-Forwarded-For"
+               requestAttributesEnabled="true"
+               internalProxies="127\.0\.0\.1"  />
         <!-- Access log processes all example.
              Documentation at: /docs/config/valve.html
              Note: The pattern used is equivalent to using pattern="common" -->
