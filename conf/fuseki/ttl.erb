@@ -69,6 +69,18 @@
     text:multilingualSupport true ;
     text:ignoreIndexErrors true ;
     text:entityMap :<%= ENV['EP_NAME'] %>_entmap ;
+    text:propLists (
+        [ text:propListProp bdo:labels ;
+          text:props ( skos:prefLabel 
+                       skos:altLabel 
+                       rdfs:label ) ;
+        ]
+        [ text:propListProp bdo:workStmts ;
+          text:props ( bdo:workColophon 
+                       bdo:workAuthorshipStatement 
+                       bdo:workEditionStatement ) ;
+        ]
+    ) ;
     text:defineAnalyzers (
         [ text:defineAnalyzer :romanWordAnalyzer ; 
           text:analyzer [ 
