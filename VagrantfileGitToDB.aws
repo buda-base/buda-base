@@ -54,9 +54,9 @@ Vagrant.configure(2) do |config|
 # use:  aws ec2 describe-images --image-ids ami-03006931f694ea7eb    - substitute the aws.ami value
 # to determine exactly what the DeviceName needs to be
 # if the describe says xvda use that. If it says /dev/xvda use that
-#     aws.block_device_mapping = [{ 'DeviceName' => 'xvda', 
-#                                   'Ebs.VolumeSize' => 256, 
-#                                   'Ebs.VolumeType' => 'gp2' }]
+    aws.block_device_mapping = [{ 'DeviceName' => 'xvda', 
+                                  'Ebs.VolumeSize' => 32, 
+                                  'Ebs.VolumeType' => 'gp2' }]
 
 	override.nfs.functional = false
     override.ssh.username = "admin"
