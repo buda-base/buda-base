@@ -49,4 +49,5 @@ echo ">>>> installing maven"
 apt-get install maven -y -qq
 echo ">>>> installing php"
 apt-get install php -y -qq
+apt-get install php7.0-mbstring php7.0-zip php7.0-xml -y -qq
 echo ">>>> common tools and utilities installed"
