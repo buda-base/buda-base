@@ -47,4 +47,6 @@ echo ">>>> installing ruby"
 apt-get install ruby -y -qq
 echo ">>>> installing maven"
 apt-get install maven -y -qq
+echo ">>>> installing php"
+apt-get install php -y -qq
 echo ">>>> common tools and utilities installed"
