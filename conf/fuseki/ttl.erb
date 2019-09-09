@@ -82,50 +82,56 @@
         ]
     ) ;
     text:defineAnalyzers (
-        [ text:defineAnalyzer :romanWordAnalyzer ; 
+        [ text:defineAnalyzer :romanSylAnalyzer ; 
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
             text:params (
                 [ text:paramName "mode" ;
-                  text:paramValue "word" ]
+                  text:paramValue "syl" ]
                 [ text:paramName "inputEncoding" ;
                   text:paramValue "roman" ]
                 [ text:paramName "mergePrepositions" ;
                   text:paramValue true ]
                 [ text:paramName "filterGeminates" ;
                   text:paramValue true ]
+                [ text:paramName "normalizeAnusvara" ;
+                  text:paramValue true ]
                 )
             ] ; 
           ]  
-        [ text:defineAnalyzer :devaWordAnalyzer ; 
+        [ text:defineAnalyzer :devaSylAnalyzer ; 
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
             text:params (
                 [ text:paramName "mode" ;
-                  text:paramValue "word" ]
+                  text:paramValue "syl" ]
                 [ text:paramName "inputEncoding" ;
                   text:paramValue "deva" ]
                 [ text:paramName "mergePrepositions" ;
                   text:paramValue true ]
                 [ text:paramName "filterGeminates" ;
                   text:paramValue true ]
+                [ text:paramName "normalizeAnusvara" ;
+                  text:paramValue true ]
                 )
             ] ; 
           ]  
-        [ text:defineAnalyzer :slpWordAnalyzer ; 
+        [ text:defineAnalyzer :slpSylAnalyzer ; 
           text:analyzer [ 
             a text:GenericAnalyzer ;
             text:class "io.bdrc.lucene.sa.SanskritAnalyzer" ;
             text:params (
                 [ text:paramName "mode" ;
-                  text:paramValue "word" ]
+                  text:paramValue "syl" ]
                 [ text:paramName "inputEncoding" ;
                   text:paramValue "SLP" ]
                 [ text:paramName "mergePrepositions" ;
                   text:paramValue true ]
                 [ text:paramName "filterGeminates" ;
+                  text:paramValue true ]
+                [ text:paramName "normalizeAnusvara" ;
                   text:paramValue true ]
                 )
             ] ; 
@@ -363,35 +369,35 @@
           text:auxIndex ( "sa-aux-deva2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :devaWordAnalyzer ] ; 
+            text:useAnalyzer :devaSylAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-iso" ;
           text:searchFor ( "sa-x-iso" "sa-x-iast" "sa-x-slp1" "sa-deva" "sa-alalc97" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :romanWordAnalyzer ] ; 
+            text:useAnalyzer :romanSylAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-slp1" ;
           text:searchFor ( "sa-x-slp1" "sa-x-iast" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
           text:auxIndex ( "sa-aux-slp2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :slpWordAnalyzer ] ; 
+            text:useAnalyzer :slpSylAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-iast" ;
           text:searchFor ( "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :romanWordAnalyzer ] ; 
+            text:useAnalyzer :romanSylAnalyzer ] ; 
           ]
         [ text:addLang "sa-alalc97" ;
           text:searchFor ( "sa-alalc97" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-iast" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :romanWordAnalyzer ] ; 
+            text:useAnalyzer :romanSylAnalyzer ] ; 
           ]
       ) ;
     .
