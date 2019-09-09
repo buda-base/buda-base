@@ -27,7 +27,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13380, host: 13380 # blmp
   config.vm.network :forwarded_port, guest: 13480, host: 13480 # iiifpres
   config.vm.network :forwarded_port, guest: 13580, host: 13580 # iiifserv
-  config.vm.network :forwarded_port, guest: 13780, host: 13780 # githubmail
+# config.vm.network :forwarded_port, guest: 13780, host: 13780 # githubmail
   config.vm.network :forwarded_port, guest: 13581, host: 13581 # iiifserv monitoring
   config.vm.network :forwarded_port, guest: 13680, host: 13680 # public library
   config.vm.network :forwarded_port, guest: 13880, host: 13880 # edition server
@@ -52,7 +52,7 @@ Vagrant.configure(2) do |config|
   config.vm.provision "iiifpres", type: "shell", path: "scripts/iiifpres.sh"
   config.vm.provision "iiifserv", type: "shell", path: "scripts/iiifserv.sh"
   config.vm.provision "editserv", type: "shell", path: "scripts/editserv.sh"
-  config.vm.provision "githubmail", type: "shell", path: "scripts/githubmail.sh"
+# config.vm.provision "githubmail", type: "shell", path: "scripts/githubmail.sh"
   config.vm.provision "blmp", type: "shell", path: "scripts/blmp.sh"
   config.vm.provision "pdl", type: "shell", path: "scripts/pdl.sh"
   config.vm.provision "nginx", type: "shell", path: "scripts/nginx.sh"

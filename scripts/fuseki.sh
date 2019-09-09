@@ -33,6 +33,9 @@ export LUCENE_ZH_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-zh
 export LUCENE_SA_VER=1.1.0
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
 export LUCENE_SA_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
+export BDRC_LIBRARIES_VER=0.5.0
+export BDRC_LIBRARIES_JAR=bdrc-libraries-${BDRC_LIBRARIES_VER}.jar
+export BDRC_LIBRARIES_REL="https://repo.maven.apache.org/maven2/io/bdrc/libraries/bdrc-libraries/${BDRC_LIBRARIES_VER}/${BDRC_LIBRARIES_JAR}"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
@@ -138,8 +141,8 @@ echo ">>>>>>>> adding qonsole-config.js to {$CAT_HOME}/webapps/fuseki/js/app/"
 cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/
 
 echo ">>>>>>>> adding analyzers to {$CAT_HOME}/webapps/fuseki/WEB-INF/lib/"
-# the lucene-bo jar has to be added to fuseki/WEB-INF/lib/ otherwise 
-# tomcat class loading cannot find rest of Lucene classes
+# the lucene-xx and bdrc-libraries jars have to be added to fuseki/WEB-INF/lib/ after 
+# initial unpacking of the fuseki war file
 pushd $DOWNLOADS;
 wget -q -c $LUCENE_BO_REL
 cp $LUCENE_BO_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
@@ -147,6 +150,8 @@ wget -q -c $LUCENE_ZH_REL
 cp $LUCENE_ZH_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 wget -q -c $LUCENE_SA_REL
 cp $LUCENE_SA_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+wget -q -c $BDRC_LIBRARIES_REL
+cp $BDRC_LIBRARIES_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
 
 # put a copy of the log4j.properties in $THE_BASE for use in development

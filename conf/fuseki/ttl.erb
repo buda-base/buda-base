@@ -31,6 +31,8 @@
 # tdb2:DatasetTDB2  rdfs:subClassOf  ja:RDFDataset .
 # tdb2:GraphTDB2    rdfs:subClassOf  ja:Model .
 
+[] ja:loadClass "io.bdrc.libraries.BdrcDateType" .
+
 [] rdf:type fuseki:Server ;
    fuseki:services (
      :<%= ENV['EP_NAME'] %>rw
