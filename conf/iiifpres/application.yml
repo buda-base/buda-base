@@ -1,0 +1,61 @@
+# local/default
+endpoints:
+  hypermedia:
+    enabled: true
+
+info:
+  app:
+    encoding: '@project.build.sourceEncoding@'
+    java:
+      source: '@maven.compiler.source@'
+      target: '@maven.compiler.target@'
+    project:
+      name: '@project.name@'
+      groupId: '@project.groupId@'
+      artifactId: '@project.artifactId@'
+      version: '@project.version@'
+
+server:    
+    context-path: /
+
+spring: 
+    main:
+        banner-mode: "console" 
+    profiles:
+       active: local    
+
+logging: 
+    level: 
+        org: 
+            springframework: DEBUG
+            
+# PROD
+endpoints:
+  hypermedia:
+    enabled: true
+
+info:
+  app:
+    encoding: '@project.build.sourceEncoding@'
+    java:
+      source: '@maven.compiler.source@'
+      target: '@maven.compiler.target@'
+    project:
+      name: '@project.name@'
+      groupId: '@project.groupId@'
+      artifactId: '@project.artifactId@'
+      version: '@project.version@'
+
+server:    
+    context-path: /
+
+spring: 
+    main:
+        banner-mode: "off" 
+    profiles:
+       active: PROD    
+
+logging: 
+    level: 
+        org: 
+            springframework: INFO
