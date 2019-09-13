@@ -1,46 +1,41 @@
 #!/usr/bin/env bash
 
-# this script updates a previous lds-pdi install
-# run as:
-#
-#    sudo update.sh v0.4.5
-
-echo ">>>> updating ldspdi"
-
+echo ">>>> Updating ldspdi server"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
 else
   export DATA_DIR=/usr/local ;
 fi
-
+export TC_USER=ldspdi
+export TC_GROUP=ldspdi
+export SVC=ldspdi
 export DOWNLOADS="$DATA_DIR/downloads"
-export LDSPDI="ldspdi"
-export LDSPDI_HOME="$DATA_DIR/$LDSPDI"
-export FUSEKI=fuseki
-export FUSEKI_HOME=$DATA_DIR/$FUSEKI
-export FUSEKI_WEBAPPS=$FUSEKI_HOME/tomcat/webapps
-export FUSEKI_LIB=$FUSEKI_WEBAPPS/fuseki/WEB-INF/lib
+export IIIFSERV="iiifpres"
+export THE_HOME=$DATA_DIR/$SVC
 
-export VER=$1
-export CLASSES=$2
+service ldspdi stop
 
-echo ">>>> Downloading lds-pdi ${VER}"
+echo ">>>> cloning iiifpres"
+mkdir -p $DOWNLOADS
+mkdir -p $THE_HOME
+
+# install ldspdi
+echo ">>>> installing iiifpres server"
+rm -rf --preserve-root $DOWNLOADS/lds-pdi
 pushd $DOWNLOADS;
-rm -rf --preserve-root lds-pdi
 git clone https://github.com/BuddhistDigitalResourceCenter/lds-pdi.git
-pushd $DOWNLOADS/lds-pdi;
-mvn -B -q clean package
-mv target/lds-pdi.war target/lds-pdi-$VER.war
-mv target/lds-pdi-classes.jar target/lds-pdi-classes-$VER.jar
-chown ldspdi:ldspdi target/lds-pdi-$VER.war
-
-cp target/lds-pdi-$VER.war $LDSPDI_HOME/tomcat/webapps/ROOT.war
-
-if [ "$CLASSES" == "classes" ] ; then
-	echo ">>>> updating fuseki lds-pdi-classes.jar"
-	cp target/lds-pdi-classes-$VER.jar $FUSEKI_LIB/lds-pdi-classes.jar
-	systemctl restart fuseki
-	echo ">>>> fuseki restarted"
+cd lds-pdi
+if [ "$#" -eq 1 ]; then
+    git checkout "$1"
 fi
 
-echo ">>>> lds-pdi updated to ${VER}"
+mvn -B clean package -Dldspdi.configpath=/etc/buda/ldspdi/ -Dspring.profiles.active=PROD
+
+chown $TC_USER:$TC_GROUP target/*.war
+cp target/*-exec.war $THE_HOME/lds-pdi-exec.war
+
+popd
+
+service ldspdi start
+
+echo ">>>> ldspdi was updated"
