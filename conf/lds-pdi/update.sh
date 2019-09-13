@@ -10,17 +10,17 @@ export TC_USER=ldspdi
 export TC_GROUP=ldspdi
 export SVC=ldspdi
 export DOWNLOADS="$DATA_DIR/downloads"
-export IIIFSERV="iiifpres"
+export LDSPDI="ldspdi"
 export THE_HOME=$DATA_DIR/$SVC
 
 service ldspdi stop
 
-echo ">>>> cloning iiifpres"
+echo ">>>> cloning ldspdi"
 mkdir -p $DOWNLOADS
 mkdir -p $THE_HOME
 
 # install ldspdi
-echo ">>>> installing iiifpres server"
+echo ">>>> installing ldspdi server"
 rm -rf --preserve-root $DOWNLOADS/lds-pdi
 pushd $DOWNLOADS;
 git clone https://github.com/BuddhistDigitalResourceCenter/lds-pdi.git
