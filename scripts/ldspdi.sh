@@ -2,6 +2,7 @@
 
 echo ">>>> Installing lds-pdi application..."
 export SVC_DESC="Linked Data Service - Public Data Interface container"
+export SVC=ldspdi
 export TC_USER=ldspdi
 export TC_GROUP=ldspdi
 export TOMCAT_VER=8.0.53
