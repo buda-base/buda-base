@@ -9,20 +9,13 @@ define( [], function() {
       "xsd"   : "http://www.w3.org/2001/XMLSchema#",
       ""      : "http://purl.bdrc.io/ontology/core/",
       "adm"   : "http://purl.bdrc.io/ontology/admin/",
-      "bdd"   : "http://purl.bdrc.io/data/",
+      "bdg"   : "http://purl.bdrc.io/graph/",
       "bdo"   : "http://purl.bdrc.io/ontology/core/",
       "bdr"   : "http://purl.bdrc.io/resource/",
-      "aut"   : "http://purl.bdrc.io/ontology/ext/auth/",
-      "adr"   : "http://purl.bdrc.io/resource-auth/",
-      "bdan"  : "http://purl.bdrc.io/annotation/",
-      "bdac"  : "http://purl.bdrc.io/anncollection/",
-      "oa"	  : "http://www.w3.org/ns/oa#",
-      "as"    : "http://www.w3.org/ns/activitystreams#",
-      "foaf"  : "http://xmlns.com/foaf/0.1/",
+      "bda"   : "http://purl.bdrc.io/admindata/",
       "skos"  : "http://www.w3.org/2004/02/skos/core#",
-      "tbr"   : "http://purl.bdrc.io/ontology/toberemoved/",
       "text"  : "http://jena.apache.org/text#",
-      "vcard" : "http://www.w3.org/2006/vcard/ns#"
+      "dila"  : "http://purl.dila.edu.tw/resource/"
     },
     queries: [
       { "name": "Selection of triples",

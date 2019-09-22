@@ -18,12 +18,7 @@ fi
 echo ">>>> DATA_DIR: " $DATA_DIR
 export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
-export THE_BASE=$THE_HOME/base
-export CAT_HOME=$THE_HOME/tomcat
-export SHUTDOWN_PORT=13405
 export MAIN_PORT=13480
-export REDIR_PORT=13443
-export AJP_PORT=13409
 export MAX_MEM="-Xmx1024M"
 
 # add Service USER
@@ -35,27 +30,11 @@ useradd -s /bin/bash -g $TC_GROUP -d $THE_HOME $TC_USER
 
 # place to download non apt-get items
 mkdir -p $DOWNLOADS
-
-# install tomcat container
-# download tomcat
-echo ">>>> downloading tomcat 8"
-pushd $DOWNLOADS;
-wget -q -c $TC_REL
-# unpack tomcat
-echo ">>>> unpacking tomcat 8"
-mkdir -p $CAT_HOME
-tar xf $DOWNLOADS/apache-tomcat-$TOMCAT_VER.tar.gz -C $CAT_HOME --strip-components=1
-# configure server
-echo ">>>> configuring server.xml tomcat 8"
-erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
-# enable tomcat admin and manager apps
-cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
-cp  /vagrant/conf/tomcat/web.xml $CAT_HOME/conf/
-popd
+mkdir -p $THE_HOME
 
 # install iiifpres
 echo ">>>> installing iiifpres"
-cp /vagrant/conf/iiifpres/update.sh $THE_HOME
+cp /vagrant/conf/iiifpres/update.sh $THE_HOME/update.sh
 chmod a+x $THE_HOME/update.sh
 bash $THE_HOME/update.sh
 
@@ -64,16 +43,8 @@ echo ">>>> fixing permissions"
 chown -R $USER:$USER $DOWNLOADS
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
-pushd $CAT_HOME
-# chgrp -R $TC_USER conf webapps
-chmod g+rwx conf webapps
-chmod g+r conf/*
-# chown -R $TC_USER work/ temp/ logs/ webapps/
-popd
-
-# setup as Debian systemctl service listening on $MAIN_PORT
-echo ">>>> setting up ${SVC} as service"
-erb /vagrant/conf/tomcat/systemd.erb > /etc/systemd/system/$SVC.service
+echo ">>>> setting up ${SVC} as service listening on ${MAIN_PORT}"
+erb /vagrant/conf/spring/systemd.erb > /etc/systemd/system/$SVC.service
 echo ">>>> starting ${SVC} service"
 systemctl daemon-reload
 systemctl enable $SVC

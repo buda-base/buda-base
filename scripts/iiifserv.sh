@@ -24,6 +24,7 @@ export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
 export IIIFSERV="buda-iiif-server"
 export MAIN_PORT=13580
+export EXECFILE=buda-hymir-exec.jar
 
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"
@@ -49,16 +50,15 @@ mvn install:install-file -Dfile=webp-imageio-core-0.1.0.jar -DgroupId=iiif.bdrc.
 
 mvn -B package
 chown $TC_USER:$TC_GROUP target/*.jar
-cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/buda-hymir-exec.jar
+cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/$EXECFILE
 
 cp /vagrant/conf/iiifserv/update.sh $THE_HOME/
 
 echo ">>>> fixing permissions"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
-# setup as Debian systemctl service listening on 15680
-echo ">>>> setting up ${IIIFSERV} as service listening on 15580"
-erb /vagrant/conf/iiifserv/systemd.erb > /etc/systemd/system/$SVC.service
+echo ">>>> setting up ${SVC} as service listening on ${MAIN_PORT}"
+erb /vagrant/conf/spring/systemd.erb > /etc/systemd/system/$SVC.service
 
 echo ">>>> starting ${SVC} service"
 systemctl daemon-reload

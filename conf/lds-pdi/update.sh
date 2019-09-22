@@ -23,13 +23,13 @@ mkdir -p $THE_HOME
 echo ">>>> installing ldspdi server"
 rm -rf --preserve-root $DOWNLOADS/lds-pdi
 pushd $DOWNLOADS;
-git clone https://github.com/BuddhistDigitalResourceCenter/lds-pdi.git
+git clone https://github.com/buda-base/lds-pdi.git
 cd lds-pdi
 if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
 
-mvn -B clean package -Dldspdi.configpath=/etc/buda/ldspdi/ -Dspring.profiles.active=PROD
+mvn -B clean package -Dldspdi.configpath=/etc/buda/ldspdi/ -Dspring.profiles.active=PROD -DskipTests -Dmaven.test.skip=true
 
 chown $TC_USER:$TC_GROUP target/*.war
 cp target/*-exec.war $THE_HOME/lds-pdi-exec.war

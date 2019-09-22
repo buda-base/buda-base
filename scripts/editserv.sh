@@ -5,7 +5,7 @@ echo ">>>> Installing edit server"
 export TC_USER=editserv
 export TC_GROUP=editserv
 export SVC=editserv
-export SVC_DESC="BUDA EDIT Server"
+export SVC_DESC="BUDA Edition Server"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 #export JAVA_HOME=/opt/java-jdk/jdk1.8.0_151
 echo $JAVA_HOME
@@ -20,8 +20,9 @@ echo ">>>> DATA_DIR: " $DATA_DIR
 echo ">>>> JAVA_HOME: " $JAVA_HOME
 export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
-export EDITSERV="editserv"
+export EXECFILE=editserv-exec.jar
 export MAIN_PORT=13880
+
 
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"
@@ -39,20 +40,19 @@ echo ">>>> installing edit server"
 cd $DOWNLOADS;
 git clone https://github.com/buda-base/editserv.git
 
-cd $EDITSERV
+cd editserv
 
 mvn -B package
 chown $TC_USER:$TC_GROUP target/*.jar
-cp target/editserv-exec.jar $THE_HOME/editserv-exec.jar
+cp target/editserv-exec.jar $THE_HOME/$EXECFILE
 
 cp /vagrant/conf/editserv/update.sh $THE_HOME/
 
 echo ">>>> fixing permissions"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
-# setup as Debian systemctl service listening on 15880
-echo ">>>> setting up ${EDITSERV} as service listening on 15880"
-erb /vagrant/conf/editserv/systemd.erb > /etc/systemd/system/$SVC.service
+echo ">>>> setting up ${SVC} as service listening on ${MAIN_PORT}"
+erb /vagrant/conf/spring/systemd.erb > /etc/systemd/system/$SVC.service
 
 echo ">>>> starting ${SVC} service"
 systemctl daemon-reload
