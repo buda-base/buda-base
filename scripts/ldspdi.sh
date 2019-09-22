@@ -21,17 +21,15 @@ export MAX_MEM="-Xmx4096M"
 
 export EXECFILE=lds-pdi-exec.war
 
-mkdir -p $CAT_HOME
-
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"
 groupadd $TC_GROUP
 # useradd -s /bin/false -g $TC_GROUP -d $THE_HOME $TC_USER
 # during development let the user login
-useradd -s /bin/bash -g $TC_GROUP -d $LDSPDI_HOME $TC_USER
+useradd -s /bin/bash -g $TC_GROUP -d $THE_HOME $TC_USER
 
-cp /vagrant/conf/lds-pdi/update.sh $LDSPDI_HOME/
-chmod u+x $LDSPDI_HOME/update.sh
+cp /vagrant/conf/lds-pdi/update.sh $THE_HOME/
+chmod u+x $THE_HOME/update.sh
 
 echo ">>>> cloning ldspdi"
 mkdir -p $DOWNLOADS
@@ -56,7 +54,7 @@ popd
 
 # setup as Debian systemctl service listening on $MAIN_PORT
 echo ">>>> setting up ${SVC} as service listening on ${MAIN_PORT}"
-erb /vagrant/conf/tomcat/systemd.erb > /etc/systemd/system/$SVC.service
+erb /vagrant/conf/spring/systemd.erb > /etc/systemd/system/$SVC.service
 echo ">>>> starting ${SVC} service"
 systemctl daemon-reload
 systemctl enable $SVC
