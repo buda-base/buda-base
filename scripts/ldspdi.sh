@@ -15,7 +15,7 @@ echo ">>>> DATA_DIR: " $DATA_DIR
 export DOWNLOADS=$DATA_DIR/downloads
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 
-export THE_HOME=$DATA_DIR/$LDSPDI
+export THE_HOME=$DATA_DIR/$SVC
 export MAIN_PORT=13280
 export MAX_MEM="-Xmx4096M"
 
@@ -27,9 +27,6 @@ groupadd $TC_GROUP
 # useradd -s /bin/false -g $TC_GROUP -d $THE_HOME $TC_USER
 # during development let the user login
 useradd -s /bin/bash -g $TC_GROUP -d $THE_HOME $TC_USER
-
-cp /vagrant/conf/lds-pdi/update.sh $THE_HOME/
-chmod u+x $THE_HOME/update.sh
 
 echo ">>>> cloning ldspdi"
 mkdir -p $DOWNLOADS
@@ -51,6 +48,9 @@ chown $TC_USER:$TC_GROUP target/*.war
 cp target/*-exec.war $THE_HOME/lds-pdi-exec.war
 
 popd
+
+cp /vagrant/conf/lds-pdi/update.sh $THE_HOME/
+chmod u+x $THE_HOME/update.sh
 
 # setup as Debian systemctl service listening on $MAIN_PORT
 echo ">>>> setting up ${SVC} as service listening on ${MAIN_PORT}"
