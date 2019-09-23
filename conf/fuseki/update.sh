@@ -7,10 +7,9 @@ systemctl stop marple
 echo ">>>> Updating Fuseki"
 export TC_USER=fuseki
 export TC_GROUP=fuseki
-export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.42/bin/apache-tomcat-8.0.42.tar.gz"
 # set erb vars
 # endpoint name for fuseki
-export EP_NAME=bdrc
+export EP_NAME=core
 export SVC=fuseki
 export SVC_DESC="Jena-Fuseki Tomcat container"
 export MARPLE_SVC=marple
@@ -18,13 +17,13 @@ export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 export LUCENE_BO_VER=1.5.0
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
-export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
+export LUCENE_BO_REL="https://github.com/buda-base/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
 export LUCENE_ZH_VER=0.4.1
 export LUCENE_ZH_JAR="lucene-zh-${LUCENE_ZH_VER}.jar"
-export LUCENE_ZH_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
+export LUCENE_ZH_REL="https://github.com/buda-base/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
 export LUCENE_SA_VER=1.1.0
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
-export LUCENE_SA_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
+export LUCENE_SA_REL="https://github.com/buda-base/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
@@ -36,19 +35,9 @@ export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
 export THE_BASE=$THE_HOME/base
 export CAT_HOME=$THE_HOME/tomcat
-export SHUTDOWN_PORT=13105
-export MAIN_PORT=13180
-export REDIR_PORT=13143
-export AJP_PORT=13109
-export MAX_MEM="-Xmx4096M"
-export LUCENE_INDEX=lucene-$EP_NAME
-export MARPLE_APP_PORT=13190
-export MARPLE_ADM_PORT=13191
-export MARPLE_JAR=marple-1.0.jar
-export MARPLE_HOME=$THE_HOME/marple
 
-echo ">>>>>>>> updating bdrc.ttl to {$THE_BASE}/configuration/"
-erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/bdrc.ttl
+echo ">>>>>>>> updating {$EP_NAME}.ttl to {$THE_BASE}/configuration/"
+erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/$EP_NAME.ttl
 
 echo ">>>>>>>> updating qonsole-config.js to {$CAT_HOME}/webapps/fuseki/js/app/"
 cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/

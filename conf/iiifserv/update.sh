@@ -24,7 +24,7 @@ mkdir -p $THE_HOME
 echo ">>>> installing iiif server"
 rm -rf --preserve-root $DOWNLOADS/buda-iiif-server
 pushd $DOWNLOADS;
-git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-server.git
+git clone https://github.com/buda-base/buda-iiif-server.git
 cd buda-iiif-server
 if [ "$#" -eq 1 ]; then
     git checkout "$1"

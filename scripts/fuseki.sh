@@ -8,7 +8,7 @@ export TOMCAT_VER=8.0.53
 export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
 # set erb vars
 # endpoint name for fuseki
-export EP_NAME=bdrc
+export EP_NAME=core
 export SVC=fuseki
 export SVC_DESC="Jena-Fuseki Tomcat container"
 export MARPLE_SVC=marple
@@ -17,7 +17,7 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # FUSEKI VARS
 # the following two lines are for BDRC specific releases
 # export FUSEKI_WAR="jena-fuseki-war-3.10.0-SNAPSHOT.war"
-# export FUSEKI_ZIP="https://github.com/BuddhistDigitalResourceCenter/jena/releases/download/3.10.0-SNAP_04/${FUSEKI_WAR}.zip"
+# export FUSEKI_ZIP="https://github.com/buda-base/jena/releases/download/3.10.0-SNAP_04/${FUSEKI_WAR}.zip"
 # the following four lines are for official Apache releases
 export FUSEKI_DIR="apache-jena-fuseki-3.10.0"
 export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
@@ -26,13 +26,13 @@ export FUSEKI_WAR="fuseki.war"
 # BUDA Lucene analyzers
 export LUCENE_BO_VER=1.5.0
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
-export LUCENE_BO_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
+export LUCENE_BO_REL="https://github.com/buda-base/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
 export LUCENE_ZH_VER=0.4.1
 export LUCENE_ZH_JAR="lucene-zh-${LUCENE_ZH_VER}.jar"
-export LUCENE_ZH_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
+export LUCENE_ZH_REL="https://github.com/buda-base/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
 export LUCENE_SA_VER=1.1.0
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
-export LUCENE_SA_REL="https://github.com/BuddhistDigitalResourceCenter/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
+export LUCENE_SA_REL="https://github.com/buda-base/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
 export BDRC_LIBRARIES_VER=0.5.0
 export BDRC_LIBRARIES_JAR=bdrc-libraries-${BDRC_LIBRARIES_VER}.jar
 export BDRC_LIBRARIES_REL="https://repo.maven.apache.org/maven2/io/bdrc/libraries/bdrc-libraries/${BDRC_LIBRARIES_VER}/${BDRC_LIBRARIES_JAR}"
@@ -134,8 +134,8 @@ mkdir -p $THE_BASE/configuration
 echo ">>>>>>>> adding shiro.ini to {$THE_BASE}/"
 cp /vagrant/conf/fuseki/shiro.ini $THE_BASE/
 
-echo ">>>>>>>> adding bdrc.ttl to {$THE_BASE}/configuration/"
-erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/bdrc.ttl
+echo ">>>>>>>> updating {$EP_NAME}.ttl to {$THE_BASE}/configuration/"
+erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/$EP_NAME.ttl
 
 echo ">>>>>>>> adding qonsole-config.js to {$CAT_HOME}/webapps/fuseki/js/app/"
 cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/

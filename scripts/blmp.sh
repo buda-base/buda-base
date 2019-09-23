@@ -24,9 +24,9 @@ pushd $BLMP_HOME
 
 if [ ! -d $BLMP_HOME/blmp-prototype-flow ] ; then 
 	echo ">>>> downloading owl-schema"
-	git clone https://github.com/BuddhistDigitalResourceCenter/owl-schema.git
+	git clone https://github.com/buda-base/owl-schema.git
   	echo ">>>> downloading & installing blmp-prototype_flow"
-	git clone https://github.com/BuddhistDigitalResourceCenter/blmp-prototype-flow.git
+	git clone https://github.com/buda-base/blmp-prototype-flow.git
 	cd blmp-prototype-flow
 	yarn -s --non-interactive install
 	yarn -s --non-interactive build

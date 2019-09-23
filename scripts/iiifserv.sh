@@ -40,7 +40,7 @@ mkdir -p $THE_HOME
 # install iiifserv
 echo ">>>> installing iiif server"
 cd $DOWNLOADS;
-git clone https://github.com/BuddhistDigitalResourceCenter/buda-iiif-server.git
+git clone https://github.com/buda-base/buda-iiif-server.git
 
 cd $IIIFSERV
 

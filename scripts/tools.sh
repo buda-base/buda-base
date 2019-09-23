@@ -19,8 +19,6 @@ echo ">>>> installing libyaml-dev"
 apt-get install libyaml-dev  -y -qq
 echo ">>>> installing python-setuptools"
 apt-get install python-setuptools  -y -qq
-echo ">>>> installing python-pip"
-apt-get install python-pip  -y -qq
 echo ">>>> installing python3-pip"
 apt-get install python3-pip  -y -qq
 echo ">>>> installing lsof"
