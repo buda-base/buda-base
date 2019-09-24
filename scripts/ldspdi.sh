@@ -49,8 +49,12 @@ cp target/*-exec.war $THE_HOME/lds-pdi-exec.war
 
 popd
 
+git clone https://github.com/buda-base/lds-queries.git $THE_HOME/queries
+
 cp /vagrant/conf/lds-pdi/update.sh $THE_HOME/
 chmod u+x $THE_HOME/update.sh
+
+chown -R $TC_USER:$TC_GROUP $THE_HOME
 
 # setup as Debian systemctl service listening on $MAIN_PORT
 echo ">>>> setting up ${SVC} as service listening on ${MAIN_PORT}"
