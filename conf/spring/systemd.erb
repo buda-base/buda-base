@@ -7,13 +7,14 @@ After=syslog.target network.target
 [Service]
 Type=simple
 
+SyslogIdentifier=<%= ENV['SVC'] %>
 Environment=JAVA_HOME=<%= ENV['JAVA_HOME'] %>
 Environment=IIFPRES_HOME=<%= ENV['THE_HOME'] %>
 Environment=AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/<%= ENV['SVC'] %>/credentials
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
 WorkingDirectory=<%= ENV['THE_HOME'] %>
-ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -D<%= ENV['SVC'] %>.configpath=/etc/buda/<%= ENV['SVC'] %>/ -Dspring.config.location=file:/etc/buda/<%= ENV['SVC'] %>/application.yml -Dspring.profiles.active=PROD -XX:+ExitOnOutOfMemoryError -Xms512M <%= ENV['MAX_MEM'] %> -jar <%= ENV['EXECFILE'] %>
+ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -D<%= ENV['SVC'] %>.configpath=/etc/buda/<%= ENV['SVC'] %>/ -Dspring.profiles.active=PROD -XX:+ExitOnOutOfMemoryError -Xms512M <%= ENV['JAVA_EXTRA_ARGS'] %> -jar <%= ENV['EXECFILE'] %>
 SuccessExitStatus=143
 
 User=<%= ENV['TC_USER'] %>

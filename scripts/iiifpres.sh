@@ -17,7 +17,7 @@ echo ">>>> DATA_DIR: " $DATA_DIR
 export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
 export MAIN_PORT=13480
-export MAX_MEM="-Xmx1024M"
+export JAVA_EXTRA_ARGS="-Xmx1024M"
 
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"

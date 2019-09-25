@@ -17,7 +17,7 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 
 export THE_HOME=$DATA_DIR/$SVC
 export MAIN_PORT=13280
-export MAX_MEM="-Xmx4096M"
+export JAVA_EXTRA_ARGS="-Xmx4096M"
 
 export EXECFILE=lds-pdi-exec.war
 
@@ -58,7 +58,7 @@ chown -R $TC_USER:$TC_GROUP $THE_HOME
 
 # setup as Debian systemctl service listening on $MAIN_PORT
 echo ">>>> setting up ${SVC} as service listening on ${MAIN_PORT}"
-erb /vagrant/conf/spring/systemdNoYml.erb > /etc/systemd/system/$SVC.service
+erb /vagrant/conf/spring/systemd.erb > /etc/systemd/system/$SVC.service
 echo ">>>> starting ${SVC} service"
 systemctl daemon-reload
 systemctl enable $SVC

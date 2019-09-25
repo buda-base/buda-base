@@ -22,7 +22,7 @@ export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
 export EXECFILE=editserv-exec.jar
 export MAIN_PORT=13880
-
+export JAVA_EXTRA_ARGS=-Dspring.config.location=file:/etc/buda/$SVC/application.yml
 
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"
