@@ -53,6 +53,9 @@ mvn -B package
 chown $TC_USER:$TC_GROUP target/*.jar
 cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/$EXECFILE
 
+mkdir -p /etc/buda/iiifserv
+erb /vagrant/conf/spring/logback.xml.erb > /etc/buda/iiifserv/logback.xml
+
 cp /vagrant/conf/iiifserv/update.sh $THE_HOME/
 
 echo ">>>> fixing permissions"

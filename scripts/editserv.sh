@@ -46,6 +46,9 @@ mvn -B package
 chown $TC_USER:$TC_GROUP target/*.jar
 cp target/editserv-exec.jar $THE_HOME/$EXECFILE
 
+mkdir -p /etc/buda/editserv
+erb /vagrant/conf/spring/logback.xml.erb > /etc/buda/editserv/logback.xml
+
 cp /vagrant/conf/editserv/update.sh $THE_HOME/
 
 echo ">>>> fixing permissions"

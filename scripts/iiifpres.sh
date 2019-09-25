@@ -30,6 +30,8 @@ useradd -s /bin/bash -g $TC_GROUP -d $THE_HOME $TC_USER
 mkdir -p $DOWNLOADS
 mkdir -p $THE_HOME
 
+erb /vagrant/conf/spring/logback.xml.erb > /etc/buda/iiifpres/logback.xml
+
 # install iiifpres
 echo ">>>> installing iiifpres"
 cp /vagrant/conf/iiifpres/update.sh $THE_HOME/update.sh
