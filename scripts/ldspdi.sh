@@ -52,8 +52,6 @@ popd
 mkdir -p /etc/buda/ldspdi
 erb /vagrant/conf/spring/logback.xml.erb > /etc/buda/ldspdi/logback.xml
 
-git clone https://github.com/buda-base/lds-queries.git $THE_HOME/queries
-
 cp /vagrant/conf/lds-pdi/update.sh $THE_HOME/
 chmod u+x $THE_HOME/update.sh
 

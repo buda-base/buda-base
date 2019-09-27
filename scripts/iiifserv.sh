@@ -46,8 +46,8 @@ git clone https://github.com/buda-base/buda-iiif-server.git
 cd $IIIFSERV
 
 #install external Webp jar
-wget https://github.com/buda-base/buda-iiif-server/releases/download/0.1/webp-imageio-core-0.1.0.jar
-mvn install:install-file -Dfile=webp-imageio-core-0.1.0.jar -DgroupId=iiif.bdrc.io -DartifactId=webp-imageio -Dversion=0.1.0 -Dpackaging=j$
+wget -q https://github.com/buda-base/buda-iiif-server/releases/download/0.1/webp-imageio-core-0.1.0.jar
+mvn -B install:install-file -Dfile=webp-imageio-core-0.1.0.jar -DgroupId=iiif.bdrc.io -DartifactId=webp-imageio -Dversion=0.1.0 -Dpackaging=j$
 
 mvn -B package
 chown $TC_USER:$TC_GROUP target/*.jar
