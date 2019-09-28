@@ -2,9 +2,10 @@
 
 The base platform is built using Vagrant and VirtualBox:
 
-1. Install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads). 
+1. Install [Vagrant](https://www.vagrantup.com/downloads.html) and [VirtualBox](https://www.virtualbox.org/wiki/Downloads).
 1. [Download](https://github.com/buda-base/buda-base/archive/master.zip) or `git clone` this repository.
 1. cd into the unzipped directory or git clone
+1. install VirtualBox guest additions with `vagrant plugin install vagrant-vbguest`
 1. run `vagrant up` to summon a local instance
 
 Or for an AWS EC2 instance:

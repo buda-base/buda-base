@@ -15,6 +15,9 @@ Vagrant.configure(2) do |config|
 
   config.vm.box = "debian/stretch64"
 
+  # temporary, see https://github.com/dotless-de/vagrant-vbguest/issues/351
+  config.vbguest.auto_update = false
+
   disk = 'dataDisk.vdi'
   config.vm.synced_folder ".", "/vagrant", type: "rsync",
     rsync__exclude: [ "dataDisk.vdi", ".git", ".gitignore", ".DS_Store", ".project" ],

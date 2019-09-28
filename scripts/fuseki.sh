@@ -137,6 +137,9 @@ cp /vagrant/conf/fuseki/shiro.ini $THE_BASE/
 echo ">>>>>>>> updating {$EP_NAME}.ttl to {$THE_BASE}/configuration/"
 erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/$EP_NAME.ttl
 
+echo ">>>>>>>> updating auth.ttl to {$THE_BASE}/configuration/"
+erb /vagrant/conf/fuseki/auth.ttl.erb > $THE_BASE/configuration/auth.ttl
+
 echo ">>>>>>>> adding qonsole-config.js to {$CAT_HOME}/webapps/fuseki/js/app/"
 cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/
 
