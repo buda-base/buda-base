@@ -1,0 +1,17 @@
+[Unit]
+Description=Grafana front end for all BUDA metrics
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=<%= ENV['TC_USER'] %>
+Group=<%= ENV['TC_GROUP'] %>
+Type=simple
+
+WorkingDirectory=<%= ENV['THE_HOME'] %>/grafana
+ExecStart=<%= ENV['THE_HOME'] %>/grafana/bin/grafana-server
+
+UMask=0007
+
+[Install]
+WantedBy=multi-user.target
