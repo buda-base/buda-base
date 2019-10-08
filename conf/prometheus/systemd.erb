@@ -1,0 +1,17 @@
+[Unit]
+Description=Prometheus Time Series Collection and Processing Server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=<%= ENV['TC_USER'] %>
+Group=<%= ENV['TC_GROUP'] %>
+Type=simple
+
+ExecStart=/usr/local/bin/prometheus \
+    --config.file <%= ENV['CONF_DIR'] %>/prometheus.yml \
+    --storage.tsdb.path /var/lib/prometheus/ \
+    --web.listen-address=:<%= ENV['MAIN_PORT'] %>
+
+[install]
+WantedBy=multi-user.target
