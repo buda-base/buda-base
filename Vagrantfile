@@ -34,6 +34,8 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13581, host: 13581 # iiifserv monitoring
   config.vm.network :forwarded_port, guest: 13680, host: 13680 # public library
   config.vm.network :forwarded_port, guest: 13880, host: 13880 # edition server
+  config.vm.network :forwarded_port, guest: 13999, host: 13999 # prometheus monitoring server
+  config.vm.network :forwarded_port, guest: 14009, host: 14009 # Grafana monitoring UI
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
@@ -60,4 +62,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "pdl", type: "shell", path: "scripts/pdl.sh"
   config.vm.provision "nginx", type: "shell", path: "scripts/nginx.sh"
   config.vm.provision "letsencrypt", type: "shell", path: "scripts/letsencrypt.sh"
+  config.vm.provision "prometheus", type: "shell", path: "scripts/prometheus.sh"
+  config.vm.provision "grafana", type: "shell", path: "scripts/grafana.sh"
 end
