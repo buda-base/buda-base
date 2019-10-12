@@ -304,14 +304,22 @@
             ] ;
           ]
         [ text:addLang "zh-hans" ;
-          text:searchFor ( "zh-hans" "zh-hant" ) ;
+          text:searchFor ( "zh-hans" "zh-hant" "zh-hani" ) ;
           text:auxIndex ( "zh-aux-han2pinyin" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :hanzAnalyzer ] ;
           ]
         [ text:addLang "zh-hant" ; 
-          text:searchFor ( "zh-hans" "zh-hant" ) ;
+          text:searchFor ( "zh-hans" "zh-hant" "zh-hani" ) ;
+          text:auxIndex ( "zh-aux-han2pinyin" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :hanzAnalyzer
+            ] ;
+          ]
+        [ text:addLang "zh-hani" ;
+          text:searchFor ( "zh-hans" "zh-hant" "zh-hani" ) ;
           text:auxIndex ( "zh-aux-han2pinyin" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
