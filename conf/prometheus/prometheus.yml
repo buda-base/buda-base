@@ -1,0 +1,38 @@
+# my global config
+global:
+  scrape_interval:     5s # Set the scrape interval to every 1 minute (This is the default value).
+  evaluation_interval: 5s # Evaluate rules every 1 minute. (This is the default value).
+  # scrape_timeout is set to the global default (10s).
+
+scrape_configs:
+  # The job name is added as a label `job=<job_name>` to any timeseries scraped from this config.
+
+  - job_name: 'prometheus'
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+    static_configs:
+    - targets: ['localhost:13999']
+
+  - job_name: 'iiifpres-spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 30s
+    static_configs:
+    - targets: ['localhost:13480']
+
+  - job_name: 'ldspdi-spring-actuator'
+    metrics_path: '/actuator/prometheus'
+    scrape_interval: 30s
+    static_configs:
+    - targets: ['localhost:13280']
+
+  - job_name: 'iiifserv-spring-actuator'
+    metrics_path: '/monitoring/prometheus'
+    scrape_interval: 30s
+    static_configs:
+    - targets: ['localhost:9001']
+
+  - job_name: 'fuseki-metrics'
+    metrics_path: '/fuseki/$/metrics'
+    scrape_interval: 30s
+    static_configs:
+    - targets: ['localhost:13180']
