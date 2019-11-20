@@ -407,6 +407,27 @@
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanSylAnalyzer ] ; 
           ]
+        [ text:addLang "km-x-kmfemc" ;
+          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          ]
+        [ text:addLang "pi-x-iast" ;
+          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          ]
+        [ text:addLang "pi-x-kmfemc" ;
+          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          ]
       ) ;
     .
 
