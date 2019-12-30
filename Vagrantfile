@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.hostname = "buda-local"
 
-  config.vm.box = "debian/stretch64"
+  config.vm.box = "debian/buster64"
 
   # temporary, see https://github.com/dotless-de/vagrant-vbguest/issues/351
   config.vbguest.auto_update = false
@@ -26,7 +26,8 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13180, host: 13180 # jena-fuseki
   config.vm.network :forwarded_port, guest: 13190, host: 13190 # marple client
   config.vm.network :forwarded_port, guest: 13191, host: 13191 # marple admin
-  config.vm.network :forwarded_port, guest: 13280, host: 13280 # lds-pdi
+  config.vm.network :forwarded_port, guest: 13280, host: 13280 # ldspdi
+  config.vm.network :forwarded_port, guest: 14280, host: 14280 # ldspdi-dev
   config.vm.network :forwarded_port, guest: 13380, host: 13380 # blmp
   config.vm.network :forwarded_port, guest: 13480, host: 13480 # iiifpres
   config.vm.network :forwarded_port, guest: 13580, host: 13580 # iiifserv
@@ -53,7 +54,8 @@ Vagrant.configure(2) do |config|
   config.vm.provision "config", type: "shell", path: "scripts/config.sh"
   config.vm.provision "node-js", type: "shell", path: "scripts/node-js.sh"
   config.vm.provision "fuseki", type: "shell", path: "scripts/fuseki.sh"
-  config.vm.provision "lds-pdi", type: "shell", path: "scripts/ldspdi.sh"
+  config.vm.provision "ldspdi", type: "shell", path: "scripts/ldspdi.sh"
+#  config.vm.provision "ldspdi-dev", type: "shell", path: "scripts/ldspdi-dev.sh"
   config.vm.provision "iiifpres", type: "shell", path: "scripts/iiifpres.sh"
   config.vm.provision "iiifserv", type: "shell", path: "scripts/iiifserv.sh"
 #  config.vm.provision "editserv", type: "shell", path: "scripts/editserv.sh"

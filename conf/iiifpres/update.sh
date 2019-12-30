@@ -31,7 +31,7 @@ if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
 
-mvn -B clean package -Diiifpres.configpath=/etc/buda/iiifpres/ -Dspring.config.location=file:/etc/buda/iiifpres/application.yml
+mvn -B clean package -Diiifpres.configpath=/etc/buda/$SVC/ -Dspring.config.location=file:/etc/buda/$SVC/application.yml
 
 chown $TC_USER:$TC_GROUP target/*.war
 cp target/*-exec.war $THE_HOME/$EXECFILE
@@ -39,6 +39,6 @@ cp target/*-exec.war $THE_HOME/$EXECFILE
 popd
 #rm -rf --preserve-root $DOWNLOADS/$IIIFSERV
 
-service iiifpres start
+service $SVC start
 
 echo ">>>> iiifpres was updated"

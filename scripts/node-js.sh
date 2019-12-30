@@ -8,6 +8,6 @@ then
 	curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 	apt-get update -qq
-	apt-get install -y -qq nodejs build-essential yarn
+	apt-get install -y -qq nodejs build-essential yarn npm
 	npm install -g n
 fi

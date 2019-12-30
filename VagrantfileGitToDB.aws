@@ -47,9 +47,7 @@ Vagrant.configure(2) do |config|
     
     aws.keypair_name = "BDRC_Dev_001"
     aws.security_groups = [ 'BDRC_Dev_SG_001' ]
-    # debian-stretch-hvm-x86_64-gp2-2018-01-06-16218 - ami-628ad918
-    # debian-stretch-hvm-x86_64-gp2-2018-10-01-66564 - ami-03006931f694ea7eb
-    aws.ami = "ami-03006931f694ea7eb"
+    aws.ami = "ami-0994f9ee573d5cadc"
     aws.instance_type = "m5.xlarge"
 # use:  aws ec2 describe-images --image-ids ami-03006931f694ea7eb    - substitute the aws.ami value
 # to determine exactly what the DeviceName needs to be

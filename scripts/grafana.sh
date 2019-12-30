@@ -42,7 +42,7 @@ echo ">>>> downloading grafana"
 
 cd $DATA_DIR/$SVC
 
-wget $GRAFANA_SITE/$GRAFANA_ARCHIVE
+wget -q $GRAFANA_SITE/$GRAFANA_ARCHIVE
 tar -zxvf $GRAFANA_ARCHIVE
 
 echo ">>>> fixing permissions"

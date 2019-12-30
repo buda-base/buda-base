@@ -44,7 +44,7 @@ if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
 
-mvn -B clean package -Dldspdi.configpath=/etc/buda/ldspdi/ -Dspring.profiles.active=PROD -DskipTests -Dmaven.test.skip=true
+mvn -B clean package -Dldspdi.configpath=/etc/buda/$SVC/ -Dspring.profiles.active=PROD -DskipTests -Dmaven.test.skip=true
 
 chown $TC_USER:$TC_GROUP target/*.war
 chown -R $TC_USER:$TC_GROUP $THE_HOME
@@ -52,8 +52,8 @@ cp target/*-exec.war $THE_HOME/lds-pdi-exec.war
 
 popd
 
-mkdir -p /etc/buda/ldspdi
-erb /vagrant/conf/spring/logback.xml.erb > /etc/buda/ldspdi/logback.xml
+mkdir -p /etc/buda/$SVC
+erb /vagrant/conf/spring/logback.xml.erb > /etc/buda/$SVC/logback.xml
 
 cp /vagrant/conf/lds-pdi/update.sh $THE_HOME/
 chmod u+x $THE_HOME/update.sh
