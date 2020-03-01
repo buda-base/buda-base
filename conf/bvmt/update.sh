@@ -18,7 +18,7 @@ echo ">>>> DATA_DIR: " $DATA_DIR
 
 export BVMT_HOME=$DATA_DIR/bvmt
 
-cd $PDL_HOME/buda-volume-manifest-tool
+cd $BVMT_HOME/buda-volume-manifest-tool
 
 echo ">>>> git pull"
 git pull
