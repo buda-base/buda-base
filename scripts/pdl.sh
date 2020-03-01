@@ -24,7 +24,7 @@ mkdir -p $PDL_HOME
 
 pushd $PDL_HOME
 
-if [ ! -d $PDL_HOME/blmp-prototype-flow ] ; then 
+if [ ! -d $PDL_HOME/public-digital-library ] ; then 
   	echo ">>>> downloading & installing pdl"
 	git clone https://github.com/buda-base/public-digital-library.git
 	cd public-digital-library
