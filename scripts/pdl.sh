@@ -28,6 +28,7 @@ if [ ! -d $PDL_HOME/public-digital-library ] ; then
   	echo ">>>> downloading & installing pdl"
 	git clone https://github.com/buda-base/public-digital-library.git
 	cd public-digital-library
+	yarn -s --non-interactive global add react-scripts
 	yarn -s --non-interactive install
 	yarn -s --non-interactive build
 fi
