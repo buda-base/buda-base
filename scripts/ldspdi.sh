@@ -43,6 +43,8 @@ cd lds-pdi
 if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
+git clone https://github.com/buda-base/owl-schema.git
+git clone https://github.com/buda-base/editor-templates.git
 
 mvn -B clean package -Dldspdi.configpath=/etc/buda/$SVC/ -Dspring.profiles.active=PROD -DskipTests -Dmaven.test.skip=true
 
