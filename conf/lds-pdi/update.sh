@@ -33,10 +33,14 @@ fi
 git clone https://github.com/buda-base/owl-schema.git
 git clone https://github.com/buda-base/editor-templates.git
 
+chown -R $TC_USER:$TC_GROUP owl-schema
+chown -R $TC_USER:$TC_GROUP editor-templates
+
 mvn -B clean package -Dldspdi.configpath=/etc/buda/$SVC/ -Dspring.profiles.active=PROD -DskipTests -Dmaven.test.skip=true
 
 chown $TC_USER:$TC_GROUP target/*.war
 chown -R $TC_USER:$TC_GROUP $THE_HOME
+
 cp target/*-exec.war $THE_HOME/lds-pdi-exec.war
 
 popd
