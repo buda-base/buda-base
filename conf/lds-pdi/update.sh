@@ -30,11 +30,37 @@ cd lds-pdi
 if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
-git clone https://github.com/buda-base/owl-schema.git
-git clone https://github.com/buda-base/editor-templates.git
+
+if [ -d owl-schema ]
+then
+  cd owl-schema
+  git pull
+  cd ..
+else
+  git clone https://github.com/buda-base/owl-schema.git
+fi
+
+if [ -d editor-templates ]
+then
+  cd editor-templates
+  git pull
+  cd ..
+else
+  git clone https://github.com/buda-base/editor-templates.git
+fi
+
+if [ -d lds-queries ]
+then
+  cd lds-queries
+  git pull
+  cd ..
+else
+  git clone https://github.com/buda-base/lds-queries.git
+fi
 
 chown -R $TC_USER:$TC_GROUP owl-schema
 chown -R $TC_USER:$TC_GROUP editor-templates
+chown -R $TC_USER:$TC_GROUP lds-queries
 
 mvn -B clean package -Dldspdi.configpath=/etc/buda/$SVC/ -Dspring.profiles.active=PROD -DskipTests -Dmaven.test.skip=true
 
@@ -42,6 +68,8 @@ chown $TC_USER:$TC_GROUP target/*.war
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
 cp target/*-exec.war $THE_HOME/lds-pdi-exec.war
+
+
 
 popd
 
