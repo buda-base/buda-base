@@ -18,6 +18,7 @@ export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
 export MAIN_PORT=13480
 export JAVA_EXTRA_ARGS="-Xmx1024M"
+export EXECFILE=buda-iiif-presentation-exec.war
 
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"
