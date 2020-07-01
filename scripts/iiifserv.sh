@@ -50,8 +50,8 @@ wget -q https://github.com/buda-base/buda-iiif-server/releases/download/0.1/webp
 mvn -B install:install-file -Dfile=webp-imageio-core-0.1.0.jar -DgroupId=iiif.bdrc.io -DartifactId=webp-imageio -Dversion=0.1.0 -Dpackaging=jar
 
 mvn -B package
-chown $TC_USER:$TC_GROUP target/*.jar
-cp target/buda-hymir-1.0.0-SNAPSHOT-exec.jar $THE_HOME/$EXECFILE
+chown $TC_USER:$TC_GROUP target/*.war
+cp target/*-exec.war $THE_HOME/$EXECFILE
 
 mkdir -p /etc/buda/iiifserv
 erb /vagrant/conf/spring/logback.xml.erb > /etc/buda/iiifserv/logback.xml
