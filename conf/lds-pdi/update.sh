@@ -31,6 +31,17 @@ if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
 
+mvn -B clean package -Dldspdi.configpath=/etc/buda/$SVC/ -Dspring.profiles.active=PROD -DskipTests -Dmaven.test.skip=true
+
+chown $TC_USER:$TC_GROUP target/*.war
+chown -R $TC_USER:$TC_GROUP $THE_HOME
+
+cp target/*-exec.war $THE_HOME/lds-pdi-exec.war
+
+popd
+
+pushd $THE_HOME;
+
 if [ -d owl-schema ]
 then
   cd owl-schema
@@ -61,15 +72,6 @@ fi
 chown -R $TC_USER:$TC_GROUP owl-schema
 chown -R $TC_USER:$TC_GROUP editor-templates
 chown -R $TC_USER:$TC_GROUP lds-queries
-
-mvn -B clean package -Dldspdi.configpath=/etc/buda/$SVC/ -Dspring.profiles.active=PROD -DskipTests -Dmaven.test.skip=true
-
-chown $TC_USER:$TC_GROUP target/*.war
-chown -R $TC_USER:$TC_GROUP $THE_HOME
-
-cp target/*-exec.war $THE_HOME/lds-pdi-exec.war
-
-
 
 popd
 
