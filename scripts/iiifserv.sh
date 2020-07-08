@@ -25,7 +25,6 @@ export THE_HOME=$DATA_DIR/$SVC
 export IIIFSERV="buda-iiif-server"
 export MAIN_PORT=13580
 export EXECFILE=buda-hymir-exec.jar
-export JAVA_EXTRA_ARGS=-Dspring.config.location=file:/etc/buda/$SVC/application.yml
 
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"
