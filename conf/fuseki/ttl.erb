@@ -79,10 +79,16 @@
           text:props ( skos:prefLabel 
                        skos:altLabel ) ;
         ]
-        [ text:propListProp bdo:workStmts ;
-          text:props ( bdo:workColophon 
-                       bdo:workAuthorshipStatement 
-                       bdo:workEditionStatement ) ;
+        [ text:propListProp bdo:extendedStmts ;
+          text:props ( bdo:colophon 
+                       bdo:incipit 
+                       bdo:catalogInfo
+                       bdo:biblioNote
+                       bdo:scanInfo
+                       bdo:authorshipStatement 
+                       bdo:editionStatement
+                       bdo:publisherName
+                       bdo:publisherLocation ) ;
         ]
     ) ;
     text:defineAnalyzers (
@@ -451,26 +457,34 @@
            text:predicate rdfs:label ; ]
          [ text:field "chunkContents" ;
            text:predicate bdo:chunkContents ; ]
+         [ text:field "skosDefinition" ;
+           text:predicate skos:definition ; ]
+         [ text:field "rdfsComment" ;
+           text:predicate rdfs:comment ; ]
+         [ text:field "scanInfo" ;
+           text:predicate bdo:scanInfo ; ]
          [ text:field "eTextTitle" ;
            text:predicate bdo:eTextTitle ; ]
          [ text:field "logMessage" ;
            text:predicate adm:logMessage ; ]
          [ text:field "noteText" ;
            text:predicate bdo:noteText ; ]
-         [ text:field "workAuthorshipStatement" ;
-           text:predicate bdo:workAuthorshipStatement ; ]
-         [ text:field "workBiblioNote" ; 
-           text:predicate bdo:workBiblioNote ; ]
-         [ text:field "workCatalogInfo" ; 
-           text:predicate bdo:workCatalogInfo ; ]
-         [ text:field "workColophon" ; 
-           text:predicate bdo:workColophon ; ]
-         [ text:field "workEditionStatement" ;
-           text:predicate bdo:workEditionStatement ; ]
-         [ text:field "workPublisherLocation" ;
-           text:predicate bdo:workPublisherLocation ; ]
-         [ text:field "workPublisherName" ;
-           text:predicate bdo:workPublisherName ; ]
+         [ text:field "authorshipStatement" ;
+           text:predicate bdo:authorshipStatement ; ]
+         [ text:field "biblioNote" ; 
+           text:predicate bdo:biblioNote ; ]
+         [ text:field "catalogInfo" ; 
+           text:predicate bdo:catalogInfo ; ]
+         [ text:field "colophon" ; 
+           text:predicate bdo:colophon ; ]
+         [ text:field "incipit" ; 
+           text:predicate bdo:incipit ; ]
+         [ text:field "editionStatement" ;
+           text:predicate bdo:editionStatement ; ]
+         [ text:field "publisherLocation" ;
+           text:predicate bdo:publisherLocation ; ]
+         [ text:field "publisherName" ;
+           text:predicate bdo:publisherName ; ]
          [ text:field "workSeriesName" ;
            text:predicate bdo:workSeriesName ; ]
          ) ;
