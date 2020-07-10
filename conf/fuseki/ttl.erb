@@ -42,7 +42,13 @@
     fuseki:serviceUpdate              "update" ;   # SPARQL update service
     fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
     fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
+    fuseki:endpoint                   [ fuseki:operation fuseki:shacl ; fuseki:name "shacl" ] ;
     fuseki:dataset                    :<%= ENV['EP_NAME'] %>_text_dataset ;
+    .
+
+:<%= ENV['EP_NAME'] %>_text_dataset rdf:type     text:TextDataset ;
+    text:dataset   :dataset_<%= ENV['EP_NAME'] %> ;
+    text:index     :<%= ENV['EP_NAME'] %>_lucene_index ;
     .
 
 # using TDB
@@ -56,11 +62,6 @@
 #      tdb2:location "<%= ENV['THE_BASE'] %>/databases/<%= ENV['EP_NAME'] %>" ;
 #      tdb2:unionDefaultGraph true ;
 #   .
-
-:<%= ENV['EP_NAME'] %>_text_dataset rdf:type     text:TextDataset ;
-    text:dataset   :dataset_<%= ENV['EP_NAME'] %> ;
-    text:index     :<%= ENV['EP_NAME'] %>_lucene_index ;
-    .
 
 # Text index description
 :<%= ENV['EP_NAME'] %>_lucene_index a text:TextIndexLucene ;

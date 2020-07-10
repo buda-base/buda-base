@@ -19,7 +19,7 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # export FUSEKI_WAR="jena-fuseki-war-3.10.0-SNAPSHOT.war"
 # export FUSEKI_ZIP="https://github.com/buda-base/jena/releases/download/3.10.0-SNAP_04/${FUSEKI_WAR}.zip"
 # the following four lines are for official Apache releases
-export FUSEKI_DIR="apache-jena-fuseki-3.13.1"
+export FUSEKI_DIR="apache-jena-fuseki-3.14.0"
 export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
 export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
 export FUSEKI_WAR="fuseki.war"
