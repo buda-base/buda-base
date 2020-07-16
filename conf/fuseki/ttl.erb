@@ -257,6 +257,22 @@
                 )
             ] ; 
           ]
+        [ text:addLang "en" ;
+          text:searchFor ( "bo-x-mixed" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" ) ;
+          text:analyzer [ a text:StandardAnalyzer ; ] ;
+          ]
+        [ text:addLang "bo-x-mixed" ;
+          text:searchFor ( "en" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" ) ;
+          text:analyzer [ a text:StandardAnalyzer ; ] ;
+          ]
+        [ text:addLang "bo-x-phon-en-m-tbrc" ;
+          text:searchFor ( "bo-x-mixed" "en" "bo-x-phon-en-m-thlib" ) ;
+          text:analyzer [ a text:StandardAnalyzer ; ] ;
+          ]
+        [ text:addLang "bo-x-phon-en-m-thlib" ;
+          text:searchFor ( "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" ) ;
+          text:analyzer [ a text:StandardAnalyzer ; ] ;
+          ]
         [ text:addLang "bo" ; 
           text:searchFor ( "bo" "bo-x-ewts" "bo-alalc97" ) ;
           text:analyzer [ 
