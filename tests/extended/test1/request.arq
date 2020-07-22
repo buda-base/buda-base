@@ -1,0 +1,11 @@
+prefix : <http://purl.bdrc.io/ontology/core/>
+prefix bdr:   <http://purl.bdrc.io/resource/>
+prefix text: <http://jena.apache.org/text#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+select ?s ?lit
+where {
+	GRAPH bdr:testextended {
+		(?s ?sc ?lit) text:query ( :extendedStmts "\"tsongkhapa\""@bo-x-phon-en-m-tbrc "highlight:" )
+	}
+} order by ?s ?sc ?lit

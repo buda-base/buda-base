@@ -72,7 +72,7 @@ def run_testgroup(testgroupname, specifictest=None):
     #run_pre_post(testgroupname, "post")
 
 if __name__ == '__main__':
-    run_testgroup("lucene-zh")
+    run_testgroup("extended")
     #run_testgroup("lucene-sa", "test1")
     #run_testgroup("lucene-sa", "test3")
     #run_testgroup("lucene-bo")

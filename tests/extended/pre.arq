@@ -1,0 +1,12 @@
+prefix :      <http://purl.bdrc.io/ontology/core/>
+prefix bdr:   <http://purl.bdrc.io/resource/>
+prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+
+INSERT DATA
+{
+  GRAPH bdr:testextended {
+    bdr:T3CN2023  a         :Topic ;
+        :biblioNote       "one of the six great diffusers of the teachings of Je Tsongkhapa to the border (bstan pa phyogs mthar spel ba'i dar chen drug)"@en ;
+        .
+  }
+}
