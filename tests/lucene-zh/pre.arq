@@ -6,7 +6,8 @@ INSERT DATA
 {
   GRAPH bdr:testlucenezh {
     bdr:T3CN2023  a         :Topic ;
-        rdfs:label       "丹珠爾大藏經"@zh-hant , "dan zhu er"@zh-latn-pinyin-x-ndia, "lóng qīn rè jiàng bā"@zh-latn-pinyin ;
+        rdfs:label       "丹珠爾大藏經"@zh-hant , "Dān zhū ěr dàzàng jīng"@zh-latn-pinyin , "Dan zhu er dazang jing"@zh-latn-pinyin-x-ndia, "lóng qīn rè jiàng bā"@zh-latn-pinyin ;
         .
   }
 }
+# Dān zhū ěr dàzàng jīng => Dan zhu er dazang jing

@@ -371,14 +371,21 @@
             ] ;
           ]
         [ text:addLang "zh-latn-pinyin" ;
-          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" ) ;
+          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" "zh-latn-pinyin-x-ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :pinyin
+            ] ;
+          ]
+        [ text:addLang "zh-latn-pinyin-x-ndia" ;
+          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" "zh-latn-pinyin-x-ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :pinyin
             ] ;
           ]
         [ text:addLang "zh-aux-han2pinyin" ;
-          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" ) ;
+          text:searchFor ( "zh-latn-pinyin" "zh-aux-han2pinyin" "zh-latn-pinyin-x-ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :pinyin
