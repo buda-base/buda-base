@@ -10,30 +10,8 @@
             {
                 "lit": {
                     "type": "literal",
-                    "value": "丹↦珠↤爾大藏經",
-                    "xml:lang": "zh-hant"
-                },
-                "s": {
-                    "type": "uri",
-                    "value": "http://purl.bdrc.io/resource/T3CN2023"
-                }
-            },
-            {
-                "lit": {
-                    "type": "literal",
-                    "value": "Dan ↦zhu↤ er dazang jing",
-                    "xml:lang": "zh-latn-pinyin-x-ndia"
-                },
-                "s": {
-                    "type": "uri",
-                    "value": "http://purl.bdrc.io/resource/T3CN2023"
-                }
-            },
-            {
-                "lit": {
-                    "type": "literal",
-                    "value": "Dān ↦zhū↤ ěr dàzàng jīng",
-                    "xml:lang": "zh-latn-pinyin"
+                    "value": "one of the six great diffusers of the teachings of Je ↦ṭsongkhāpa↤ to the border (bstan pa phyogs mthar spel ba'i dar chen drug)",
+                    "xml:lang": "en"
                 },
                 "s": {
                     "type": "uri",
