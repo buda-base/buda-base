@@ -262,28 +262,28 @@
             ] ; 
           ]
         [ text:addLang "en" ;
-          text:searchFor ( "bo-x-mixed" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" ) ;
+          text:searchFor ( "en" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-mixed" ;
-          text:searchFor ( "en" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" ) ;
+          text:searchFor ( "bo-x-mixed" "en" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-phon-en-m-tbrc" ;
-          text:searchFor ( "bo-x-mixed" "en" "bo-x-phon-en-m-thlib" ) ;
+          text:searchFor ( "bo-x-phon-en-m-tbrc" "bo-x-mixed" "en" "bo-x-phon-en-m-thlib" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-phon-en-m-thlib" ;
-          text:searchFor ( "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" ) ;
+          text:searchFor ( "bo-x-phon-en-m-thlib" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
