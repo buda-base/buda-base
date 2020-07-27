@@ -11,6 +11,9 @@ else
   export DATA_DIR=/usr/local ;
 fi
 
+# so that we install all the deps:
+apt install chromium-shell -y -q
+
 echo ">>>> DATA_DIR: " $DATA_DIR
 export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
@@ -25,19 +28,21 @@ useradd -s /bin/bash -g $TC_GROUP -d $THE_HOME $TC_USER
 mkdir -p $THE_HOME
 
 pushd $THE_HOME
-
 if [ ! -d $THE_HOME/rendertron ] ; then 
   	echo ">>>> downloading & installing rendertron"
 	git clone https://github.com/GoogleChrome/rendertron.git
-	cd rendertron
-	npm install
-	npm run build
 fi
+popd
 
 # fix permissions
 echo ">>>> fixing permissions"
-chown -R $USER:$USER $DOWNLOADS
 chown -R $TC_USER:$TC_GROUP $THE_HOME
+
+pushd $THE_HOME/rendertron
+npm install
+npm install puppeteer
+npm run build
+popd
 
 echo ">>>> setting up ${SVC} as service listening on ${MAIN_PORT}"
 erb /vagrant/conf/rendertron/systemd.erb > /etc/systemd/system/$SVC.service
