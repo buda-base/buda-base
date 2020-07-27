@@ -1,0 +1,26 @@
+# Systemd unit file for Rendertron
+
+[Unit]
+Description=<%= ENV['SVC_DESC'] %>
+After=syslog.target network.target
+
+[Service]
+Type=simple
+
+SyslogIdentifier=<%= ENV['SVC'] %>
+
+Environment=NODE_ENV=production
+Environment=PORT=14019
+
+WorkingDirectory=<%= ENV['THE_HOME'] %>/rendertron
+ExecStart=/usr/bin/npm run start
+
+User=<%= ENV['TC_USER'] %>
+Group=<%= ENV['TC_GROUP'] %>
+
+UMask=0007
+RestartSec=10
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
