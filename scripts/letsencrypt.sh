@@ -7,7 +7,7 @@ fi
 
 mkdir -p /var/www/letsencrypt
 
-crontab -l | { cat; echo "0 12 * * * /usr/bin/certbot renew --quiet"; } | crontab -
+crontab -l | { cat; echo "0 12 * * * /usr/bin/certbot renew --quiet && service nginx restart";  } | crontab -
 
 # procedure:
 # certbot certonly -d iiif.bdrc.io --webroot --agree-tos -m github@tbrc.org -w /var/www/letsencrypt
