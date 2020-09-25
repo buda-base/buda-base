@@ -461,7 +461,7 @@
           ]
         [ # this is for query purposes only (sa + pi), we don't have data like that
           text:addLang "inc-x-ndia" ;
-          text:searchFor ( "pi-x-iast" "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" "pi-aux-roman2Ndia" "km-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer
@@ -475,22 +475,39 @@
             text:useAnalyzer :romanSylAnalyzer
             ] ;
           ]
-        [ text:addLang "km-x-kmfemc" ;
-          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
-          text:analyzer [
-            a text:DefinedAnalyzer ;
-            text:useAnalyzer :romanLenientQueryAnalyzer
-            ] ;
-          ]
         [ text:addLang "pi-x-iast" ;
           text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:auxIndex ( "pi-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
-            text:useAnalyzer :romanLenientQueryAnalyzer
+            text:useAnalyzer :romanSylAnalyzer
             ] ;
           ]
         [ text:addLang "pi-x-kmfemc" ;
           text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:auxIndex ( "pi-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanSylAnalyzer
+            ] ;
+          ]
+        [ text:addLang "km-x-kmfemc" ;
+          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:auxIndex ( "km-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanSylAnalyzer
+            ] ;
+          ]
+        [ text:addLang "pi-aux-roman2Ndia" ;
+          text:searchFor ( "pi-aux-roman2Ndia" "km-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          ]
+        [ text:addLang "km-aux-roman2Ndia" ;
+          text:searchFor ( "pi-aux-roman2Ndia" "km-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer
