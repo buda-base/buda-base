@@ -391,7 +391,7 @@
           text:indexAnalyzer :han2pinyin ;
           ]
         [ text:addLang "sa-x-ndia" ;
-          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" ) ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" "inc-x-ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer
@@ -401,7 +401,7 @@
           # ?
           ]
         [ text:addLang "sa-aux-deva2Ndia" ;
-          text:searchFor ( "sa-x-ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" ) ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-roman2Ndia" "sa-aux-slp2Ndia" "inc-x-ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer
@@ -409,7 +409,7 @@
           text:indexAnalyzer :devaLenientIndexAnalyzer ;
           ]
         [ text:addLang "sa-aux-roman2Ndia" ;
-          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-slp2Ndia" ) ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-slp2Ndia" "inc-x-ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer 
@@ -417,7 +417,7 @@
           text:indexAnalyzer :romanLenientIndexAnalyzer ;
           ]
         [ text:addLang "sa-aux-slp2Ndia" ;
-          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" ) ;
+          text:searchFor ( "sa-x-ndia" "sa-aux-deva2Ndia" "sa-aux-roman2Ndia" "inc-x-ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer
@@ -425,35 +425,35 @@
           text:indexAnalyzer :slpLenientIndexAnalyzer ;
           ]
         [ text:addLang "sa-deva" ;
-          text:searchFor ( "sa-deva" "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-alalc97" ) ;
+          text:searchFor ( "sa-deva" "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-alalc97" "inc-x-iast" ) ;
           text:auxIndex ( "sa-aux-deva2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :devaSylAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-iso" ;
-          text:searchFor ( "sa-x-iso" "sa-x-iast" "sa-x-slp1" "sa-deva" "sa-alalc97" ) ;
+          text:searchFor ( "sa-x-iso" "sa-x-iast" "sa-x-slp1" "sa-deva" "sa-alalc97" "inc-x-iast" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanSylAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-slp1" ;
-          text:searchFor ( "sa-x-slp1" "sa-x-iast" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
+          text:searchFor ( "sa-x-slp1" "sa-x-iast" "sa-x-iso" "sa-deva" "sa-alalc97" "inc-x-iast" ) ;
           text:auxIndex ( "sa-aux-slp2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :slpSylAnalyzer ] ; 
           ]
         [ text:addLang "sa-x-iast" ;
-          text:searchFor ( "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-alalc97" ) ;
+          text:searchFor ( "sa-x-iast" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-alalc97" "inc-x-iast" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanSylAnalyzer ] ; 
           ]
         [ text:addLang "sa-alalc97" ;
-          text:searchFor ( "sa-alalc97" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-iast" ) ;
+          text:searchFor ( "sa-alalc97" "sa-x-slp1" "sa-x-iso" "sa-deva" "sa-iast" "inc-x-iast" ) ;
           text:auxIndex ( "sa-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
@@ -476,7 +476,7 @@
             ] ;
           ]
         [ text:addLang "pi-x-iast" ;
-          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" "inc-x-iast" ) ;
           text:auxIndex ( "pi-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
@@ -484,7 +484,7 @@
             ] ;
           ]
         [ text:addLang "pi-x-kmfemc" ;
-          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" "inc-x-iast" ) ;
           text:auxIndex ( "pi-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
@@ -492,7 +492,7 @@
             ] ;
           ]
         [ text:addLang "km-x-kmfemc" ;
-          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" "inc-x-ndia" ) ;
           text:auxIndex ( "km-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
@@ -500,14 +500,14 @@
             ] ;
           ]
         [ text:addLang "pi-aux-roman2Ndia" ;
-          text:searchFor ( "pi-aux-roman2Ndia" "km-aux-roman2Ndia" ) ;
+          text:searchFor ( "pi-aux-roman2Ndia" "km-aux-roman2Ndia" "inc-x-ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer
             ] ;
           ]
         [ text:addLang "km-aux-roman2Ndia" ;
-          text:searchFor ( "pi-aux-roman2Ndia" "km-aux-roman2Ndia" ) ;
+          text:searchFor ( "pi-aux-roman2Ndia" "km-aux-roman2Ndia" "inc-x-ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanLenientQueryAnalyzer
