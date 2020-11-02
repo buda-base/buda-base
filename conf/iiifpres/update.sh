@@ -23,10 +23,15 @@ mkdir -p $THE_HOME
 
 # install iiifpres
 echo ">>>> installing iiifpres server"
-rm -rf --preserve-root $DOWNLOADS/buda-iiif-presentation
-pushd $DOWNLOADS;
-git clone https://github.com/buda-base/buda-iiif-presentation.git
-cd buda-iiif-presentation
+
+if [ -d buda-iiif-presentation ] ; then 
+  cd buda-iiif-presentation ;
+  git pull ; 
+else
+  git clone git clone https://github.com/buda-base/buda-iiif-presentation.git ;
+  cd buda-iiif-presentation ;
+fi
+
 if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi

@@ -24,9 +24,14 @@ echo ">>>> installing ldspdi server"
 rm -rf --preserve-root $DOWNLOADS/lds-pdi
 pushd $DOWNLOADS;
 
-git clone https://github.com/buda-base/lds-pdi.git
+if [ -d lds-pdi ] ; then 
+  cd lds-pdi ;
+  git pull ; 
+else
+  git clone git clone https://github.com/buda-base/lds-pdi.git ;
+  cd lds-pdi ;
+fi
 
-cd lds-pdi
 if [ "$#" -eq 1 ]; then
     git checkout "$1"
 fi
