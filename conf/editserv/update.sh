@@ -12,7 +12,6 @@ export SVC=editserv
 export DOWNLOADS="$DATA_DIR/downloads"
 export EDITSERV="editserv"
 export THE_HOME=$DATA_DIR/$SVC
-export AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/iiifserv/credentials
 
 service editserv stop
 

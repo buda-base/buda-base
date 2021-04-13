@@ -51,6 +51,10 @@ erb /vagrant/conf/spring/logback.xml.erb > /etc/buda/editserv/logback.xml
 
 cp /vagrant/conf/editserv/update.sh $THE_HOME/
 
+# install lds-queries
+cd $THE_HOME
+git clone https://github.com/buda-base/lds-queries.git
+
 echo ">>>> fixing permissions"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
