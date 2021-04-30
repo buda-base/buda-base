@@ -48,9 +48,9 @@ Vagrant.configure(2) do |config|
     aws.keypair_name = "BDRC_Dev_001"
     aws.security_groups = [ 'BDRC_Dev_SG_001' ]
     aws.ami = "ami-0994f9ee573d5cadc"
-    aws.instance_type = "m4.xlarge"
+    aws.instance_type = "m5.xlarge"
 # aws account id of Debian: 136693071363
-# use:  aws ec2 describe-images --image-ids ami-03006931f694ea7eb    - substitute the aws.ami value
+# use:  aws ec2 describe-images --image-ids ami-0e95fae3080abdc27    - substitute the aws.ami value
 # to determine exactly what the DeviceName needs to be
 # if the describe says xvda use that. If it says /dev/xvda use that
     aws.block_device_mapping = [{ 'DeviceName' => 'xvda', 
