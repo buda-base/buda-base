@@ -22,12 +22,10 @@ mkdir -p $BLMP_HOME
 
 pushd $BLMP_HOME
 
-if [ ! -d $BLMP_HOME/blmp-prototype-flow ] ; then 
-	echo ">>>> downloading owl-schema"
-	git clone https://github.com/buda-base/owl-schema.git
-  	echo ">>>> downloading & installing blmp-prototype_flow"
-	git clone https://github.com/buda-base/blmp-prototype-flow.git
-	cd blmp-prototype-flow
+if [ ! -d $BLMP_HOME/blmp-client ] ; then 
+  	echo ">>>> downloading & installing blmp-client"
+	git clone https://github.com/buda-base/blmp-client.git
+	cd blmp-client
 	yarn -s --non-interactive install
 	yarn -s --non-interactive build
 fi

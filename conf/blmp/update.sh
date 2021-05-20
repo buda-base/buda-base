@@ -18,7 +18,7 @@ echo ">>>> DATA_DIR: " $DATA_DIR
 
 export BLMP_HOME=$DATA_DIR/blmp
 
-cd $BLMP_HOME/blmp-prototype-flow
+cd $BLMP_HOME/blmp-client
 
 echo ">>>> git pull"
 git pull
