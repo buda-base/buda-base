@@ -11,7 +11,7 @@ define( [], function() {
         "xsd"   : "http://www.w3.org/2001/XMLSchema#",
         ""      : "http://purl.bdrc.io/ontology/core/",
         "adm"   : "http://purl.bdrc.io/ontology/admin/",
-        "adr"   : "http://purl.bdrc.io/resource-auth/",
+        "adr"   : "http://purl.bdrc.io/resource-nc/auth/",
         "aut"   : "http://purl.bdrc.io/ontology/ext/auth/",
         "bda"   : "http://purl.bdrc.io/admindata/",
         "bdg"   : "http://purl.bdrc.io/graph/",
