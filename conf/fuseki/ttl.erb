@@ -483,6 +483,13 @@
             text:useAnalyzer :romanSylAnalyzer
             ] ;
           ]
+        [ text:addLang "pi-x-ndia" ;
+          text:searchFor ( "pi-aux-roman2Ndia" "km-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanLenientQueryAnalyzer
+            ] ;
+          ]
         [ text:addLang "pi-x-kmfemc" ;
           text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" "inc-x-iast" ) ;
           text:auxIndex ( "pi-aux-roman2Ndia" ) ;
