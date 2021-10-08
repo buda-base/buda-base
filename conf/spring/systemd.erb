@@ -13,7 +13,7 @@ Environment=AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/<%= ENV['SVC'] %>/credentials
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
 WorkingDirectory=<%= ENV['THE_HOME'] %>
-ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -D<%= ENV['SVC'] %>.configpath=/etc/buda/<%= ENV['SVC'] %>/ -Dlogging.config=/etc/buda/<%= ENV['SVC'] %>/logback.xml -Dspring.profiles.active=PROD -XX:+ExitOnOutOfMemoryError -Xms512M XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+G1UseAdaptiveIHOP -XX:InitiatingHeapOccupancyPercent=45 -XX:InitialHeapSize=2g -XX:MaxHeapSize=2g -Xlog:gc=debug:file=<%= ENV['SVC'] %>/log/gc.log:time,uptime,level,tags:filecount=5,filesize=10m <%= ENV['JAVA_EXTRA_ARGS'] %> -jar <%= ENV['EXECFILE'] %> 
+ExecStart=/usr/bin/java -Dserver.port=<%= ENV['MAIN_PORT'] %> -D<%= ENV['SVC'] %>.configpath=/etc/buda/<%= ENV['SVC'] %>/ -Dlogging.config=/etc/buda/<%= ENV['SVC'] %>/logback.xml -Dspring.profiles.active=PROD -XX:+ExitOnOutOfMemoryError -Xms512M -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+G1UseAdaptiveIHOP -XX:InitiatingHeapOccupancyPercent=45 -XX:InitialHeapSize=2g -XX:MaxHeapSize=2g -Xlog:gc=debug:file=<%= ENV['SVC'] %>/log/gc.log:time,uptime,level,tags:filecount=5,filesize=10m <%= ENV['JAVA_EXTRA_ARGS'] %> -jar <%= ENV['EXECFILE'] %> 
 SuccessExitStatus=143
 
 User=<%= ENV['TC_USER'] %>
