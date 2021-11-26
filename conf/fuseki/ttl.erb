@@ -469,14 +469,14 @@
           ]
         [ # this is for query purposes only (sa + pi), we don't have data like that
           text:addLang "inc-x-iast" ;
-          text:searchFor ( "pi-x-iast" "sa-x-iast" "sa-deva" "sa-x-slp1" "sa-alalc97" "pi-x-kmfemc" "km-x-kmfemc" ) ;
+          text:searchFor ( "pi-x-iast" "sa-x-iast" "sa-deva" "sa-x-slp1" "sa-alalc97" "pi-x-twktt" "km-x-twktt" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanSylAnalyzer
             ] ;
           ]
         [ text:addLang "pi-x-iast" ;
-          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" "inc-x-iast" ) ;
+          text:searchFor ( "pi-x-iast" "pi-x-twktt" "km-x-twktt" "inc-x-iast" ) ;
           text:auxIndex ( "pi-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
@@ -490,16 +490,24 @@
             text:useAnalyzer :romanLenientQueryAnalyzer
             ] ;
           ]
-        [ text:addLang "pi-x-kmfemc" ;
-          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" "inc-x-iast" ) ;
+        [ text:addLang "pi-x-twktt" ;
+          text:searchFor ( "pi-x-iast" "pi-x-twktt" "km-x-twktt" "inc-x-iast" ) ;
           text:auxIndex ( "pi-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
             text:useAnalyzer :romanSylAnalyzer
             ] ;
           ]
-        [ text:addLang "km-x-kmfemc" ;
-          text:searchFor ( "pi-x-iast" "pi-x-kmfemc" "km-x-kmfemc" "inc-x-ndia" ) ;
+        [ text:addLang "km-x-twktt" ;
+          text:searchFor ( "pi-x-iast" "pi-x-twktt" "km-x-twktt" "inc-x-ndia" ) ;
+          text:auxIndex ( "km-aux-roman2Ndia" ) ;
+          text:analyzer [
+            a text:DefinedAnalyzer ;
+            text:useAnalyzer :romanSylAnalyzer
+            ] ;
+          ]
+        [ text:addLang "km-x-twktt" ;
+          text:searchFor ( "pi-x-iast" "pi-x-twktt" "km-x-twktt" "inc-x-ndia" ) ;
           text:auxIndex ( "km-aux-roman2Ndia" ) ;
           text:analyzer [
             a text:DefinedAnalyzer ;
