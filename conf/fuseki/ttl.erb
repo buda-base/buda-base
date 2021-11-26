@@ -89,6 +89,16 @@
         ]
     ) ;
     text:defineAnalyzers (
+        [ text:defineAnalyzer :kmUniAnalyzer ; 
+          text:analyzer [ 
+            a text:GenericAnalyzer ;
+            text:class "io.bdrc.lucene.km.KhmerAnalyzer" ;
+            text:params (
+                [ text:paramName "normalizationlevel" ;
+                  text:paramValue 3 ]
+                )
+            ] ; 
+          ]
         [ text:defineAnalyzer :asciiAnalyzer ; 
           text:analyzer [
             a text:ConfigurableAnalyzer ;
@@ -259,6 +269,20 @@
                   text:paramValue "PYstrict2PYlazy" ]
                 )
             ] ; 
+          ]
+        [ text:addLang "km" ;
+          text:searchFor ( "km" "pi-khmr" ) ;
+          text:analyzer [ 
+            a text:DefinedAnalyzer ; 
+            text:useAnalyzer :kmUniAnalyzer ;
+            ] ;
+          ]
+        [ text:addLang "pi-khmr" ;
+          text:searchFor ( "km" "pi-khmr" ) ;
+          text:analyzer [ 
+            a text:DefinedAnalyzer ; 
+            text:useAnalyzer :kmUniAnalyzer ;
+            ] ;
           ]
         [ text:addLang "en" ;
           text:searchFor ( "en" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" ) ;
