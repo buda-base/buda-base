@@ -285,35 +285,42 @@
             ] ;
           ]
         [ text:addLang "en" ;
-          text:searchFor ( "en" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" "en-x-mixed" ) ;
+          text:searchFor ( "en" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-mixed" ;
-          text:searchFor ( "bo-x-mixed" "en" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" "en-x-mixed" ) ;
+          text:searchFor ( "bo-x-mixed" "en" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-phon-en-m-tbrc" ;
-          text:searchFor ( "bo-x-phon-en-m-tbrc" "bo-x-mixed" "en" "bo-x-phon-en-m-thlib" "en-x-mixed" ) ;
+          text:searchFor ( "bo-x-phon-en-m-tbrc" "bo-x-mixed" "en" "bo-x-phon-en-m-thlib" "en-x-mixed" "bo-x-phon-en" ) ;
+          text:analyzer [ 
+            a text:DefinedAnalyzer ; 
+            text:useAnalyzer :asciiAnalyzer ;
+            ] ;
+          ]
+        [ text:addLang "bo-x-phon-en" ;
+          text:searchFor ( "bo-x-phon-en-m-tbrc" "bo-x-mixed" "en" "bo-x-phon-en-m-thlib" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-phon-en-m-thlib" ;
-          text:searchFor ( "bo-x-phon-en-m-thlib" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" "en-x-mixed" ) ;
+          text:searchFor ( "bo-x-phon-en-m-thlib" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
             ] ;
           ]
         [ text:addLang "en-x-mixed" ;
-          text:searchFor ( "bo-x-phon-en-m-thlib" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" "en-x-mixed" ) ;
+          text:searchFor ( "bo-x-phon-en-m-thlib" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
             text:useAnalyzer :asciiAnalyzer ;
