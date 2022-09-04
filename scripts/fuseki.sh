@@ -4,8 +4,8 @@
 echo ">>>> Installing Fuseki"
 export TC_USER=fuseki
 export TC_GROUP=fuseki
-export TOMCAT_VER=8.0.53
-export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-8/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
+export TOMCAT_VER=10.0.23
+export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-10/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
 # set erb vars
 # endpoint name for fuseki
 export EP_NAME=core
@@ -19,21 +19,24 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # export FUSEKI_WAR="jena-fuseki-war-3.10.0-SNAPSHOT.war"
 # export FUSEKI_ZIP="https://github.com/buda-base/jena/releases/download/3.10.0-SNAP_04/${FUSEKI_WAR}.zip"
 # the following four lines are for official Apache releases
-export FUSEKI_DIR="apache-jena-fuseki-3.16.0"
+export FUSEKI_DIR="apache-jena-fuseki-4.6.0"
 export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
 export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
 export FUSEKI_WAR="fuseki.war"
 # BUDA Lucene analyzers
-export LUCENE_BO_VER=1.5.0
+export LUCENE_BO_VER=1.7.0
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
 export LUCENE_BO_REL="https://github.com/buda-base/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
-export LUCENE_ZH_VER=0.4.1
+export LUCENE_KM_VER=0.0.1
+export LUCENE_KM_JAR="lucene-km-${LUCENE_BO_VER}.jar"
+export LUCENE_KM_REL="https://github.com/buda-base/lucene-km/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
+export LUCENE_ZH_VER=0.4.2
 export LUCENE_ZH_JAR="lucene-zh-${LUCENE_ZH_VER}.jar"
 export LUCENE_ZH_REL="https://github.com/buda-base/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
-export LUCENE_SA_VER=1.1.1
+export LUCENE_SA_VER=1.3.0
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
 export LUCENE_SA_REL="https://github.com/buda-base/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
-export BDRC_LIBRARIES_VER=0.5.0
+export BDRC_LIBRARIES_VER=0.18.0
 export BDRC_LIBRARIES_JAR=bdrc-libraries-${BDRC_LIBRARIES_VER}.jar
 export BDRC_LIBRARIES_REL="https://repo.maven.apache.org/maven2/io/bdrc/libraries/bdrc-libraries/${BDRC_LIBRARIES_VER}/${BDRC_LIBRARIES_JAR}"
 export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
@@ -149,6 +152,8 @@ echo ">>>>>>>> adding analyzers to {$CAT_HOME}/webapps/fuseki/WEB-INF/lib/"
 pushd $DOWNLOADS;
 wget -q -c $LUCENE_BO_REL
 cp $LUCENE_BO_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+wget -q -c $LUCENE_KM_REL
+cp $LUCENE_KM_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 wget -q -c $LUCENE_ZH_REL
 cp $LUCENE_ZH_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 wget -q -c $LUCENE_SA_REL
