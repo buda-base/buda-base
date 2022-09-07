@@ -36,6 +36,9 @@ export LUCENE_ZH_REL="https://github.com/buda-base/lucene-zh/releases/download/v
 export LUCENE_SA_VER=1.3.0
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
 export LUCENE_SA_REL="https://github.com/buda-base/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
+export LUCENE_EN_VER=0.1.0
+export LUCENE_EN_JAR="lucene-en-extra-${LUCENE_SA_VER}.jar"
+export LUCENE_EN_REL="https://github.com/buda-base/lucene-en-extra/releases/download/v${LUCENE_EN_VER}/${LUCENE_EN_JAR}"
 export BDRC_LIBRARIES_VER=0.18.0
 export BDRC_LIBRARIES_JAR=bdrc-libraries-${BDRC_LIBRARIES_VER}.jar
 export BDRC_LIBRARIES_REL="https://repo.maven.apache.org/maven2/io/bdrc/libraries/bdrc-libraries/${BDRC_LIBRARIES_VER}/${BDRC_LIBRARIES_JAR}"
@@ -158,6 +161,8 @@ wget -q -c $LUCENE_ZH_REL
 cp $LUCENE_ZH_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 wget -q -c $LUCENE_SA_REL
 cp $LUCENE_SA_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
+wget -q -c $LUCENE_EN_REL
+cp $LUCENE_EN_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 wget -q -c $BDRC_LIBRARIES_REL
 cp $BDRC_LIBRARIES_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
