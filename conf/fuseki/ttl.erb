@@ -106,6 +106,12 @@
             text:filters (text:ASCIIFoldingFilter text:LowerCaseFilter)
             ] ;
           ]
+        [ text:defineAnalyzer :englishAnalyzer ; 
+          text:analyzer [
+            a text:ConfigurableAnalyzer ;
+            text:class "io.bdrc.lucene.en.BDRCEnglishAnalyzer" ;
+            ] ;
+          ]
         [ text:defineAnalyzer :romanSylAnalyzer ; 
           text:analyzer [ 
             a text:GenericAnalyzer ;
@@ -288,42 +294,42 @@
           text:searchFor ( "en" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
-            text:useAnalyzer :asciiAnalyzer ;
+            text:useAnalyzer :englishAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-mixed" ;
           text:searchFor ( "bo-x-mixed" "en" "bo-x-phon-en-m-tbrc" "bo-x-phon-en-m-thlib" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
-            text:useAnalyzer :asciiAnalyzer ;
+            text:useAnalyzer :englishAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-phon-en-m-tbrc" ;
           text:searchFor ( "bo-x-phon-en-m-tbrc" "bo-x-mixed" "en" "bo-x-phon-en-m-thlib" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
-            text:useAnalyzer :asciiAnalyzer ;
+            text:useAnalyzer :englishAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-phon-en" ;
           text:searchFor ( "bo-x-phon-en-m-tbrc" "bo-x-mixed" "en" "bo-x-phon-en-m-thlib" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
-            text:useAnalyzer :asciiAnalyzer ;
+            text:useAnalyzer :englishAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo-x-phon-en-m-thlib" ;
           text:searchFor ( "bo-x-phon-en-m-thlib" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
-            text:useAnalyzer :asciiAnalyzer ;
+            text:useAnalyzer :englishAnalyzer ;
             ] ;
           ]
         [ text:addLang "en-x-mixed" ;
           text:searchFor ( "bo-x-phon-en-m-thlib" "bo-x-mixed" "bo-x-phon-en-m-tbrc" "en" "en-x-mixed" "bo-x-phon-en" ) ;
           text:analyzer [ 
             a text:DefinedAnalyzer ; 
-            text:useAnalyzer :asciiAnalyzer ;
+            text:useAnalyzer :englishAnalyzer ;
             ] ;
           ]
         [ text:addLang "bo" ; 
