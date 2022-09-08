@@ -19,17 +19,16 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # export FUSEKI_WAR="jena-fuseki-war-3.10.0-SNAPSHOT.war"
 # export FUSEKI_ZIP="https://github.com/buda-base/jena/releases/download/3.10.0-SNAP_04/${FUSEKI_WAR}.zip"
 # the following four lines are for official Apache releases
-export FUSEKI_DIR="apache-jena-fuseki-4.6.0"
-export FUSEKI_BIN="${FUSEKI_DIR}.tar.gz"
-export FUSEKI_REL="https://archive.apache.org/dist/jena/binaries/${FUSEKI_BIN}"
-export FUSEKI_WAR="fuseki.war"
+export FUSEKI_VER="4.6.1"
+export FUSEKI_WAR="jena-fuseki-war-${FUSEKI_VER}.war"
+export FUSEKI_REL="https://dlcdn.apache.org/jena/binaries/${FUSEKI_WAR}"
 # BUDA Lucene analyzers
 export LUCENE_BO_VER=1.7.0
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
 export LUCENE_BO_REL="https://github.com/buda-base/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
 export LUCENE_KM_VER=0.0.1
-export LUCENE_KM_JAR="lucene-km-${LUCENE_BO_VER}.jar"
-export LUCENE_KM_REL="https://github.com/buda-base/lucene-km/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
+export LUCENE_KM_JAR="lucene-km-${LUCENE_KM_VER}.jar"
+export LUCENE_KM_REL="https://github.com/buda-base/lucene-km/releases/download/v${LUCENE_KM_VER}/${LUCENE_KM_JAR}"
 export LUCENE_ZH_VER=0.4.2
 export LUCENE_ZH_JAR="lucene-zh-${LUCENE_ZH_VER}.jar"
 export LUCENE_ZH_REL="https://github.com/buda-base/lucene-zh/releases/download/v${LUCENE_ZH_VER}/${LUCENE_ZH_JAR}"
@@ -102,10 +101,7 @@ pushd $DOWNLOADS;
 # INSTALL FROM APACHE
 echo ">>>>>>>> wget -q -c ${FUSEKI_REL}"
 wget -q -c $FUSEKI_REL
-echo ">>>>>>>> tar xf ${FUSEKI_BIN}"
-tar xf $FUSEKI_BIN
 echo ">>>> copying ${FUSEKI_WAR} to ${CAT_HOME}/webapps/fuseki.war"
-pushd $FUSEKI_DIR
 cp $FUSEKI_WAR $CAT_HOME/webapps/fuseki.war
 popd
 popd
