@@ -11,8 +11,6 @@ export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-10/v${TOMCAT_VER}/bi
 export EP_NAME=core
 export SVC=fuseki
 export SVC_DESC="Jena-Fuseki Tomcat container"
-export MARPLE_SVC=marple
-export MARPLE_SVC_DESC="Marple service for fuseki Lucene indexes"
 export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # FUSEKI VARS
 # the following two lines are for BDRC specific releases
@@ -36,12 +34,11 @@ export LUCENE_SA_VER=1.3.0
 export LUCENE_SA_JAR="lucene-sa-${LUCENE_SA_VER}.jar"
 export LUCENE_SA_REL="https://github.com/buda-base/lucene-sa/releases/download/v${LUCENE_SA_VER}/${LUCENE_SA_JAR}"
 export LUCENE_EN_VER=0.1.1
-export LUCENE_EN_JAR="lucene-en-extra-${LUCENE_SA_VER}.jar"
+export LUCENE_EN_JAR="lucene-en-extra-${LUCENE_EN_VER}.jar"
 export LUCENE_EN_REL="https://github.com/buda-base/lucene-en-extra/releases/download/v${LUCENE_EN_VER}/${LUCENE_EN_JAR}"
 export BDRC_LIBRARIES_VER=0.18.0
 export BDRC_LIBRARIES_JAR=bdrc-libraries-${BDRC_LIBRARIES_VER}.jar
 export BDRC_LIBRARIES_REL="https://repo.maven.apache.org/maven2/io/bdrc/libraries/bdrc-libraries/${BDRC_LIBRARIES_VER}/${BDRC_LIBRARIES_JAR}"
-export MARPLE_REL="https://github.com/flaxsearch/marple/releases/download/v1.0/marple-1.0.jar"
 if [ -d /mnt/data ] ; then 
   export DATA_DIR=/mnt/data ; 
 else
@@ -58,10 +55,6 @@ export REDIR_PORT=13143
 export AJP_PORT=13109
 export MAX_MEM="-Xmx4096M"
 export LUCENE_INDEX=lucene-$EP_NAME
-export MARPLE_APP_PORT=13190
-export MARPLE_ADM_PORT=13191
-export MARPLE_JAR=marple-1.0.jar
-export MARPLE_HOME=$THE_HOME/marple
 
 # add Service USER
 echo ">>>> adding user: ${TC_USER}"
@@ -105,7 +98,6 @@ wget -q -c $FUSEKI_REL
 echo ">>>> copying ${FUSEKI_WAR} to ${CAT_HOME}/webapps/fuseki.war"
 cp $FUSEKI_WAR $CAT_HOME/webapps/fuseki.war
 popd
-popd
 
 echo ">>>> configuring FUSEKI_BASE"
 mkdir -p $THE_BASE
@@ -143,9 +135,6 @@ erb /vagrant/conf/fuseki/ttl.erb > $THE_BASE/configuration/$EP_NAME.ttl
 echo ">>>>>>>> updating auth.ttl to {$THE_BASE}/configuration/"
 erb /vagrant/conf/fuseki/auth.ttl.erb > $THE_BASE/configuration/auth.ttl
 
-echo ">>>>>>>> adding qonsole-config.js to {$CAT_HOME}/webapps/fuseki/js/app/"
-cp /vagrant/conf/fuseki/qonsole-config.js $CAT_HOME/webapps/fuseki/js/app/
-
 echo ">>>>>>>> adding analyzers to {$CAT_HOME}/webapps/fuseki/WEB-INF/lib/"
 # the lucene-xx and bdrc-libraries jars have to be added to fuseki/WEB-INF/lib/ after 
 # initial unpacking of the fuseki war file
@@ -175,28 +164,8 @@ echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
 echo ">>>> adding ${THE_HOME}/load-fuseki.sh"
 erb /vagrant/conf/fuseki/load-fuseki.erb > $THE_HOME/load-fuseki.sh
 
-# install Marple Lucene index monitor
-echo ">>>> installing Marple Lucene index monitor"
-pushd $DOWNLOADS;
-wget -q -c $MARPLE_REL
-mkdir $MARPLE_HOME
-cp $MARPLE_JAR $MARPLE_HOME/
-popd
-
-echo ">>>> setting up ${MARPLE_SVC} as service"
-erb /vagrant/conf/marple/systemd.erb > /etc/systemd/system/$MARPLE_SVC.service
-
-echo ">>>> creating ${MARPLE_HOME}/config.yml"
-erb /vagrant/conf/marple/config.erb > $MARPLE_HOME/config.yml
-
 echo ">>>> fixing permissions after updating ${MARPLE_SVC} configuration"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
-
-echo ">>>> starting ${MARPLE_SVC} service"
-systemctl daemon-reload
-systemctl enable $MARPLE_SVC
-# systemctl start $MARPLE_SVC
-echo ">>>> Marple will have to be manually started the first time after the Lucene index is built"
 
 cp /vagrant/conf/fuseki/update.sh $THE_HOME
 chmod a+x $THE_HOME/update.sh
