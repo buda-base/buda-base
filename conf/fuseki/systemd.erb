@@ -13,7 +13,7 @@ Environment=CATALINA_PID=<%= ENV['CAT_HOME'] %>/temp/tomcat.pid
 Environment=CATALINA_HOME=<%= ENV['CAT_HOME'] %>
 Environment=CATALINA_BASE=<%= ENV['CAT_HOME'] %>
 
-Environment='CATALINA_OPTS=-Xms512M <%= ENV['MAX_MEM'] %> -server -XX:+UseParallelGC'
+Environment='CATALINA_OPTS=-Xms512M <%= ENV['MAX_MEM'] %> -server -XX:+ExitOnOutOfMemoryError -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -XX:+G1UseAdaptiveIHOP -XX:InitiatingHeapOccupancyPercent=45 -XX:InitialHeapSize=2g -XX:MaxHeapSize=2g
 Environment='JAVA_OPTS=-Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
 Environment=FUSEKI_BASE=<%= ENV['THE_BASE'] %>

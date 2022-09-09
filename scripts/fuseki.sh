@@ -83,11 +83,12 @@ echo ">>>> unpacking tomcat 8"
 mkdir -p $CAT_HOME
 tar xf $DOWNLOADS/apache-tomcat-$TOMCAT_VER.tar.gz -C $CAT_HOME --strip-components=1
 # configure server
-echo ">>>> configuring server.xml tomcat 8"
+echo ">>>> configuring server.xml tomcat"
 erb /vagrant/conf/tomcat/server.xml.erb > $CAT_HOME/conf/server.xml
 # enable tomcat admin and manager apps
 cp  /vagrant/conf/tomcat/tomcat-users.xml $CAT_HOME/conf/
 cp  /vagrant/conf/tomcat/web.xml $CAT_HOME/conf/
+cp  /vagrant/conf/tomcat/context.xml $CAT_HOME/conf/
 popd
 
 # download fuseki
