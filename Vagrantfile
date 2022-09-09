@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.hostname = "buda-local"
 
-  config.vm.box = "debian/buster64"
+  config.vm.box = "debian/bullseye64"
 
   # temporary, see https://github.com/dotless-de/vagrant-vbguest/issues/351
   config.vbguest.auto_update = false
