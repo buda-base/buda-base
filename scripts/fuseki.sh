@@ -164,6 +164,9 @@ echo ">>>> ${SVC} service listening on ${MAIN_PORT}"
 echo ">>>> adding ${THE_HOME}/load-fuseki.sh"
 erb /vagrant/conf/fuseki/load-fuseki.erb > $THE_HOME/load-fuseki.sh
 
+touch $THE_HOME/base/databases/core/none.opt
+touch $THE_HOME/base/databases/auth/none.opt
+
 echo ">>>> fixing permissions after updating ${MARPLE_SVC} configuration"
 chown -R $TC_USER:$TC_GROUP $THE_HOME
 
