@@ -9,6 +9,8 @@ if [ ! -f /etc/nginx/dhparam.pem ]; then
     openssl dhparam -out /etc/nginx/dhparam.pem 2048 2> /dev/null
 fi
 
+mkdir /var/www/letsencrypt
+
 cp /vagrant/conf/nginx/ssl_params /etc/nginx/ssl_params
 cp /vagrant/conf/nginx/acmechallenge.conf /etc/nginx/
 
