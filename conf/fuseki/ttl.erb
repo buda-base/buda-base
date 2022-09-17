@@ -36,7 +36,13 @@
 
 :<%= ENV['EP_NAME'] %>rw rdf:type fuseki:Service ;
     fuseki:name                       "<%= ENV['EP_NAME'] %>rw" ;     # name of the dataset in the url
-    fuseki:serviceQuery               "query" ;    # SPARQL query service
+    fuseki:endpoint [ 
+        fuseki:operation fuseki:query ; 
+        fuseki:name "query" ;
+        ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "10000,60000" ] ;
+        # https://github.com/apache/jena/issues/1533
+        ja:context [ ja:cxtName "arq:optReorderBGP" ;  ja:cxtValue false ] ;
+    ] ;
     fuseki:serviceUpdate              "update" ;   # SPARQL update service
     fuseki:serviceUpload              "upload" ;   # Non-SPARQL upload service
     fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol (read and write)
