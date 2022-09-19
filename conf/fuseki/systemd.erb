@@ -17,6 +17,7 @@ Environment='CATALINA_OPTS=-Xms512M <%= ENV['MAX_MEM'] %> -server -XX:+ExitOnOut
 Environment='JAVA_OPTS=-Dlog4j.configurationFile=/usr/local/fuseki/base/log4j2.properties -Djava.awt.headless=true -Djava.security.egd=file:/dev/./urandom'
 
 Environment=FUSEKI_BASE=<%= ENV['THE_BASE'] %>
+Environment=FUSEKI_HOME=<%= ENV['THE_BASE'] %>
 
 ExecStart=<%= ENV['CAT_HOME'] %>/bin/startup.sh
 ExecStop=<%= ENV['CAT_HOME'] %>/bin/shutdown.sh
