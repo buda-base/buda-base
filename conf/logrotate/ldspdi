@@ -1,0 +1,21 @@
+/usr/local/ldspdi/log/*.log /usr/local/ldspdi/tomcatbase/logs/*.log
+{
+    daily
+    rotate 7
+    create
+    missingok
+    dateext
+    dateformat -%Y%m%d
+    compress
+    compresscmd /usr/bin/xz
+    uncompresscmd /usr/bin/unxz
+    compressext .xz
+    copytruncate
+    create 640 ldspdi ldspdi
+    su ldspdi ldspdi
+    sharedscripts
+    lastaction
+        /usr/bin/aws s3 cp --profile budabackup --recursive --exclude='*' --include='*.xz' /usr/local/ldspdi/log/ 's3://data.tbrc.org/buda/ldspdi/base/'
+        /usr/bin/aws s3 cp --profile budabackup --recursive --exclude='*' --include='*.xz' '/usr/local/ldspdi/tomcatbase/logs/' 's3://data.tbrc.org/buda/ldspdi/tomcat/'
+    endscript
+}

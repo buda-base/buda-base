@@ -1,0 +1,21 @@
+/usr/local/iiifserv/log/*.log /usr/local/iiifserv/tomcatbase/logs/*.log
+{
+    daily
+    rotate 7
+    create
+    missingok
+    dateext
+    dateformat -%Y%m%d
+    compress
+    compresscmd /usr/bin/xz
+    uncompresscmd /usr/bin/unxz
+    compressext .xz
+    copytruncate
+    create 640 iiifserv iiifserv
+    su iiifserv iiifserv
+    sharedscripts
+    lastaction
+        /usr/bin/aws s3 cp --profile budabackup --recursive --exclude='*' --include='*.xz' /usr/local/iiifserv/log/ 's3://data.tbrc.org/buda/iiifserv/base/'
+        /usr/bin/aws s3 cp --profile budabackup --recursive --exclude='*' --include='*.xz' '/usr/local/iiifserv/tomcatbase/logs/' 's3://data.tbrc.org/buda/iiifserv/tomcat/'
+    endscript
+}
