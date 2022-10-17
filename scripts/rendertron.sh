@@ -51,3 +51,6 @@ systemctl daemon-reload
 systemctl enable $SVC
 systemctl start $SVC
 echo ">>>> ${SVC} service listening on 14019"
+
+echo "/!\ set closeBrowser in configuration, see https://github.com/GoogleChrome/rendertron/issues/486"
+echo 'test with curl --user-agent "Googlebot/2.1 (+http://www.google.com/bot.html)" -v https://library.bdrc.io/show/bdr:WA0BC001'
