@@ -38,7 +38,7 @@ Vagrant.configure(2) do |config|
   config.vm.network :forwarded_port, guest: 13880, host: 13880 # edition server
   config.vm.network :forwarded_port, guest: 13999, host: 13999 # prometheus monitoring server
   config.vm.network :forwarded_port, guest: 14009, host: 14009 # Grafana monitoring UI
-  config.vm.network :forwarded_port, guest: 14019, host: 14019 # Rendertron
+  config.vm.network :forwarded_port, guest: 14019, host: 14019 # Prerender
 
 # need enough room for fuseki to do its thing
   config.vm.provider "virtualbox" do |vb|
@@ -69,5 +69,6 @@ Vagrant.configure(2) do |config|
   config.vm.provision "letsencrypt", type: "shell", path: "scripts/letsencrypt.sh"
   config.vm.provision "prometheus", type: "shell", path: "scripts/prometheus.sh"
   config.vm.provision "grafana", type: "shell", path: "scripts/grafana.sh"
-  config.vm.provision "rendertron", type: "shell", path: "scripts/rendertron.sh"
+#  config.vm.provision "rendertron", type: "shell", path: "scripts/rendertron.sh"
+  config.vm.provision "prerender", type: "shell", path: "scripts/prerender.sh"
 end
