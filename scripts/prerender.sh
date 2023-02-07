@@ -16,7 +16,7 @@ export DOWNLOADS=$DATA_DIR/downloads
 export THE_HOME=$DATA_DIR/$SVC
 
 # requires google-chrome
-wget -P $DOWNLOADS https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+wget -q -P $DOWNLOADS https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 apt install $DOWNLOADS/google-chrome-stable_current_amd64.deb
 
 # add Service USER
