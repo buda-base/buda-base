@@ -1,0 +1,21 @@
+[Unit]
+Description=SCAM QC web interface
+After=syslog.target network.target
+
+[Service]
+User=scam
+Group=scam
+Type=simple
+
+SyslogIdentifier=scam
+Environment=AWS_CREDENTIAL_PROFILES_FILE=/etc/buda/scam/credentials
+Environment="FLASK_APP=scaapi.py"
+
+WorkingDirectory=<%= ENV['THE_HOME'] %>/scam/
+
+ExecStart=/usr/bin/python3.9 -m flask run --port 14280
+
+UMask=0007
+
+[Install]
+WantedBy=multi-user.target
