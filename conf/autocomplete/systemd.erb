@@ -1,0 +1,20 @@
+[Unit]
+Description=Autocomplete API
+After=syslog.target network.target
+
+[Service]
+User=autocomplete
+Group=autocomplete
+Type=simple
+
+SyslogIdentifier=autocomplete
+Environment="FLASK_APP=flask_server.py"
+
+WorkingDirectory=<%= ENV['THE_HOME'] %>/autocomplete-prototype/
+
+ExecStart=/usr/bin/python3.9 -m flask run --port 16280
+
+UMask=0007
+
+[Install]
+WantedBy=multi-user.target
