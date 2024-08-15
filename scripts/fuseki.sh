@@ -4,7 +4,7 @@
 echo ">>>> Installing Fuseki"
 export TC_USER=fuseki
 export TC_GROUP=fuseki
-export TOMCAT_VER=10.0.23
+export TOMCAT_VER=10.1.28
 export TC_REL="http://archive.apache.org/dist/tomcat/tomcat-10/v${TOMCAT_VER}/bin/apache-tomcat-${TOMCAT_VER}.tar.gz"
 # set erb vars
 # endpoint name for fuseki
@@ -17,11 +17,11 @@ export JAVA_HOME=`type -p javac|xargs readlink -f|xargs dirname|xargs dirname`
 # export FUSEKI_WAR="jena-fuseki-war-3.10.0-SNAPSHOT.war"
 # export FUSEKI_ZIP="https://github.com/buda-base/jena/releases/download/3.10.0-SNAP_04/${FUSEKI_WAR}.zip"
 # the following four lines are for official Apache releases
-export FUSEKI_VER="4.6.1"
+export FUSEKI_VER="5.1.0"
 export FUSEKI_WAR="jena-fuseki-war-${FUSEKI_VER}.war"
 export FUSEKI_REL="https://dlcdn.apache.org/jena/binaries/${FUSEKI_WAR}"
 # BUDA Lucene analyzers
-export LUCENE_BO_VER=1.7.0
+export LUCENE_BO_VER=1.9.0
 export LUCENE_BO_JAR="lucene-bo-${LUCENE_BO_VER}.jar"
 export LUCENE_BO_REL="https://github.com/buda-base/lucene-bo/releases/download/v${LUCENE_BO_VER}/${LUCENE_BO_JAR}"
 export LUCENE_KM_VER=0.0.1
@@ -154,8 +154,8 @@ cp $BDRC_LIBRARIES_JAR $CAT_HOME/webapps/fuseki/WEB-INF/lib/
 popd
 
 # put a copy of the log4j.properties in $THE_BASE for use in development
-echo ">>>>>>>> copying log4j.properties to {$THE_BASE}/"
-cp /vagrant/conf/fuseki/log4j.properties $THE_BASE/
+echo ">>>>>>>> copying log4j2.properties to {$THE_BASE}/"
+cp /vagrant/conf/fuseki/log4j2.properties $THE_BASE/
 
 echo ">>>> restarting ${SVC}"
 systemctl start $SVC
